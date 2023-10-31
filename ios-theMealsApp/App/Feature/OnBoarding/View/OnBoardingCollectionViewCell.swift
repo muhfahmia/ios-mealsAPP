@@ -11,18 +11,12 @@ class OnBoardingCollectionViewCell: UICollectionViewCell {
 
     @IBOutlet weak var boardView: UIImageView!
     
-    var board: Board? {
-        didSet {
-            configure()
-        }
-    }
-    
     override func awakeFromNib() {
         super.awakeFromNib()
         // Initialization code
     }
     
-    func configure() {
-        boardView.image = UIImage(named: (board?.viewAnimate)!)
+    func configure(with board: Board) {
+        boardView.image = UIImage(named: (board.viewAnimate)!)
     }
 }

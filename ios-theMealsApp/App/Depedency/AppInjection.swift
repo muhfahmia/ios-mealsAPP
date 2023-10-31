@@ -4,9 +4,8 @@
 //
 //  Created by Muhammad Fahmi on 21/10/23.
 //
+import UIKit
 
-import Foundation
-
-protocol Injection: HomeInjection, OnBoardingInjection {}
+protocol Injection: HomeInjection, OnBoardingInjection, FavoriteInjection {}
 
 final class AppInjection: Injection {}

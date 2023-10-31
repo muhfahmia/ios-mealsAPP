@@ -14,14 +14,18 @@ class OnBoardingViewController: UIViewController {
     @IBOutlet weak var boardTitle: UILabel!
     @IBOutlet weak var boardDesc: UILabel!
     
-    let boarding: [Boarding] = [
+    private var router: OnBoardingRouteCase
+    
+    private let boarding: [Boarding] = [
         Boarding(viewAnimate: "boarding-1", title: "Welcome to Meals App", desc: "This application is intended for those of you who are looking for delicious and healthy food"),
         Boarding(viewAnimate: "boarding-2", title: "Handmade by Fahmi", desc: "Delicious food is the result of a Great Chef"),
         Boarding(viewAnimate: "boarding-3", title: "Find your Favorite", desc: "There are various kinds of food choices in this application. Come on, find your favorite food"),
     ]
     
-    init() {
+    init(router: OnBoardingRouteCase) {
+        self.router = router
         super.init(nibName: "OnBoardView", bundle: nil)
+        
     }
     
     required init?(coder: NSCoder) {
@@ -50,34 +54,27 @@ class OnBoardingViewController: UIViewController {
         boardCollectionView.register(UINib(nibName: "OnBoardingCollectionViewCell", bundle: nil), forCellWithReuseIdentifier: "onBoardCell")
     }
     
+    func setupBoard(with page: Int) {
+        boardPageControl.currentPage = page
+        boardTitle.text = boarding[page].title
+        boardDesc.text = boarding[page].desc
+    }
+    
     @IBAction func boardAction(_ sender: Any) {
         let indexPage = Int(boardCollectionView.contentOffset.x / boardCollectionView.frame.width) + 1
         let indexPath = IndexPath(row: indexPage, section: 0)
         
         if indexPage == boarding.endIndex {
-            setupBoard(with: 0)
-            boardCollectionView.scrollToItem(at: IndexPath(row: 0, section: 0), at: .centeredHorizontally, animated: true)
+            router.routeToHome(from: self)
         } else {
             setupBoard(with: indexPage)
             boardCollectionView.scrollToItem(at: indexPath, at: .centeredHorizontally, animated: true)
         }
-        
-        
-        
-        
-        print("nextPage: \(indexPage) endIndex: \(boarding.endIndex)")
     }
     
     func scrollViewDidEndDecelerating(_ scrollView: UIScrollView) {
         let indexPage = Int(boardCollectionView.contentOffset.x / scrollView.frame.size.height)
         setupBoard(with: indexPage)
-    }
-    
-    func setupBoard(with page: Int) {
-        print("page: \(page)")
-        boardPageControl.currentPage = page
-        boardTitle.text = boarding[page].title
-        boardDesc.text = boarding[page].desc
     }
 }
 
@@ -86,7 +83,7 @@ extension OnBoardingViewController: UICollectionViewDataSource {
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell = boardCollectionView.dequeueReusableCell(withReuseIdentifier: "onBoardCell", for: indexPath) as! OnBoardingCollectionViewCell
         let board = boarding[indexPath.item]
-        cell.board = board
+        cell.configure(with: board)
         return cell
     }
 
