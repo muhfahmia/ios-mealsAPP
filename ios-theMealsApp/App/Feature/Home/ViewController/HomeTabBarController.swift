@@ -44,7 +44,7 @@ class HomeTabBarController: UITabBarController {
     }
     
     private func setImageTab(imageSystem: String) -> UIImage {
-        let image = UIImage(systemName: imageSystem)!.withBaselineOffset(fromBottom: 18)
+        let image = UIImage(systemName: imageSystem)!.withBaselineOffset(fromBottom: 16)
         return image
     }
 }

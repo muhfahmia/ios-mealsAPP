@@ -12,10 +12,11 @@ class MealsCardTableViewCell: UITableViewCell {
     @IBOutlet weak var mealsCardCL: UICollectionView!
     var meals: [Meal]?
     
-    var cardSizeContent: CGSize = CGSize(width: 250, height: 186)
+    var cardSizeContent: CGSize?
 
     override func awakeFromNib() {
         super.awakeFromNib()
+        cardSizeContent = getResponsiveGrid(estimatedWidth: 0.55, heightRatio: 0.82, grid: 1)
         setupUI()
     }
 
@@ -25,7 +26,7 @@ class MealsCardTableViewCell: UITableViewCell {
     
     override func systemLayoutSizeFitting(_ targetSize: CGSize, withHorizontalFittingPriority horizontalFittingPriority: UILayoutPriority, verticalFittingPriority: UILayoutPriority) -> CGSize {
         self.layoutIfNeeded()
-        return cardSizeContent
+        return cardSizeContent!
     }
     
     func setupUI() {
@@ -62,7 +63,7 @@ extension MealsCardTableViewCell: UICollectionViewDataSource {
 extension MealsCardTableViewCell: UICollectionViewDelegateFlowLayout {
     
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, minimumLineSpacingForSectionAt section: Int) -> CGFloat {
-        return 8
+        return 12
     }
     
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, minimumInteritemSpacingForSectionAt section: Int) -> CGFloat {
@@ -70,16 +71,20 @@ extension MealsCardTableViewCell: UICollectionViewDelegateFlowLayout {
     }
     
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
-        return cardSizeContent
+        return cardSizeContent!
     }
     
-    func getResponsiveGrid(width: CGFloat, widthRatio: CGFloat, heightRatio: CGFloat, grid: CGFloat) -> CGSize {
-        let screenWidth = width
-        let columns: CGFloat = grid
-        let cellWidth = (screenWidth - (columns - 1) * 10) / columns
-        let aspectRatio: CGFloat = heightRatio
-        let cellHeight = cellWidth * aspectRatio
-        return CGSize(width: cellWidth, height: cellHeight)
+    func getResponsiveGrid(estimatedWidth: CGFloat, heightRatio: CGFloat, grid: CGFloat) -> CGSize {
+        let screenWidth = Constants.deviceWidth
+        let deviceModel = Constants.deviceModel
+        var estimatedWidth = estimatedWidth
+        if deviceModel == "iPad" {
+            estimatedWidth = estimatedWidth - 0.35
+        }
+        let cellWidth = (screenWidth * estimatedWidth) - (grid - 1) / grid
+        let cellHeight = cellWidth * heightRatio
+        let size = CGSize(width: cellWidth, height: cellHeight)
+        print(size)
+        return size
     }
-    
 }

@@ -15,7 +15,7 @@ class MealsCardCollectionViewCell: UICollectionViewCell {
     
     override func awakeFromNib() {
         super.awakeFromNib()
-        print("CL CellContent: \(self.contentView.bounds)")
+//        print("CL CellContent: \(self.contentView.bounds)")
         // Initialization code
     }
     

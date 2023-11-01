@@ -31,7 +31,7 @@
                         <nil key="highlightedColor"/>
                     </label>
                     <textField opaque="NO" contentMode="scaleToFill" semanticContentAttribute="forceLeftToRight" horizontalHuggingPriority="248" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Search Food" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="XFi-Ig-vWH">
-                        <rect key="frame" x="0.0" y="66" width="537" height="72"/>
+                        <rect key="frame" x="0.0" y="66" width="537" height="62"/>
                         <color key="textColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <fontDescription key="fontDescription" type="system" pointSize="13"/>
                         <textInputTraits key="textInputTraits" textContentType="name"/>
@@ -51,7 +51,7 @@
                 <constraints>
                     <constraint firstItem="RYB-74-1bl" firstAttribute="top" secondItem="Q7Y-jQ-KBQ" secondAttribute="bottom" constant="10" id="571-Hg-2GG"/>
                     <constraint firstAttribute="trailing" secondItem="XFi-Ig-vWH" secondAttribute="trailing" id="ON5-fK-E27"/>
-                    <constraint firstAttribute="bottom" secondItem="XFi-Ig-vWH" secondAttribute="bottom" constant="10" id="PRb-b6-pdO"/>
+                    <constraint firstAttribute="bottom" secondItem="XFi-Ig-vWH" secondAttribute="bottom" constant="20" id="PRb-b6-pdO"/>
                     <constraint firstItem="XFi-Ig-vWH" firstAttribute="top" secondItem="RYB-74-1bl" secondAttribute="bottom" constant="15" id="RSh-5j-tf8"/>
                     <constraint firstItem="RYB-74-1bl" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" id="URh-il-eZ2"/>
                     <constraint firstItem="Q7Y-jQ-KBQ" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" id="ZQe-fh-gEB"/>

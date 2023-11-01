@@ -53,5 +53,4 @@ class FilterTableViewCell: UITableViewCell {
     @objc func searchMeals(_ sender: UIButton) {
         homeViewDelegate?.updateMeals(category: sender.currentTitle ?? "Beef")
     }
-    
 }

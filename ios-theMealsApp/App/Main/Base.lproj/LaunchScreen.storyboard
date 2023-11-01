@@ -17,13 +17,13 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="launchscreen" translatesAutoresizingMaskIntoConstraints="NO" id="xkV-Kw-FE4">
-                                <rect key="frame" x="25" y="254.66666666666663" width="343" height="343"/>
+                                <rect key="frame" x="25" y="214.66666666666663" width="343" height="343"/>
                                 <constraints>
                                     <constraint firstAttribute="width" secondItem="xkV-Kw-FE4" secondAttribute="height" multiplier="1:1" id="clD-3I-Ua5"/>
                                 </constraints>
                             </imageView>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Your mood solution" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="4xQ-4e-dkE">
-                                <rect key="frame" x="25" y="622.66666666666663" width="343" height="31.333333333333371"/>
+                                <rect key="frame" x="25" y="582.66666666666663" width="343" height="31.333333333333371"/>
                                 <fontDescription key="fontDescription" type="system" weight="heavy" pointSize="26"/>
                                 <nil key="highlightedColor"/>
                             </label>
@@ -33,8 +33,8 @@
                         <constraints>
                             <constraint firstItem="xkV-Kw-FE4" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" constant="25" id="8VV-v3-8z7"/>
                             <constraint firstItem="4xQ-4e-dkE" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" constant="25" id="Gjp-L3-WxD"/>
-                            <constraint firstItem="xkV-Kw-FE4" firstAttribute="centerY" secondItem="Ze5-6b-2t3" secondAttribute="centerY" id="K17-Dv-VRi"/>
                             <constraint firstItem="xkV-Kw-FE4" firstAttribute="centerX" secondItem="Ze5-6b-2t3" secondAttribute="centerX" id="Kpa-0X-cm3"/>
+                            <constraint firstItem="xkV-Kw-FE4" firstAttribute="centerY" secondItem="Ze5-6b-2t3" secondAttribute="centerY" constant="-40" id="LLB-ha-gAO"/>
                             <constraint firstItem="6Tk-OE-BBY" firstAttribute="trailing" secondItem="4xQ-4e-dkE" secondAttribute="trailing" constant="25" id="T4j-In-LGB"/>
                             <constraint firstItem="6Tk-OE-BBY" firstAttribute="trailing" secondItem="xkV-Kw-FE4" secondAttribute="trailing" constant="25" id="X7F-TJ-Zey"/>
                             <constraint firstItem="xkV-Kw-FE4" firstAttribute="centerX" secondItem="Ze5-6b-2t3" secondAttribute="centerX" id="mLY-3b-HVa"/>

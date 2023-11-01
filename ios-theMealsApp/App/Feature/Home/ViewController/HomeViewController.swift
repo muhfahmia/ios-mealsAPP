@@ -21,12 +21,15 @@ class HomeViewController: UIViewController, HomeViewDelegate {
         case filterMeals
         case titleSuggestion
         case mealsCard
+        case titleRecommendFav
     }
     
     private var homeViewModel: HomeViewModel
     private var cancelable = Set<AnyCancellable>()
     private var categories = [MCategory]()
     private var meals = [Meal]()
+    
+    let refreshPage = UIRefreshControl()
     
     init(homeViewModel: HomeViewModel) {
         self.homeViewModel = homeViewModel
@@ -39,15 +42,15 @@ class HomeViewController: UIViewController, HomeViewDelegate {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        print("Phone Bound Frame: \(self.view.bounds)")
+        print("Phone Bound Frame: \(UIScreen.main.bounds)")
         setupUI()
-        setupMeals(category: "Beef")
-        setupCategories()
+        reloadHomePage()
+        observedMeals()
+        observedCategories()
         // Do any additional setup after loading the view.
     }
     
-    func setupCategories() {
-        homeViewModel.getCategories()
+    private func observedCategories() {
         homeViewModel.categories
             .receive(on: RunLoop.main)
             .sink(receiveValue: { [weak self] value in
@@ -56,8 +59,7 @@ class HomeViewController: UIViewController, HomeViewDelegate {
             }).store(in: &cancelable)
     }
     
-    func setupMeals(category: String) {
-        homeViewModel.getMealsCategories(category: category)
+    private func observedMeals() {
         homeViewModel.meals
         .receive(on: RunLoop.main)
         .sink(receiveValue: { [weak self] value in
@@ -66,7 +68,9 @@ class HomeViewController: UIViewController, HomeViewDelegate {
         }).store(in: &cancelable)
     }
  
-    func setupUI() {
+    private func setupUI() {
+        tblHome.addSubview(refreshPage)
+        refreshPage.addTarget(self, action: #selector(onRefreshPage), for: .valueChanged)
         tblHome.dataSource = self
         tblHome.register(UINib(nibName: "HeaderHomeTableViewCell", bundle: nil), forCellReuseIdentifier: "headerHomeCell")
         tblHome.register(UINib(nibName: "FilterCell", bundle: nil), forCellReuseIdentifier: "filterCell")
@@ -75,8 +79,19 @@ class HomeViewController: UIViewController, HomeViewDelegate {
     }
     
     func updateMeals(category: String) {
-        print("updateMeals \(category)")
-        setupMeals(category: category)
+        homeViewModel.getMealsCategories(category: category)
+        observedMeals()
+    }
+    
+    private func reloadHomePage() {
+        homeViewModel.getCategories()
+        homeViewModel.getMealsCategories(category: "Beef")
+    }
+    
+    @objc func onRefreshPage() {
+        refreshPage.beginRefreshing()
+        reloadHomePage()
+        refreshPage.endRefreshing()
     }
     
 }
@@ -100,10 +115,15 @@ extension HomeViewController: UITableViewDataSource {
             return cell!
         case .titleSuggestion:
             let cell = tableView.dequeueReusableCell(withIdentifier: "titleCell", for: indexPath) as? TitleTableViewCell
+            cell?.configure(title: "Suggestion", subTitle: "(Choose your meals)")
             return cell!
         case .mealsCard:
             let cell = tableView.dequeueReusableCell(withIdentifier: "mealsCardCell", for: indexPath) as? MealsCardTableViewCell
             cell?.configure(with: meals)
+            return cell!
+        case .titleRecommendFav:
+            let cell = tableView.dequeueReusableCell(withIdentifier: "titleCell", for: indexPath) as? TitleTableViewCell
+            cell?.configure(title: "Favorite", subTitle: "(Recommend)")
             return cell!
         case .none:
             return UITableViewCell()
@@ -122,6 +142,8 @@ extension HomeViewController: UITableViewDataSource {
         case .titleSuggestion:
             return 1
         case .mealsCard:
+            return 1
+        case .titleRecommendFav:
             return 1
         case .none:
             return 0
