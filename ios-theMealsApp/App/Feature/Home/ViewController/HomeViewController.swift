@@ -42,20 +42,16 @@ class HomeViewController: UIViewController, HomeViewDelegate {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        print("Phone Bound Frame: \(UIScreen.main.bounds)")
         setupUI()
         reloadHomePage()
-        observedMeals()
-        observedCategories()
-        // Do any additional setup after loading the view.
     }
-    
+
     private func observedCategories() {
         homeViewModel.categories
             .receive(on: RunLoop.main)
             .sink(receiveValue: { [weak self] value in
                 self?.categories = value
-                self?.tblHome.reloadData()
+                self?.tblHome.reloadRows(at: [IndexPath(row: 0, section: 1)], with: .automatic)
             }).store(in: &cancelable)
     }
     
@@ -64,7 +60,7 @@ class HomeViewController: UIViewController, HomeViewDelegate {
         .receive(on: RunLoop.main)
         .sink(receiveValue: { [weak self] value in
             self?.meals = value
-            self?.tblHome.reloadData()
+            self?.tblHome.reloadRows(at: [IndexPath(row: 0, section: 3)], with: .left)
         }).store(in: &cancelable)
     }
  
@@ -72,10 +68,10 @@ class HomeViewController: UIViewController, HomeViewDelegate {
         tblHome.addSubview(refreshPage)
         refreshPage.addTarget(self, action: #selector(onRefreshPage), for: .valueChanged)
         tblHome.dataSource = self
-        tblHome.register(UINib(nibName: "HeaderHomeTableViewCell", bundle: nil), forCellReuseIdentifier: "headerHomeCell")
-        tblHome.register(UINib(nibName: "FilterCell", bundle: nil), forCellReuseIdentifier: "filterCell")
-        tblHome.register(UINib(nibName: "TitleTableViewCell", bundle: nil), forCellReuseIdentifier: "titleCell")
-        tblHome.register(UINib(nibName: "MealsCardTableViewCell", bundle: nil), forCellReuseIdentifier: "mealsCardCell")
+        tblHome.register(nib: UINib(nibName: "HeaderHomeTableViewCell", bundle: nil), withCellClass: HeaderHomeTableViewCell.self)
+        tblHome.register(cellWithClass: FilterTableViewCell.self)
+        tblHome.register(nib: UINib(nibName: "TitleTableViewCell", bundle: nil), withCellClass: TitleTableViewCell.self)
+        tblHome.register(nib: UINib(nibName: "MealsCardTableViewCell", bundle: nibBundle), withCellClass: MealsCardTableViewCell.self)
     }
     
     func updateMeals(category: String) {
@@ -86,6 +82,8 @@ class HomeViewController: UIViewController, HomeViewDelegate {
     private func reloadHomePage() {
         homeViewModel.getCategories()
         homeViewModel.getMealsCategories(category: "Beef")
+        observedCategories()
+        observedMeals()
     }
     
     @objc func onRefreshPage() {
@@ -106,25 +104,25 @@ extension HomeViewController: UITableViewDataSource {
         let section = TableSection(rawValue: indexPath.section)
         switch section {
         case .header:
-            let cell = tableView.dequeueReusableCell(withIdentifier: "headerHomeCell", for: indexPath) as? HeaderHomeTableViewCell
-            return cell!
+            let cell: HeaderHomeTableViewCell = tableView.dequeueReusableCell(withClass: HeaderHomeTableViewCell.self)
+            return cell
         case .filterMeals:
-            let cell = tableView.dequeueReusableCell(withIdentifier: "filterCell", for: indexPath) as? FilterTableViewCell
-            cell?.configure(with: categories)
-            cell?.homeViewDelegate = self
-            return cell!
+            let cell: FilterTableViewCell = tableView.dequeueReusableCell(withClass: FilterTableViewCell.self)
+            cell.configure(with: categories)
+            cell.homeViewDelegate = self
+            return cell
         case .titleSuggestion:
-            let cell = tableView.dequeueReusableCell(withIdentifier: "titleCell", for: indexPath) as? TitleTableViewCell
-            cell?.configure(title: "Suggestion", subTitle: "(Choose your meals)")
-            return cell!
+            let cell: TitleTableViewCell = tableView.dequeueReusableCell(withClass: TitleTableViewCell.self)
+            cell.configure(title: "Best for you", subTitle: "(Choose your Meals)")
+            return cell
         case .mealsCard:
-            let cell = tableView.dequeueReusableCell(withIdentifier: "mealsCardCell", for: indexPath) as? MealsCardTableViewCell
-            cell?.configure(with: meals)
-            return cell!
+            let cell: MealsCardTableViewCell = tableView.dequeueReusableCell(withClass: MealsCardTableViewCell.self)
+            cell.configure(with: meals)
+            return cell
         case .titleRecommendFav:
-            let cell = tableView.dequeueReusableCell(withIdentifier: "titleCell", for: indexPath) as? TitleTableViewCell
-            cell?.configure(title: "Favorite", subTitle: "(Recommend)")
-            return cell!
+            let cell: TitleTableViewCell = tableView.dequeueReusableCell(withClass: TitleTableViewCell.self)
+            cell.configure(title: "Favorite", subTitle: "(Recommend)")
+            return cell
         case .none:
             return UITableViewCell()
         }

@@ -7,7 +7,7 @@
 
 import UIKit
 
-extension UIView {
+public extension UIView {
     func anchor(top: NSLayoutYAxisAnchor? = nil,
                 left: NSLayoutXAxisAnchor? = nil,
                 bottom: NSLayoutYAxisAnchor? = nil,
@@ -93,6 +93,26 @@ extension UIView {
         guard let view = superview else { return }
         anchor(top: view.topAnchor, left: view.leftAnchor,
                bottom: view.bottomAnchor, right: view.rightAnchor)
+    }
+    
+    func addSubviews(_ subviews: [UIView]) {
+        subviews.forEach { addSubview($0) }
+    }
+    
+    @IBInspectable var layerBorderColor: UIColor? {
+        get {
+            guard let color = layer.borderColor else { return nil }
+            return UIColor(cgColor: color)
+        }
+        set {
+            guard let color = newValue else {
+                layer.borderColor = nil
+                return
+            }
+            // Fix React-Native conflict issue
+            guard String(describing: type(of: color)) != "__NSCFType" else { return }
+            layer.borderColor = color.cgColor
+        }
     }
     
     @IBInspectable var layerBorderWidth: CGFloat {

@@ -84,7 +84,6 @@ extension MealsCardTableViewCell: UICollectionViewDelegateFlowLayout {
         let cellWidth = (screenWidth * estimatedWidth) - (grid - 1) / grid
         let cellHeight = cellWidth * heightRatio
         let size = CGSize(width: cellWidth, height: cellHeight)
-        print(size)
         return size
     }
 }

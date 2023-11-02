@@ -7,7 +7,7 @@
 
 import UIKit
 
-extension UIColor {
+public extension UIColor {
   static let primaryColor = UIColor(named: "PrimaryColor")
   static let backgroundColor = UIColor(named: "BackgroundColor")
   static let accentColor = UIColor(named: "AccentColor")
