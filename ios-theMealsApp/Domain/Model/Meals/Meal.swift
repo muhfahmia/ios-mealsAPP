@@ -15,4 +15,9 @@ protocol Meal {
     var idMeal: String? { get }
     var name: String? { get }
     var imageThumb: String? { get }
+    var category: String? { get }
+    var area: String? { get }
+    var instruction: String? { get }
+    var linkYoutube: String? { get }
+    var tags: String? { get }
 }

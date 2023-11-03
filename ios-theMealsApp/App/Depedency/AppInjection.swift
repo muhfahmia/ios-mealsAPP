@@ -6,6 +6,6 @@
 //
 import UIKit
 
-protocol Injection: HomeInjection, OnBoardingInjection, FavoriteInjection {}
+protocol Injection: HomeInjection, OnBoardingInjection, FavoriteInjection, DetailInjection {}
 
 final class AppInjection: Injection {}

@@ -14,14 +14,14 @@ protocol HomeInjection {
     func resolve() -> HomeTabBarController
     
     func resolve() -> MealsDataSourceProtocol
-    func resolve() -> MealsRepositoryProtocol
+    func resolve() -> MealsRepository
     func resolve() -> HomeUseCase
 }
 
 extension HomeInjection where Self: Injection {
     
     func resolve() -> HomeViewController {
-        return HomeViewController(homeViewModel: resolve())
+        return HomeViewController(homeViewModel: resolve(), router: resolve())
     }
     
     func resolve() -> HomeRouteCase {
@@ -40,8 +40,8 @@ extension HomeInjection where Self: Injection {
         return MealsDataSource()
     }
     
-    func resolve() -> MealsRepositoryProtocol {
-        return MealsRepository(mealsDataSource: resolve())
+    func resolve() -> MealsRepository {
+        return DefaultMealsRepository(mealsDataSource: resolve())
     }
     
     func resolve() -> HomeUseCase {

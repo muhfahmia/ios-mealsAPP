@@ -22,17 +22,27 @@ class HomeViewController: UIViewController, HomeViewDelegate {
         case titleSuggestion
         case mealsCard
         case titleRecommendFav
+        case mealsCardFav
     }
     
     private var homeViewModel: HomeViewModel
     private var cancelable = Set<AnyCancellable>()
     private var categories = [MCategory]()
     private var meals = [Meal]()
+    private var mealsFav = [Meal]()
+    private var categoryFav: String? {
+        didSet {
+            observedFav(category: categoryFav ?? "Beef")
+        }
+    }
+    
+    private var router: HomeRouteCase
     
     let refreshPage = UIRefreshControl()
     
-    init(homeViewModel: HomeViewModel) {
+    init(homeViewModel: HomeViewModel, router: HomeRouteCase) {
         self.homeViewModel = homeViewModel
+        self.router = router
         super.init(nibName: "HomeView", bundle: nil)
     }
     
@@ -51,6 +61,9 @@ class HomeViewController: UIViewController, HomeViewDelegate {
             .receive(on: RunLoop.main)
             .sink(receiveValue: { [weak self] value in
                 self?.categories = value
+                if self?.categoryFav == nil {
+                    self?.categoryFav = value.randomElement()?.name
+                }
                 self?.tblHome.reloadRows(at: [IndexPath(row: 0, section: 1)], with: .automatic)
             }).store(in: &cancelable)
     }
@@ -61,6 +74,16 @@ class HomeViewController: UIViewController, HomeViewDelegate {
         .sink(receiveValue: { [weak self] value in
             self?.meals = value
             self?.tblHome.reloadRows(at: [IndexPath(row: 0, section: 3)], with: .left)
+        }).store(in: &cancelable)
+    }
+    
+    private func observedFav(category: String) {
+        homeViewModel.getMealsFav(category: category)
+        homeViewModel.mealsFav
+        .receive(on: RunLoop.main)
+        .sink(receiveValue: { [weak self] value in
+            self?.mealsFav = value
+            self?.tblHome.reloadRows(at: [IndexPath(row: 0, section: 5)], with: .left)
         }).store(in: &cancelable)
     }
  
@@ -88,6 +111,7 @@ class HomeViewController: UIViewController, HomeViewDelegate {
     
     @objc func onRefreshPage() {
         refreshPage.beginRefreshing()
+        categoryFav = categories.randomElement()?.name
         reloadHomePage()
         refreshPage.endRefreshing()
     }
@@ -118,10 +142,22 @@ extension HomeViewController: UITableViewDataSource {
         case .mealsCard:
             let cell: MealsCardTableViewCell = tableView.dequeueReusableCell(withClass: MealsCardTableViewCell.self)
             cell.configure(with: meals)
+            cell.mealClicked = { [weak self] meal in
+                guard let self = self else { return }
+                self.router.routeToDetail(from: self, withID: meal.idMeal ?? "0")
+            }
             return cell
         case .titleRecommendFav:
             let cell: TitleTableViewCell = tableView.dequeueReusableCell(withClass: TitleTableViewCell.self)
             cell.configure(title: "Favorite", subTitle: "(Recommend)")
+            return cell
+        case .mealsCardFav:
+            let cell: MealsCardTableViewCell = tableView.dequeueReusableCell(withClass: MealsCardTableViewCell.self)
+            cell.configure(with: mealsFav)
+            cell.mealClicked = { [weak self] meal in
+                guard let self = self else { return }
+                self.router.routeToDetail(from: self, withID: meal.idMeal ?? "0")
+            }
             return cell
         case .none:
             return UITableViewCell()
@@ -131,21 +167,7 @@ extension HomeViewController: UITableViewDataSource {
     }
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        let section = TableSection(rawValue: section)
-        switch section {
-        case .header:
-            return 1
-        case .filterMeals:
-            return 1
-        case .titleSuggestion:
-            return 1
-        case .mealsCard:
-            return 1
-        case .titleRecommendFav:
-            return 1
-        case .none:
-            return 0
-        }
+        return 1
     }
     
 }

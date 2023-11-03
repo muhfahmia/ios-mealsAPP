@@ -13,6 +13,8 @@ class MealsCardTableViewCell: UITableViewCell {
     var meals: [Meal]?
     
     var cardSizeContent: CGSize?
+    
+    var mealClicked: ((Meal) -> Void)?
 
     override func awakeFromNib() {
         super.awakeFromNib()
@@ -85,5 +87,13 @@ extension MealsCardTableViewCell: UICollectionViewDelegateFlowLayout {
         let cellHeight = cellWidth * heightRatio
         let size = CGSize(width: cellWidth, height: cellHeight)
         return size
+    }
+}
+
+extension MealsCardTableViewCell: UICollectionViewDelegate {
+    
+    func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+        guard let meal = meals?[indexPath.item] else { return }
+        mealClicked?(meal)
     }
 }

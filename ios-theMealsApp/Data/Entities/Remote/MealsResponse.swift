@@ -30,6 +30,11 @@ struct MealResponse: Meal, Mappable {
     var idMeal: String?
     var name: String?
     var imageThumb: String?
+    var category: String?
+    var area: String?
+    var instruction: String?
+    var linkYoutube: String?
+    var tags: String?
     
     init?(map: Map) {
         mapping(map: map)
@@ -39,6 +44,11 @@ struct MealResponse: Meal, Mappable {
         idMeal <- map["idMeal"]
         name <- map["strMeal"]
         imageThumb <- map["strMealThumb"]
+        category <- map["strCategory"]
+        area <- map["strArea"]
+        instruction <- map["strInstructions"]
+        linkYoutube <- map["strYoutube"]
+        tags <- map["strTags"]
     }
 }
 

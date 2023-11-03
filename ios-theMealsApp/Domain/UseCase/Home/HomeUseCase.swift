@@ -15,9 +15,9 @@ protocol HomeUseCase {
 
 class HomeInteractor: HomeUseCase {
     
-    private let mealsRepo: MealsRepositoryProtocol
+    private let mealsRepo: MealsRepository
     
-    init(mealsRepo: MealsRepositoryProtocol) {
+    init(mealsRepo: MealsRepository) {
         self.mealsRepo = mealsRepo
     }
     

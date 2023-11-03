@@ -11,6 +11,7 @@ import Combine
 protocol MealsDataSourceProtocol {
     func getCategoriesFromSource() -> AnyPublisher<CategoriesReponse, Error>
     func getMealsFromSource(category: String) -> AnyPublisher<MealsResponse, Error>
+    func getMealDetailFromSource(withID id: String) -> AnyPublisher<MealsResponse, Error>
 }
 
 struct MealsDataSource: MealsDataSourceProtocol {
@@ -21,6 +22,10 @@ struct MealsDataSource: MealsDataSourceProtocol {
     
     func getMealsFromSource(category: String) -> AnyPublisher<MealsResponse, Error> {
         return APIManager.shared.requestData(url: MealsAPI.listMeals(category: category).endpoint, method: .get, responseType: MealsResponse.self)
+    }
+    
+    func getMealDetailFromSource(withID id: String) -> AnyPublisher<MealsResponse, Error> {
+        return APIManager.shared.requestData(url: MealsAPI.mealDetail(withID: id).endpoint, method: .get, responseType: MealsResponse.self)
     }
     
 }

@@ -11,6 +11,7 @@ protocol HomeRouteCase {
     var homeVC: HomeViewController { get }
     var favVC: FavoriteViewController { get }
     func routeToHome(from vc: UIViewController)
+    func routeToDetail(from vc: UIViewController, withID id: String)
 }
 
 class HomeRouter: HomeRouteCase {
@@ -32,5 +33,10 @@ class HomeRouter: HomeRouteCase {
     func routeToHome(from vc: UIViewController) {
         let homeTabBar: HomeTabBarController = injection.resolve()
         UIApplication.shared.windows.first?.rootViewController = homeTabBar
+    }
+    
+    func routeToDetail(from vc: UIViewController, withID id: String) {
+        let detailRouter: MealDetailRouteCase = injection.resolve()
+        detailRouter.routeToDetail(from: vc, withID: id)
     }
 }

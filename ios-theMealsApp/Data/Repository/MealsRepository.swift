@@ -8,12 +8,13 @@
 import Foundation
 import Combine
 
-protocol MealsRepositoryProtocol {
+protocol MealsRepository {
     func getMeals(category: String) -> AnyPublisher<MealsResponse, Error>
     func getCategories() -> AnyPublisher<CategoriesReponse, Error>
+    func getMealDetail(withID id: String) -> AnyPublisher<MealsResponse, Error>
 }
 
-struct MealsRepository: MealsRepositoryProtocol {
+struct DefaultMealsRepository: MealsRepository {
 
     private let mealsDataSource: MealsDataSourceProtocol
     
@@ -27,6 +28,10 @@ struct MealsRepository: MealsRepositoryProtocol {
     
     func getCategories() -> AnyPublisher<CategoriesReponse, Error> {
         return mealsDataSource.getCategoriesFromSource()
+    }
+    
+    func getMealDetail(withID id: String) -> AnyPublisher<MealsResponse, Error> {
+        return mealsDataSource.getMealDetailFromSource(withID: id)
     }
     
 }
