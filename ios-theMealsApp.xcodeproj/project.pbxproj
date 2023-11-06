@@ -24,6 +24,7 @@
 		5D7375912AE79BC8002CAF3F /* OnBoard.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5D7375902AE79BC8002CAF3F /* OnBoard.swift */; };
 		5D7375932AE79C0D002CAF3F /* APIEndpoint.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5D7375922AE79C0D002CAF3F /* APIEndpoint.swift */; };
 		5D7375962AE79C87002CAF3F /* Constant.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5D7375952AE79C87002CAF3F /* Constant.swift */; };
+		5D7CCF452AF8FE8B00BC5288 /* MealsFavoriteDataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5D7CCF442AF8FE8B00BC5288 /* MealsFavoriteDataSource.swift */; };
 		5D7CFDBB2AF3FC7F00C130F2 /* UINavigationBar.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5D7CFDBA2AF3FC7F00C130F2 /* UINavigationBar.swift */; };
 		5DA3FC5F2AF21043002C526C /* UIButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5DA3FC5E2AF21043002C526C /* UIButton.swift */; };
 		5DA3FC612AF3720E002C526C /* UITableView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5DA3FC602AF3720D002C526C /* UITableView.swift */; };
@@ -81,6 +82,7 @@
 		5D7375902AE79BC8002CAF3F /* OnBoard.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OnBoard.swift; sourceTree = "<group>"; };
 		5D7375922AE79C0D002CAF3F /* APIEndpoint.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APIEndpoint.swift; sourceTree = "<group>"; };
 		5D7375952AE79C87002CAF3F /* Constant.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Constant.swift; sourceTree = "<group>"; };
+		5D7CCF442AF8FE8B00BC5288 /* MealsFavoriteDataSource.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MealsFavoriteDataSource.swift; sourceTree = "<group>"; };
 		5D7CFDBA2AF3FC7F00C130F2 /* UINavigationBar.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UINavigationBar.swift; sourceTree = "<group>"; };
 		5DA3FC5E2AF21043002C526C /* UIButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIButton.swift; sourceTree = "<group>"; };
 		5DA3FC602AF3720D002C526C /* UITableView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UITableView.swift; sourceTree = "<group>"; };
@@ -552,6 +554,7 @@
 		5DEE7B802AE7929E00B631D3 /* Local */ = {
 			isa = PBXGroup;
 			children = (
+				5D7CCF442AF8FE8B00BC5288 /* MealsFavoriteDataSource.swift */,
 			);
 			path = Local;
 			sourceTree = "<group>";
@@ -747,6 +750,7 @@
 				5D5CEC2D2AEAA6CC00F36FD7 /* HomeViewModel.swift in Sources */,
 				5DA3FC6F2AF3B028002C526C /* MealDetailUseCase.swift in Sources */,
 				5DEE7B882AE7945A00B631D3 /* APIError.swift in Sources */,
+				5D7CCF452AF8FE8B00BC5288 /* MealsFavoriteDataSource.swift in Sources */,
 				5DA3FC752AF3EA30002C526C /* MealDetailViewModel.swift in Sources */,
 				5DA3FC5F2AF21043002C526C /* UIButton.swift in Sources */,
 			);

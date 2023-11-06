@@ -14,6 +14,9 @@ class MealDetailViewController: UIViewController {
     @IBOutlet weak var mealImage: UIImageView!
     @IBOutlet weak var mealTitle: UILabel!
     @IBOutlet weak var mealInstruction: UILabel!
+    @IBOutlet weak var mealCategory: UILabel!
+    @IBOutlet weak var mealArea: UILabel!
+    @IBOutlet weak var mealBtnFav: UIButton!
     
     private var cancelable = Set<AnyCancellable>()
     private let detailViewModel: MealDetailViewModel
@@ -33,6 +36,7 @@ class MealDetailViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        setupBtn()
         detailViewModel.getMealDetail(withID: mealID)
         observedMeal()
     }
@@ -48,20 +52,29 @@ class MealDetailViewController: UIViewController {
         navigationController?.navigationBar.topItem?.backButtonTitle = ""
     }
     
-    func observedMeal() {
+    private func observedMeal() {
         detailViewModel.meal
         .receive(on: RunLoop.main)
         .sink(receiveValue: { [weak self] value in
             self?.meal = value
-            print(value!)
             self?.configureUI()
         }).store(in: &cancelable)
     }
     
-    func configureUI() {
+    private func configureUI() {
         mealImage.sd_imageIndicator = SDWebImageActivityIndicator.gray
         mealImage.sd_setImage(with: URL(string: meal?.imageThumb ?? ""))
         mealTitle.text = meal?.name
         mealInstruction.text = meal?.instruction
+        mealCategory.text = meal?.category
+        mealArea.text = meal?.area
     }
+    
+    private func setupBtn() {
+        mealBtnFav.setImage(UIImage(systemName: "heart.fill"), for: .selected)
+        mealBtnFav.addAction(UIAction(handler: { [weak self] _ in
+            self?.mealBtnFav.isSelected = true
+        }), for: .touchUpInside)
+    }
+    
 }
