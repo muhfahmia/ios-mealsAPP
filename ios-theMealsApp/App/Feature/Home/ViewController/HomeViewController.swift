@@ -32,7 +32,8 @@ class HomeViewController: UIViewController, HomeViewDelegate {
     private var mealsFav = [Meal]()
     private var categoryFav: String? {
         didSet {
-            observedFav(category: categoryFav ?? "Beef")
+            homeViewModel.getMealsFav(category: categoryFav ?? "Beef")
+//            observedFav(category: categoryFav ?? "Beef")
         }
     }
     
@@ -54,37 +55,34 @@ class HomeViewController: UIViewController, HomeViewDelegate {
         super.viewDidLoad()
         setupUI()
         reloadHomePage()
-    }
-
-    private func observedCategories() {
-        homeViewModel.categories
-            .receive(on: RunLoop.main)
-            .sink(receiveValue: { [weak self] value in
-                self?.categories = value
-                if self?.categoryFav == nil {
-                    self?.categoryFav = value.randomElement()?.name
-                }
-                self?.tblHome.reloadRows(at: [IndexPath(row: 0, section: 1)], with: .automatic)
-            }).store(in: &cancelable)
+        observedValue()
     }
     
-    private func observedMeals() {
+    private func observedValue() {
+        homeViewModel.categories
+        .receive(on: RunLoop.main)
+        .sink(receiveValue: { [weak self] value in
+            self?.categories = value
+            if self?.categoryFav == nil {
+                self?.categoryFav = value.randomElement()?.name
+            }
+            self?.tblHome.reloadRows(at: [IndexPath(row: 0, section: 1)], with: .automatic)
+        }).store(in: &cancelable)
+        
         homeViewModel.meals
         .receive(on: RunLoop.main)
         .sink(receiveValue: { [weak self] value in
             self?.meals = value
             self?.tblHome.reloadRows(at: [IndexPath(row: 0, section: 3)], with: .left)
         }).store(in: &cancelable)
-    }
-    
-    private func observedFav(category: String) {
-        homeViewModel.getMealsFav(category: category)
+        
         homeViewModel.mealsFav
         .receive(on: RunLoop.main)
         .sink(receiveValue: { [weak self] value in
             self?.mealsFav = value
             self?.tblHome.reloadRows(at: [IndexPath(row: 0, section: 5)], with: .left)
         }).store(in: &cancelable)
+        
     }
  
     private func setupUI() {
@@ -99,14 +97,11 @@ class HomeViewController: UIViewController, HomeViewDelegate {
     
     func updateMeals(category: String) {
         homeViewModel.getMealsCategories(category: category)
-        observedMeals()
     }
     
     private func reloadHomePage() {
         homeViewModel.getCategories()
         homeViewModel.getMealsCategories(category: "Beef")
-        observedCategories()
-        observedMeals()
     }
     
     @objc func onRefreshPage() {
