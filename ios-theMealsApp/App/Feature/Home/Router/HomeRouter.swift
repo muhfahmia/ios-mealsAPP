@@ -10,6 +10,7 @@ import UIKit
 protocol HomeRouteCase {
     var homeVC: HomeViewController { get }
     var favVC: FavoriteViewController { get }
+    var aboutVC: AboutViewController { get }
     func routeToHome(from vc: UIViewController)
     func routeToDetail(from vc: UIViewController, withID id: String)
 }
@@ -27,6 +28,10 @@ class HomeRouter: HomeRouteCase {
     }
     
     var favVC: FavoriteViewController {
+        injection.resolve()
+    }
+    
+    var aboutVC: AboutViewController {
         injection.resolve()
     }
     

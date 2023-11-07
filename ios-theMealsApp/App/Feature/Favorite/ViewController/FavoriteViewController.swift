@@ -13,11 +13,13 @@ class FavoriteViewController: UIViewController, UICollectionViewDataSource, UICo
     @IBOutlet weak var favCL: UICollectionView!
     
     private let favViewModel: FavoriteViewModel
+    private let favRouter: FavoriteRouteCase
     private var cancelable = Set<AnyCancellable>()
     private var meals: [Meal]?
     
-    init(viewModel: FavoriteViewModel) {
+    init(viewModel: FavoriteViewModel, router: FavoriteRouteCase) {
         favViewModel = viewModel
+        favRouter = router
         super.init(nibName: String(describing: FavoriteViewController.self), bundle: nil)
     }
     
@@ -72,6 +74,12 @@ class FavoriteViewController: UIViewController, UICollectionViewDataSource, UICo
             favViewModel.getMeals()
         }
         return cell
+    }
+    
+    func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+        let meal = meals?[indexPath.item]
+        print(meal)
+        favRouter.routeToDetail(from: self, withID: meal?.idMeal ?? "")
     }
     
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {

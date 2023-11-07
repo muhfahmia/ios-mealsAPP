@@ -30,7 +30,7 @@ class FavoriteViewModel {
     }
     
     func deleteMeal(with meal: Meal) {
-        favUseCase.delete(with: meal)
+        _ = favUseCase.delete(with: meal)
     }
     
 }

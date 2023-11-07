@@ -32,8 +32,8 @@ class HomeTabBarController: UITabBarController {
 
         let homeTab = createTabController(vc: router.homeVC, image: setImageTab(imageSystem: "fork.knife.circle.fill"))
         let favTab = createTabController(vc: router.favVC, image: setImageTab(imageSystem: "heart.fill"))
-        
-        setViewControllers([homeTab, favTab], animated: true)
+        let aboutTab = createTabController(vc: router.aboutVC, image: setImageTab(imageSystem: "person.fill"))
+        setViewControllers([homeTab, favTab, aboutTab], animated: true)
     }
     
     private func createTabController(vc: UIViewController, image: UIImage) -> UINavigationController {
