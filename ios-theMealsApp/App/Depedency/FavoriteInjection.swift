@@ -8,13 +8,18 @@
 protocol FavoriteInjection {
     func resolve() -> FavoriteViewController
     
+    func resolve() -> FavoriteViewModel
     func resolve() -> FavoriteUseCase
 }
 
 extension FavoriteInjection where Self: Injection {
     
     func resolve() -> FavoriteViewController {
-        return FavoriteViewController()
+        return FavoriteViewController(viewModel: resolve())
+    }
+    
+    func resolve() -> FavoriteViewModel {
+        return FavoriteViewModel(favUseCase: resolve())
     }
     
     func resolve() -> FavoriteUseCase {

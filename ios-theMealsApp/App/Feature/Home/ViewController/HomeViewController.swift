@@ -33,7 +33,6 @@ class HomeViewController: UIViewController, HomeViewDelegate {
     private var categoryFav: String? {
         didSet {
             homeViewModel.getMealsFav(category: categoryFav ?? "Beef")
-//            observedFav(category: categoryFav ?? "Beef")
         }
     }
     
@@ -82,7 +81,6 @@ class HomeViewController: UIViewController, HomeViewDelegate {
             self?.mealsFav = value
             self?.tblHome.reloadRows(at: [IndexPath(row: 0, section: 5)], with: .left)
         }).store(in: &cancelable)
-        
     }
  
     private func setupUI() {

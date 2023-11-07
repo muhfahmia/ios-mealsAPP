@@ -8,6 +8,10 @@
 
 /* Begin PBXBuildFile section */
 		5D00AAD12AEE7DB200298CDC /* MealsCardCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 5D00AAD02AEE7DB200298CDC /* MealsCardCell.xib */; };
+		5D0DEAF72AFA8A10006B42B6 /* FavoriteViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 5D0DEAF62AFA8A10006B42B6 /* FavoriteViewController.xib */; };
+		5D0DEAFB2AFA8AAF006B42B6 /* MealFavCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5D0DEAF92AFA8AAF006B42B6 /* MealFavCollectionViewCell.swift */; };
+		5D0DEAFC2AFA8AAF006B42B6 /* MealFavCollectionViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 5D0DEAFA2AFA8AAF006B42B6 /* MealFavCollectionViewCell.xib */; };
+		5D0DEAFF2AFA93BE006B42B6 /* FavoriteViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5D0DEAFE2AFA93BE006B42B6 /* FavoriteViewModel.swift */; };
 		5D5CEC1C2AEA5A0100F36FD7 /* MealsDataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5D5CEC1B2AEA5A0100F36FD7 /* MealsDataSource.swift */; };
 		5D5CEC1E2AEA5E1200F36FD7 /* CategoriesReponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5D5CEC1D2AEA5E1200F36FD7 /* CategoriesReponse.swift */; };
 		5D5CEC202AEA6B4400F36FD7 /* MealsRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5D5CEC1F2AEA6B4400F36FD7 /* MealsRepository.swift */; };
@@ -68,6 +72,10 @@
 
 /* Begin PBXFileReference section */
 		5D00AAD02AEE7DB200298CDC /* MealsCardCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = MealsCardCell.xib; sourceTree = "<group>"; };
+		5D0DEAF62AFA8A10006B42B6 /* FavoriteViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = FavoriteViewController.xib; sourceTree = "<group>"; };
+		5D0DEAF92AFA8AAF006B42B6 /* MealFavCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MealFavCollectionViewCell.swift; sourceTree = "<group>"; };
+		5D0DEAFA2AFA8AAF006B42B6 /* MealFavCollectionViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = MealFavCollectionViewCell.xib; sourceTree = "<group>"; };
+		5D0DEAFE2AFA93BE006B42B6 /* FavoriteViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FavoriteViewModel.swift; sourceTree = "<group>"; };
 		5D5CEC1B2AEA5A0100F36FD7 /* MealsDataSource.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MealsDataSource.swift; sourceTree = "<group>"; };
 		5D5CEC1D2AEA5E1200F36FD7 /* CategoriesReponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CategoriesReponse.swift; sourceTree = "<group>"; };
 		5D5CEC1F2AEA6B4400F36FD7 /* MealsRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MealsRepository.swift; sourceTree = "<group>"; };
@@ -148,6 +156,23 @@
 				85CF9266F3A486C21E98FC90 /* Pods_ios_theMealsApp.framework */,
 			);
 			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		5D0DEAF82AFA8A7B006B42B6 /* View */ = {
+			isa = PBXGroup;
+			children = (
+				5D0DEAF92AFA8AAF006B42B6 /* MealFavCollectionViewCell.swift */,
+				5D0DEAFA2AFA8AAF006B42B6 /* MealFavCollectionViewCell.xib */,
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
+		5D0DEAFD2AFA93B0006B42B6 /* ViewModel */ = {
+			isa = PBXGroup;
+			children = (
+				5D0DEAFE2AFA93BE006B42B6 /* FavoriteViewModel.swift */,
+			);
+			path = ViewModel;
 			sourceTree = "<group>";
 		};
 		5D5CEC252AEA733600F36FD7 /* Meals */ = {
@@ -497,7 +522,9 @@
 		5DEE7B622AE582F000B631D3 /* Favorite */ = {
 			isa = PBXGroup;
 			children = (
+				5D0DEAFD2AFA93B0006B42B6 /* ViewModel */,
 				5DEE7B632AE5830100B631D3 /* Router */,
+				5D0DEAF82AFA8A7B006B42B6 /* View */,
 				5DEE7B642AE5830600B631D3 /* ViewController */,
 			);
 			path = Favorite;
@@ -514,6 +541,7 @@
 			isa = PBXGroup;
 			children = (
 				5DEE7B652AE5831300B631D3 /* FavoriteViewController.swift */,
+				5D0DEAF62AFA8A10006B42B6 /* FavoriteViewController.xib */,
 			);
 			path = ViewController;
 			sourceTree = "<group>";
@@ -662,12 +690,14 @@
 			buildActionMask = 2147483647;
 			files = (
 				5DEE7B6B2AE62E5500B631D3 /* HomeView.xib in Resources */,
+				5D0DEAFC2AFA8AAF006B42B6 /* MealFavCollectionViewCell.xib in Resources */,
 				5DEE7B6F2AE638DE00B631D3 /* HeaderHomeTableViewCell.xib in Resources */,
 				5DEE7B482AE4C61C00B631D3 /* OnBoardView.xib in Resources */,
 				5D5CEC392AEBAC1000F36FD7 /* TitleTableViewCell.xib in Resources */,
 				5DA3FC732AF3C144002C526C /* MealDetailView.xib in Resources */,
 				5DEE7B212AE3D4AC00B631D3 /* LaunchScreen.storyboard in Resources */,
 				5D00AAD12AEE7DB200298CDC /* MealsCardCell.xib in Resources */,
+				5D0DEAF72AFA8A10006B42B6 /* FavoriteViewController.xib in Resources */,
 				5DEE7B4E2AE4EFD500B631D3 /* OnBoardingCollectionViewCell.xib in Resources */,
 				5DEE7B1E2AE3D4AC00B631D3 /* Assets.xcassets in Resources */,
 				5D5CEC3E2AEBB00500F36FD7 /* MealsCardTableViewCell.xib in Resources */,
@@ -753,8 +783,10 @@
 				5DEE7B792AE6CE0500B631D3 /* UIView.swift in Sources */,
 				5D5CEC322AEAA7AD00F36FD7 /* HomeUseCase.swift in Sources */,
 				5DEE7B732AE6C0EB00B631D3 /* FilterTableViewCell.swift in Sources */,
+				5D0DEAFF2AFA93BE006B42B6 /* FavoriteViewModel.swift in Sources */,
 				5DEE7B4D2AE4EFD500B631D3 /* OnBoardingCollectionViewCell.swift in Sources */,
 				5DEE7B422AE3EE0200B631D3 /* UIColor.swift in Sources */,
+				5D0DEAFB2AFA8AAF006B42B6 /* MealFavCollectionViewCell.swift in Sources */,
 				5DEE7B382AE3D9F400B631D3 /* OnBoardingViewController.swift in Sources */,
 				5D5CEC382AEBAC1000F36FD7 /* TitleTableViewCell.swift in Sources */,
 				5DEE7B3F2AE3DE1B00B631D3 /* OnBoardingRouter.swift in Sources */,

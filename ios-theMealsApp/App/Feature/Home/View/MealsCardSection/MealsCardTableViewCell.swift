@@ -18,7 +18,7 @@ class MealsCardTableViewCell: UITableViewCell {
 
     override func awakeFromNib() {
         super.awakeFromNib()
-        cardSizeContent = getResponsiveGrid(estimatedWidth: 0.55, heightRatio: 0.82, grid: 1)
+        cardSizeContent = mealsCardCL.getResponsiveGrid(estimatedWidth: 0.55, heightRatio: 0.82, grid: 1)
         setupUI()
     }
 
@@ -74,19 +74,6 @@ extension MealsCardTableViewCell: UICollectionViewDelegateFlowLayout {
     
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
         return cardSizeContent!
-    }
-    
-    func getResponsiveGrid(estimatedWidth: CGFloat, heightRatio: CGFloat, grid: CGFloat) -> CGSize {
-        let screenWidth = Constants.deviceWidth
-        let deviceModel = Constants.deviceModel
-        var estimatedWidth = estimatedWidth
-        if deviceModel == "iPad" {
-            estimatedWidth = estimatedWidth - 0.35
-        }
-        let cellWidth = (screenWidth * estimatedWidth) - (grid - 1) / grid
-        let cellHeight = cellWidth * heightRatio
-        let size = CGSize(width: cellWidth, height: cellHeight)
-        return size
     }
 }
 

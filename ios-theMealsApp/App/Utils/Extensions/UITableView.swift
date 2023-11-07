@@ -26,3 +26,36 @@ public extension UITableView {
     }
     
 }
+
+public extension UICollectionView {
+    
+    func dequeueReusableCell<T: UICollectionViewCell>(withClass name: T.Type, for indexPath: IndexPath) -> T {
+        guard let cell = dequeueReusableCell(withReuseIdentifier: String(describing: name), for: indexPath) as? T else {
+            fatalError(
+                "Couldn't find UICollectionViewCell for \(String(describing: name)), make sure the cell is registered with collection view")
+        }
+        return cell
+    }
+    
+    func register<T: UICollectionViewCell>(nib: UINib?, forCellWithClass name: T.Type) {
+        register(nib, forCellWithReuseIdentifier: String(describing: name))
+    }
+
+    func register<T: UICollectionViewCell>(cellWithClass name: T.Type) {
+        register(T.self, forCellWithReuseIdentifier: String(describing: name))
+    }
+    
+    func getResponsiveGrid(estimatedWidth: CGFloat, heightRatio: CGFloat, grid: CGFloat) -> CGSize {
+        let screenWidth = Constants.deviceWidth
+        let deviceModel = Constants.deviceModel
+        var estimatedWidth = estimatedWidth
+        if deviceModel == "iPad" {
+            estimatedWidth = estimatedWidth - 0.35
+        }
+        let cellWidth = (screenWidth * estimatedWidth) - (grid - 1) / grid
+        let cellHeight = cellWidth * heightRatio
+        let size = CGSize(width: cellWidth, height: cellHeight)
+        return size
+    }
+    
+}
