@@ -38,7 +38,9 @@ class MealDetailViewController: UIViewController {
         super.viewDidLoad()
         setupBtn()
         detailViewModel.getMealDetail(withID: mealID)
+        detailViewModel.getMealFavorite(withID: mealID)
         observedMeal()
+        observedMealFavorite()
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -54,10 +56,21 @@ class MealDetailViewController: UIViewController {
     
     private func observedMeal() {
         detailViewModel.meal
-        .receive(on: RunLoop.main)
         .sink(receiveValue: { [weak self] value in
             self?.meal = value
             self?.configureUI()
+        }).store(in: &cancelable)
+    }
+    
+    private func observedMealFavorite() {
+        detailViewModel.mealState
+            .receive(on: RunLoop.main)
+            .sink(receiveValue: { [weak self] value in
+            if value == true {
+                self?.mealBtnFav.isSelected = true
+            } else {
+                self?.mealBtnFav.isSelected = false
+            }
         }).store(in: &cancelable)
     }
     
@@ -71,9 +84,14 @@ class MealDetailViewController: UIViewController {
     }
     
     private func setupBtn() {
+        mealBtnFav.setImage(UIImage(systemName: "heart"), for: .normal)
         mealBtnFav.setImage(UIImage(systemName: "heart.fill"), for: .selected)
         mealBtnFav.addAction(UIAction(handler: { [weak self] _ in
-            self?.mealBtnFav.isSelected = true
+            if self?.mealBtnFav.isSelected == true {
+                self?.detailViewModel.deleteMealFavorite(with: (self?.meal!)!)
+            } else {
+                self?.detailViewModel.addMealFavorite(with: (self?.meal!)!)
+            }
         }), for: .touchUpInside)
     }
     

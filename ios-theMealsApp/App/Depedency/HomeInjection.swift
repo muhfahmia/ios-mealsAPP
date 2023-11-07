@@ -14,6 +14,7 @@ protocol HomeInjection {
     func resolve() -> HomeTabBarController
     
     func resolve() -> MealsDataSourceProtocol
+    func resolve() -> MealsFavoriteDataSourceProtocol
     func resolve() -> MealsRepository
     func resolve() -> HomeUseCase
 }
@@ -40,8 +41,12 @@ extension HomeInjection where Self: Injection {
         return MealsDataSource()
     }
     
+    func resolve() -> MealsFavoriteDataSourceProtocol {
+        return MealsFavoriteDataSource()
+    }
+    
     func resolve() -> MealsRepository {
-        return DefaultMealsRepository(mealsDataSource: resolve())
+        return DefaultMealsRepository(mealsDataSource: resolve(), mealFavo: resolve())
     }
     
     func resolve() -> HomeUseCase {

@@ -11,6 +11,7 @@ protocol DetailInjection {
     func resolve(withID id: String) -> MealDetailViewController
     func resolve() -> MealDetailRouteCase
     func resolve() -> MealDetailViewModel
+    
     func resolve() -> MealDetailUseCase
 }
 
@@ -25,7 +26,7 @@ extension DetailInjection where Self: Injection {
     }
     
     func resolve() -> MealDetailViewModel {
-        return MealDetailViewModel(mealDetailUseCase: resolve())
+        return MealDetailViewModel(detailUseCase: resolve(), favoUseCase: resolve())
     }
     
     func resolve() -> MealDetailUseCase {
