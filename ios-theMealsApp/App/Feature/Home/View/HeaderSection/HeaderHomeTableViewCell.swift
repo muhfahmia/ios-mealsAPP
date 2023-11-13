@@ -7,7 +7,18 @@
 
 import UIKit
 
+class SearchResult: UIViewController {
+    
+    override func viewDidLoad() {
+        super.viewDidLoad()
+        view.backgroundColor = .systemRed
+    }
+    
+}
+
 class HeaderHomeTableViewCell: UITableViewCell {
+    
+    @IBOutlet weak var searchText: UITextField!
 
     override func awakeFromNib() {
         super.awakeFromNib()
@@ -18,5 +29,4 @@ class HeaderHomeTableViewCell: UITableViewCell {
         super.setSelected(selected, animated: animated)
         // Configure the view for the selected state
     }
-    
 }

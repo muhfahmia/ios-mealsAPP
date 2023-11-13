@@ -61,6 +61,9 @@
             </tableViewCellContentView>
             <viewLayoutGuide key="safeArea" id="njF-e1-oar"/>
             <color key="tintColor" name="AccentColor"/>
+            <connections>
+                <outlet property="searchText" destination="XFi-Ig-vWH" id="vtn-Ff-Gpd"/>
+            </connections>
             <point key="canvasLocation" x="280.15267175572518" y="54.929577464788736"/>
         </tableViewCell>
     </objects>

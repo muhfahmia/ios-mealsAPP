@@ -21,16 +21,16 @@ protocol HomeInjection {
 
 extension HomeInjection where Self: Injection {
     
+    func resolve() -> HomeTabBarController {
+        return HomeTabBarController(router: resolve())
+    }
+    
     func resolve() -> HomeViewController {
         return HomeViewController(homeViewModel: resolve(), router: resolve())
     }
     
     func resolve() -> HomeRouteCase {
         return HomeRouter(injection: self)
-    }
-    
-    func resolve() -> HomeTabBarController {
-        return HomeTabBarController(router: resolve())
     }
     
     func resolve() -> HomeViewModel {

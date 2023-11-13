@@ -52,14 +52,18 @@ class HomeViewController: UIViewController, HomeViewDelegate {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        addTapGestureToHideKeyboard()
         setupUI()
         reloadHomePage()
         observedValue()
     }
     
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+    }
+
     private func observedValue() {
         homeViewModel.categories
-        .receive(on: RunLoop.main)
         .sink(receiveValue: { [weak self] value in
             self?.categories = value
             if self?.categoryFav == nil {
@@ -69,14 +73,12 @@ class HomeViewController: UIViewController, HomeViewDelegate {
         }).store(in: &cancelable)
         
         homeViewModel.meals
-        .receive(on: RunLoop.main)
         .sink(receiveValue: { [weak self] value in
             self?.meals = value
             self?.tblHome.reloadRows(at: [IndexPath(row: 0, section: 3)], with: .left)
         }).store(in: &cancelable)
         
         homeViewModel.mealsFav
-        .receive(on: RunLoop.main)
         .sink(receiveValue: { [weak self] value in
             self?.mealsFav = value
             self?.tblHome.reloadRows(at: [IndexPath(row: 0, section: 5)], with: .left)
@@ -84,6 +86,7 @@ class HomeViewController: UIViewController, HomeViewDelegate {
     }
  
     private func setupUI() {
+        tblHome.keyboardDismissMode = .onDrag
         tblHome.addSubview(refreshPage)
         refreshPage.addTarget(self, action: #selector(onRefreshPage), for: .valueChanged)
         tblHome.dataSource = self

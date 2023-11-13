@@ -15,7 +15,7 @@ protocol MealsFavoriteDataSourceProtocol {
     func getMealWithID(withID id: String) -> AnyPublisher<Bool, Never>
 }
 
-class MealsFavoriteDataSource: MealsFavoriteDataSourceProtocol {
+struct MealsFavoriteDataSource: MealsFavoriteDataSourceProtocol {
     private let container = NSPersistentContainer(name: "CDMeal")
     private let context: NSManagedObjectContext
     private let mealEntity: NSEntityDescription

@@ -9,10 +9,10 @@ import Foundation
 
 protocol OnBoard {
     var page: Int? { get }
-    var board: [Board] { get }
+    var board: [BoardPage] { get }
 }
 
-protocol Board {
+protocol BoardPage {
     var viewAnimate: String? { get }
     var title: String? { get }
     var desc: String? { get }

@@ -16,7 +16,7 @@ class OnBoardingCollectionViewCell: UICollectionViewCell {
         // Initialization code
     }
     
-    func configure(with board: Board) {
-        boardView.image = UIImage(named: (board.viewAnimate)!)
+    func configure(with board: BoardPage?) {
+        boardView.image = UIImage(named: (board?.viewAnimate)!)
     }
 }

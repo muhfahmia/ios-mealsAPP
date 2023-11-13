@@ -11,6 +11,7 @@ import Combine
 class FavoriteViewController: UIViewController, UICollectionViewDataSource, UICollectionViewDelegateFlowLayout {
     
     @IBOutlet weak var favCL: UICollectionView!
+    @IBOutlet weak var favMessage: UIStackView!
     
     private let favViewModel: FavoriteViewModel
     private let favRouter: FavoriteRouteCase
@@ -51,6 +52,13 @@ class FavoriteViewController: UIViewController, UICollectionViewDataSource, UICo
         favViewModel.meals
         .sink(receiveValue: { [weak self] value in
             self?.meals = value
+            if self?.meals?.isEmpty == true {
+                self?.favCL.isHidden = true
+                self?.favMessage.isHidden = false
+            } else {
+                self?.favCL.isHidden = false
+                self?.favMessage.isHidden = true
+            }
             self?.favCL.reloadData()
         }).store(in: &cancelable)
     }
@@ -78,7 +86,6 @@ class FavoriteViewController: UIViewController, UICollectionViewDataSource, UICo
     
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         let meal = meals?[indexPath.item]
-        print(meal)
         favRouter.routeToDetail(from: self, withID: meal?.idMeal ?? "")
     }
     

@@ -7,7 +7,7 @@
 
 import Foundation
 
-struct Boarding: Board {
+struct BoardPageResponse: BoardPage {
     var viewAnimate: String?
     var title: String?
     var desc: String?
@@ -19,12 +19,12 @@ struct Boarding: Board {
     }
 }
 
-struct OnBoarding: OnBoard {
+struct OnBoardingResponse: OnBoard {
     var page: Int?
     
-    var board: [Board]
+    var board: [BoardPage]
     
-    init(page: Int? = nil, board: [Board]) {
+    init(page: Int? = nil, board: [BoardPage]) {
         self.page = page
         self.board = board
     }

@@ -6,6 +6,7 @@
 //
 
 import UIKit
+import Combine
 
 class OnBoardingViewController: UIViewController {
     
@@ -15,15 +16,14 @@ class OnBoardingViewController: UIViewController {
     @IBOutlet weak var boardDesc: UILabel!
     
     private var router: OnBoardingRouteCase
+    private var boardViewModel: OnBoardViewModel
+    private var cancelable = Set<AnyCancellable>()
     
-    private let boarding: [Boarding] = [
-        Boarding(viewAnimate: "boarding-1", title: "Welcome to Meals App", desc: "This application is intended for those of you who are looking for delicious and healthy food"),
-        Boarding(viewAnimate: "boarding-2", title: "Handmade by Fahmi", desc: "Delicious food is the result of a Great Chef"),
-        Boarding(viewAnimate: "boarding-3", title: "Find your Favorite", desc: "There are various kinds of food choices in this application. Come on, find your favorite food"),
-    ]
+    var boarding: [BoardPage]?
     
-    init(router: OnBoardingRouteCase) {
+    init(router: OnBoardingRouteCase, viewModel: OnBoardViewModel) {
         self.router = router
+        self.boardViewModel = viewModel
         super.init(nibName: "OnBoardView", bundle: nil)
         
     }
@@ -34,12 +34,19 @@ class OnBoardingViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        setupBoard()
+        setupCollectionView()
         setupCellRegister()
-        setupBoard(with: 0)
+        boardViewModel.get()
+        boardViewModel.boardingPage
+            .sink(receiveValue: { [weak self] value in
+                self?.boarding = value
+                self?.boardCollectionView.reloadData()
+                self?.boardPageControl.numberOfPages = self?.boarding?.count ?? 0
+                self?.setupBoard(with: 0)
+        }).store(in: &cancelable)
     }
     
-    func setupBoard() {
+    func setupCollectionView() {
         let cvLayout = UICollectionViewFlowLayout()
         cvLayout.scrollDirection = .horizontal
         boardCollectionView.dataSource = self
@@ -47,7 +54,6 @@ class OnBoardingViewController: UIViewController {
         boardCollectionView.showsHorizontalScrollIndicator = false
         boardCollectionView.isPagingEnabled = true
         boardCollectionView.collectionViewLayout = cvLayout
-        boardPageControl.numberOfPages = boarding.count
     }
     
     func setupCellRegister() {
@@ -56,15 +62,15 @@ class OnBoardingViewController: UIViewController {
     
     func setupBoard(with page: Int) {
         boardPageControl.currentPage = page
-        boardTitle.text = boarding[page].title
-        boardDesc.text = boarding[page].desc
+        boardTitle.text = boarding?[page].title
+        boardDesc.text = boarding?[page].desc
     }
     
     @IBAction func boardAction(_ sender: Any) {
         let indexPage = Int(boardCollectionView.contentOffset.x / boardCollectionView.frame.width) + 1
         let indexPath = IndexPath(row: indexPage, section: 0)
         
-        if indexPage == boarding.endIndex {
+        if indexPage == boarding?.endIndex {
             router.routeToHome(from: self)
         } else {
             setupBoard(with: indexPage)
@@ -82,7 +88,7 @@ extension OnBoardingViewController: UICollectionViewDataSource {
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell = boardCollectionView.dequeueReusableCell(withReuseIdentifier: "onBoardCell", for: indexPath) as! OnBoardingCollectionViewCell
-        let board = boarding[indexPath.item]
+        let board = boarding?[indexPath.item]
         cell.configure(with: board)
         return cell
     }
@@ -92,7 +98,7 @@ extension OnBoardingViewController: UICollectionViewDataSource {
     }
     
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return boarding.count
+        return boarding?.count ?? 0
     }
     
 }

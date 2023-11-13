@@ -11,6 +11,7 @@ protocol HomeRouteCase {
     var homeVC: HomeViewController { get }
     var favVC: FavoriteViewController { get }
     var aboutVC: AboutViewController { get }
+    func appRouteHome(window: UIWindow?)
     func routeToHome(from vc: UIViewController)
     func routeToDetail(from vc: UIViewController, withID id: String)
 }
@@ -20,6 +21,7 @@ class HomeRouter: HomeRouteCase {
     private let injection: Injection
     
     init(injection: Injection) {
+        print("homeRoute Running")
         self.injection = injection
     }
     
@@ -33,6 +35,12 @@ class HomeRouter: HomeRouteCase {
     
     var aboutVC: AboutViewController {
         injection.resolve()
+    }
+    
+    func appRouteHome(window: UIWindow?) {
+        let homeTabBar: HomeTabBarController = injection.resolve()
+        window?.rootViewController = homeTabBar
+        window?.makeKeyAndVisible()
     }
     
     func routeToHome(from vc: UIViewController) {

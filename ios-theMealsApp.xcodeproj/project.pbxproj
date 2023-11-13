@@ -16,6 +16,10 @@
 		5D0DEB052AFAF053006B42B6 /* AboutViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5D0DEB042AFAF053006B42B6 /* AboutViewController.swift */; };
 		5D0DEB072AFAF0B9006B42B6 /* AboutInjection.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5D0DEB062AFAF0B9006B42B6 /* AboutInjection.swift */; };
 		5D0DEB092AFAF1B4006B42B6 /* AboutViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 5D0DEB082AFAF1B4006B42B6 /* AboutViewController.xib */; };
+		5D0DEB0B2AFBD140006B42B6 /* UIViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5D0DEB0A2AFBD140006B42B6 /* UIViewController.swift */; };
+		5D123A712B0122F600FE1569 /* OnBoardRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5D123A702B0122F600FE1569 /* OnBoardRepository.swift */; };
+		5D123A742B0123A800FE1569 /* OnBoardUseCase.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5D123A732B0123A800FE1569 /* OnBoardUseCase.swift */; };
+		5D123A772B01259A00FE1569 /* OnBoardViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5D123A762B01259A00FE1569 /* OnBoardViewModel.swift */; };
 		5D5CEC1C2AEA5A0100F36FD7 /* MealsDataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5D5CEC1B2AEA5A0100F36FD7 /* MealsDataSource.swift */; };
 		5D5CEC1E2AEA5E1200F36FD7 /* CategoriesReponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5D5CEC1D2AEA5E1200F36FD7 /* CategoriesReponse.swift */; };
 		5D5CEC202AEA6B4400F36FD7 /* MealsRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5D5CEC1F2AEA6B4400F36FD7 /* MealsRepository.swift */; };
@@ -36,6 +40,7 @@
 		5D7CCF502AF9020B00BC5288 /* CDMeal.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 5D7CCF4E2AF9020B00BC5288 /* CDMeal.xcdatamodeld */; };
 		5D7CCF532AFA319400BC5288 /* FavoriteUseCase.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5D7CCF522AFA319400BC5288 /* FavoriteUseCase.swift */; };
 		5D7CFDBB2AF3FC7F00C130F2 /* UINavigationBar.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5D7CFDBA2AF3FC7F00C130F2 /* UINavigationBar.swift */; };
+		5D8B61732AFC46C400FD3C02 /* OnBoardDataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5D8B61722AFC46C400FD3C02 /* OnBoardDataSource.swift */; };
 		5DA3FC5F2AF21043002C526C /* UIButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5DA3FC5E2AF21043002C526C /* UIButton.swift */; };
 		5DA3FC612AF3720E002C526C /* UITableView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5DA3FC602AF3720D002C526C /* UITableView.swift */; };
 		5DA3FC662AF383C8002C526C /* MealDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5DA3FC652AF383C8002C526C /* MealDetailViewController.swift */; };
@@ -84,6 +89,10 @@
 		5D0DEB042AFAF053006B42B6 /* AboutViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AboutViewController.swift; sourceTree = "<group>"; };
 		5D0DEB062AFAF0B9006B42B6 /* AboutInjection.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AboutInjection.swift; sourceTree = "<group>"; };
 		5D0DEB082AFAF1B4006B42B6 /* AboutViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = AboutViewController.xib; sourceTree = "<group>"; };
+		5D0DEB0A2AFBD140006B42B6 /* UIViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIViewController.swift; sourceTree = "<group>"; };
+		5D123A702B0122F600FE1569 /* OnBoardRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OnBoardRepository.swift; sourceTree = "<group>"; };
+		5D123A732B0123A800FE1569 /* OnBoardUseCase.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OnBoardUseCase.swift; sourceTree = "<group>"; };
+		5D123A762B01259A00FE1569 /* OnBoardViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OnBoardViewModel.swift; sourceTree = "<group>"; };
 		5D5CEC1B2AEA5A0100F36FD7 /* MealsDataSource.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MealsDataSource.swift; sourceTree = "<group>"; };
 		5D5CEC1D2AEA5E1200F36FD7 /* CategoriesReponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CategoriesReponse.swift; sourceTree = "<group>"; };
 		5D5CEC1F2AEA6B4400F36FD7 /* MealsRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MealsRepository.swift; sourceTree = "<group>"; };
@@ -104,6 +113,7 @@
 		5D7CCF4F2AF9020B00BC5288 /* CDMeal.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = CDMeal.xcdatamodel; sourceTree = "<group>"; };
 		5D7CCF522AFA319400BC5288 /* FavoriteUseCase.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FavoriteUseCase.swift; sourceTree = "<group>"; };
 		5D7CFDBA2AF3FC7F00C130F2 /* UINavigationBar.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UINavigationBar.swift; sourceTree = "<group>"; };
+		5D8B61722AFC46C400FD3C02 /* OnBoardDataSource.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OnBoardDataSource.swift; sourceTree = "<group>"; };
 		5DA3FC5E2AF21043002C526C /* UIButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIButton.swift; sourceTree = "<group>"; };
 		5DA3FC602AF3720D002C526C /* UITableView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UITableView.swift; sourceTree = "<group>"; };
 		5DA3FC652AF383C8002C526C /* MealDetailViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MealDetailViewController.swift; sourceTree = "<group>"; };
@@ -198,6 +208,22 @@
 				5D0DEB082AFAF1B4006B42B6 /* AboutViewController.xib */,
 			);
 			path = ViewController;
+			sourceTree = "<group>";
+		};
+		5D123A722B01239800FE1569 /* OnBoard */ = {
+			isa = PBXGroup;
+			children = (
+				5D123A732B0123A800FE1569 /* OnBoardUseCase.swift */,
+			);
+			name = OnBoard;
+			sourceTree = "<group>";
+		};
+		5D123A752B01259000FE1569 /* ViewModel */ = {
+			isa = PBXGroup;
+			children = (
+				5D123A762B01259A00FE1569 /* OnBoardViewModel.swift */,
+			);
+			path = ViewModel;
 			sourceTree = "<group>";
 		};
 		5D5CEC252AEA733600F36FD7 /* Meals */ = {
@@ -435,6 +461,7 @@
 		5DEE7B342AE3D99900B631D3 /* OnBoarding */ = {
 			isa = PBXGroup;
 			children = (
+				5D123A752B01259000FE1569 /* ViewModel */,
 				5DEE7B3D2AE3DD9E00B631D3 /* Router */,
 				5DEE7B362AE3D9B400B631D3 /* ViewController */,
 				5DEE7B352AE3D9AB00B631D3 /* View */,
@@ -477,6 +504,7 @@
 				5DA3FC5E2AF21043002C526C /* UIButton.swift */,
 				5DA3FC602AF3720D002C526C /* UITableView.swift */,
 				5D7CFDBA2AF3FC7F00C130F2 /* UINavigationBar.swift */,
+				5D0DEB0A2AFBD140006B42B6 /* UIViewController.swift */,
 			);
 			path = Extensions;
 			sourceTree = "<group>";
@@ -513,6 +541,7 @@
 			isa = PBXGroup;
 			children = (
 				5D5CEC1F2AEA6B4400F36FD7 /* MealsRepository.swift */,
+				5D123A702B0122F600FE1569 /* OnBoardRepository.swift */,
 			);
 			path = Repository;
 			sourceTree = "<group>";
@@ -520,6 +549,7 @@
 		5DEE7B532AE5029200B631D3 /* UseCase */ = {
 			isa = PBXGroup;
 			children = (
+				5D123A722B01239800FE1569 /* OnBoard */,
 				5D7CCF512AFA318A00BC5288 /* Favorite */,
 				5DA3FC6A2AF3A2A0002C526C /* Home */,
 				5DA3FC6D2AF3B020002C526C /* Detail */,
@@ -625,6 +655,7 @@
 			children = (
 				5D7CCF462AF8FFE300BC5288 /* CoreDataModel */,
 				5D7CCF442AF8FE8B00BC5288 /* MealsFavoriteDataSource.swift */,
+				5D8B61722AFC46C400FD3C02 /* OnBoardDataSource.swift */,
 			);
 			path = Local;
 			sourceTree = "<group>";
@@ -787,9 +818,12 @@
 				5DEE7B5F2AE5692400B631D3 /* HomeRouter.swift in Sources */,
 				5D7375932AE79C0D002CAF3F /* APIEndpoint.swift in Sources */,
 				5DA3FC612AF3720E002C526C /* UITableView.swift in Sources */,
+				5D123A712B0122F600FE1569 /* OnBoardRepository.swift in Sources */,
 				5D7CCF502AF9020B00BC5288 /* CDMeal.xcdatamodeld in Sources */,
 				5DEE7B612AE569D100B631D3 /* HomeTabBarController.swift in Sources */,
+				5D123A742B0123A800FE1569 /* OnBoardUseCase.swift in Sources */,
 				5D5CEC432AED41B500F36FD7 /* MealsCardCollectionViewCell.swift in Sources */,
+				5D123A772B01259A00FE1569 /* OnBoardViewModel.swift in Sources */,
 				5D5CEC3D2AEBB00500F36FD7 /* MealsCardTableViewCell.swift in Sources */,
 				5D5CEC1E2AEA5E1200F36FD7 /* CategoriesReponse.swift in Sources */,
 				5DEE7B862AE7943200B631D3 /* APIManager.swift in Sources */,
@@ -817,6 +851,7 @@
 				5DEE7B4D2AE4EFD500B631D3 /* OnBoardingCollectionViewCell.swift in Sources */,
 				5DEE7B422AE3EE0200B631D3 /* UIColor.swift in Sources */,
 				5D0DEB072AFAF0B9006B42B6 /* AboutInjection.swift in Sources */,
+				5D8B61732AFC46C400FD3C02 /* OnBoardDataSource.swift in Sources */,
 				5D0DEAFB2AFA8AAF006B42B6 /* MealFavCollectionViewCell.swift in Sources */,
 				5DEE7B382AE3D9F400B631D3 /* OnBoardingViewController.swift in Sources */,
 				5D5CEC382AEBAC1000F36FD7 /* TitleTableViewCell.swift in Sources */,
@@ -828,6 +863,7 @@
 				5D5CEC202AEA6B4400F36FD7 /* MealsRepository.swift in Sources */,
 				5D5CEC2D2AEAA6CC00F36FD7 /* HomeViewModel.swift in Sources */,
 				5DA3FC6F2AF3B028002C526C /* MealDetailUseCase.swift in Sources */,
+				5D0DEB0B2AFBD140006B42B6 /* UIViewController.swift in Sources */,
 				5DEE7B882AE7945A00B631D3 /* APIError.swift in Sources */,
 				5D7CCF452AF8FE8B00BC5288 /* MealsFavoriteDataSource.swift in Sources */,
 				5DA3FC752AF3EA30002C526C /* MealDetailViewModel.swift in Sources */,
