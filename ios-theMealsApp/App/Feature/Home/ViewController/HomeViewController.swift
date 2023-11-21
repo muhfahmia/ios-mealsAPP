@@ -12,7 +12,7 @@ protocol HomeViewDelegate {
     func updateMeals(category: String)
 }
 
-class HomeViewController: UIViewController, HomeViewDelegate {
+class HomeViewController: UIViewController, UITextFieldDelegate, HomeViewDelegate {
     
     @IBOutlet weak var tblHome: UITableView!
     
@@ -52,7 +52,6 @@ class HomeViewController: UIViewController, HomeViewDelegate {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        addTapGestureToHideKeyboard()
         setupUI()
         reloadHomePage()
         observedValue()
@@ -69,7 +68,7 @@ class HomeViewController: UIViewController, HomeViewDelegate {
             if self?.categoryFav == nil {
                 self?.categoryFav = value.randomElement()?.name
             }
-            self?.tblHome.reloadRows(at: [IndexPath(row: 0, section: 1)], with: .automatic)
+            self?.tblHome.reloadRows(at: [IndexPath(row: 0, section: 1)], with: .left)
         }).store(in: &cancelable)
         
         homeViewModel.meals
@@ -90,10 +89,10 @@ class HomeViewController: UIViewController, HomeViewDelegate {
         tblHome.addSubview(refreshPage)
         refreshPage.addTarget(self, action: #selector(onRefreshPage), for: .valueChanged)
         tblHome.dataSource = self
-        tblHome.register(nib: UINib(nibName: "HeaderHomeTableViewCell", bundle: nil), withCellClass: HeaderHomeTableViewCell.self)
+        tblHome.register(nibWithCellClass: HeaderHomeTableViewCell.self)
+        tblHome.register(nibWithCellClass: TitleTableViewCell.self)
+        tblHome.register(nibWithCellClass: MealsCardTableViewCell.self)
         tblHome.register(cellWithClass: FilterTableViewCell.self)
-        tblHome.register(nib: UINib(nibName: "TitleTableViewCell", bundle: nil), withCellClass: TitleTableViewCell.self)
-        tblHome.register(nib: UINib(nibName: "MealsCardTableViewCell", bundle: nibBundle), withCellClass: MealsCardTableViewCell.self)
     }
     
     func updateMeals(category: String) {
@@ -112,6 +111,22 @@ class HomeViewController: UIViewController, HomeViewDelegate {
         refreshPage.endRefreshing()
     }
     
+    func textFieldShouldReturn(_ textField: UITextField) -> Bool {
+        // Hide the keyboard when Return key is tapped
+        textField.resignFirstResponder()
+        return true
+    }
+    
+    func textFieldDidBeginEditing(_ textField: UITextField) {
+        // Perform actions when the text field begins editing
+        print("TextField did begin editing")
+    }
+    
+    func textFieldDidEndEditing(_ textField: UITextField) {
+        // Perform actions when the text field ends editing
+        print("TextField did end editing")
+    }
+    
 }
 
 extension HomeViewController: UITableViewDataSource {
@@ -125,6 +140,7 @@ extension HomeViewController: UITableViewDataSource {
         switch section {
         case .header:
             let cell: HeaderHomeTableViewCell = tableView.dequeueReusableCell(withClass: HeaderHomeTableViewCell.self)
+            cell.searchText.delegate = self
             return cell
         case .filterMeals:
             let cell: FilterTableViewCell = tableView.dequeueReusableCell(withClass: FilterTableViewCell.self)

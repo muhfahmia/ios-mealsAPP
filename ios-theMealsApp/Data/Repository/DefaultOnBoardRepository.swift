@@ -7,10 +7,6 @@
 
 import Combine
 
-protocol OnBoardRepository {
-    func getOnBoarding() -> Just<[BoardPage]>
-}
-
 struct DefaultBoardRepository: OnBoardRepository {
     
     private let onBoardDataSource: OnBoardDataSource
