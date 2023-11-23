@@ -1,0 +1,76 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="22154" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+    <device id="retina6_12" orientation="portrait" appearance="light"/>
+    <dependencies>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="22130"/>
+        <capability name="Image references" minToolsVersion="12.0"/>
+        <capability name="Named colors" minToolsVersion="9.0"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <tableViewCell contentMode="scaleToFill" selectionStyle="none" indentationWidth="10" rowHeight="148" id="KGk-i7-Jjw" customClass="HeaderHomeTableViewCell" customModule="ios_theMealsApp" customModuleProvider="target">
+            <rect key="frame" x="0.0" y="0.0" width="537" height="148"/>
+            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+            <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="KGk-i7-Jjw" id="H2p-sc-9uM">
+                <rect key="frame" x="0.0" y="0.0" width="537" height="148"/>
+                <autoresizingMask key="autoresizingMask"/>
+                <subviews>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Good Morning Fahmi," textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Q7Y-jQ-KBQ">
+                        <rect key="frame" x="0.0" y="0.0" width="138.33333333333334" height="17"/>
+                        <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                        <color key="textColor" red="0.57045853140000002" green="0.57047235969999999" blue="0.57046490910000003" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                        <nil key="highlightedColor"/>
+                    </label>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Happy Meals yay!" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="RYB-74-1bl">
+                        <rect key="frame" x="0.0" y="27" width="171.66666666666666" height="24"/>
+                        <fontDescription key="fontDescription" type="system" weight="heavy" pointSize="20"/>
+                        <nil key="textColor"/>
+                        <nil key="highlightedColor"/>
+                    </label>
+                    <textField opaque="NO" contentMode="scaleToFill" semanticContentAttribute="forceLeftToRight" horizontalHuggingPriority="248" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Search Food" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="XFi-Ig-vWH">
+                        <rect key="frame" x="0.0" y="66" width="537" height="62"/>
+                        <color key="textColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <fontDescription key="fontDescription" type="system" pointSize="13"/>
+                        <textInputTraits key="textInputTraits" textContentType="name"/>
+                        <userDefinedRuntimeAttributes>
+                            <userDefinedRuntimeAttribute type="image" keyPath="leftImage">
+                                <imageReference key="value" image="magnifyingglass" catalog="system" symbolScale="default" variableValue="0.0"/>
+                            </userDefinedRuntimeAttribute>
+                            <userDefinedRuntimeAttribute type="number" keyPath="leftPadding">
+                                <real key="value" value="19"/>
+                            </userDefinedRuntimeAttribute>
+                            <userDefinedRuntimeAttribute type="color" keyPath="color">
+                                <color key="value" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                            </userDefinedRuntimeAttribute>
+                        </userDefinedRuntimeAttributes>
+                    </textField>
+                </subviews>
+                <constraints>
+                    <constraint firstItem="RYB-74-1bl" firstAttribute="top" secondItem="Q7Y-jQ-KBQ" secondAttribute="bottom" constant="10" id="571-Hg-2GG"/>
+                    <constraint firstAttribute="trailing" secondItem="XFi-Ig-vWH" secondAttribute="trailing" id="ON5-fK-E27"/>
+                    <constraint firstAttribute="bottom" secondItem="XFi-Ig-vWH" secondAttribute="bottom" constant="20" id="PRb-b6-pdO"/>
+                    <constraint firstItem="XFi-Ig-vWH" firstAttribute="top" secondItem="RYB-74-1bl" secondAttribute="bottom" constant="15" id="RSh-5j-tf8"/>
+                    <constraint firstItem="RYB-74-1bl" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" id="URh-il-eZ2"/>
+                    <constraint firstItem="Q7Y-jQ-KBQ" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" id="ZQe-fh-gEB"/>
+                    <constraint firstItem="Q7Y-jQ-KBQ" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" id="qRp-7B-neN"/>
+                    <constraint firstItem="XFi-Ig-vWH" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" id="qhJ-e6-ptG"/>
+                </constraints>
+            </tableViewCellContentView>
+            <viewLayoutGuide key="safeArea" id="njF-e1-oar"/>
+            <color key="tintColor" name="AccentColor"/>
+            <connections>
+                <outlet property="searchText" destination="XFi-Ig-vWH" id="vtn-Ff-Gpd"/>
+            </connections>
+            <point key="canvasLocation" x="280.15267175572518" y="54.929577464788736"/>
+        </tableViewCell>
+    </objects>
+    <resources>
+        <image name="magnifyingglass" catalog="system" width="128" height="117"/>
+        <namedColor name="AccentColor">
+            <color red="1" green="0.74117647058823533" blue="0.18431372549019609" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
+        </namedColor>
+    </resources>
+</document>
