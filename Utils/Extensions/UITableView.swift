@@ -5,6 +5,7 @@
 //  Created by Muhammad Fahmi on 02/11/23.
 //
 
+import Utils
 import UIKit
 
 public extension UITableView {

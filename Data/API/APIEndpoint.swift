@@ -6,18 +6,18 @@
 //
 
 import Foundation
+import Utils
 
 enum MealsAPI {
-    static let baseUrl = "https://themealdb.com/api/json/v1/1/"
     case listCategories
     case listMeals(category: String)
     case mealDetail(withID: String)
     
     var endpoint: String {
         switch self {
-        case .listCategories: "\(MealsAPI.baseUrl)list.php?c=list"
-        case .listMeals(let category): "\(MealsAPI.baseUrl)filter.php?c=\(category)"
-        case .mealDetail(let id): "\(MealsAPI.baseUrl)lookup.php?i=\(id)"
+        case .listCategories: "\(Constants.baseUrl)list.php?c=list"
+        case .listMeals(let category): "\(Constants.baseUrl)filter.php?c=\(category)"
+        case .mealDetail(let id): "\(Constants.baseUrl)lookup.php?i=\(id)"
         }
     }
 
