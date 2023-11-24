@@ -10,7 +10,7 @@ import Combine
 import SDWebImage
 import Domain
 
-class MealDetailViewController: UIViewController {
+public class MealDetailViewController: UIViewController {
     
     @IBOutlet weak var mealImage: UIImageView!
     @IBOutlet weak var mealTitle: UILabel!
@@ -35,7 +35,7 @@ class MealDetailViewController: UIViewController {
         fatalError("init(coder:) has not been implemented")
     }
     
-    override func viewDidLoad() {
+    public override func viewDidLoad() {
         super.viewDidLoad()
         setupBtn()
         detailViewModel.getMealDetail(withID: mealID)
@@ -44,13 +44,13 @@ class MealDetailViewController: UIViewController {
         observedMealFavorite()
     }
     
-    override func viewWillAppear(_ animated: Bool) {
+    public override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         navigationController?.navigationBar.makeTransparent(withTint: .accentColor!)
         navigationController?.navigationBar.topItem?.backButtonTitle = ""
     }
     
-    override func viewDidAppear(_ animated: Bool) {
+    public override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
         navigationController?.navigationBar.topItem?.backButtonTitle = ""
     }

@@ -10,7 +10,7 @@ import Combine
 import UIKit
 import Domain
 
-class MealDetailViewModel {
+public class MealDetailViewModel {
     
     private let mealDetailUseCase: MealDetailUseCase
     private let favoriteUseCase: FavoriteUseCase
@@ -18,12 +18,12 @@ class MealDetailViewModel {
     var meal = PassthroughSubject<Meal?, Never>()
     var mealState = PassthroughSubject<Bool, Never>()
     
-    init(detailUseCase: MealDetailUseCase, favoUseCase: FavoriteUseCase) {
+    public init(detailUseCase: MealDetailUseCase, favoUseCase: FavoriteUseCase) {
         mealDetailUseCase = detailUseCase
         favoriteUseCase = favoUseCase
     }
     
-    func getMealDetail(withID id: String) {
+    public func getMealDetail(withID id: String) {
         mealDetailUseCase.getMealDetail(withID: id)
             .subscribe(on: DispatchQueue.global(qos: .background))
             .receive(on: RunLoop.main)
@@ -38,7 +38,7 @@ class MealDetailViewModel {
             }).store(in: &cancelable)
     }
     
-    func addMealFavorite(with meal: Meal) {
+    public func addMealFavorite(with meal: Meal) {
         favoriteUseCase.add(with: meal)
         .receive(on: RunLoop.main)
         .sink(receiveValue: { [weak self] value in
@@ -46,7 +46,7 @@ class MealDetailViewModel {
         }).store(in: &cancelable)
     }
     
-    func deleteMealFavorite(with meal: Meal) {
+    public func deleteMealFavorite(with meal: Meal) {
         favoriteUseCase.delete(with: meal)
         .receive(on: RunLoop.main)
         .sink(receiveValue: { [weak self] value in
@@ -56,7 +56,7 @@ class MealDetailViewModel {
         }).store(in: &cancelable)
     }
     
-    func getMealFavorite(withID id: String) {
+    public func getMealFavorite(withID id: String) {
         favoriteUseCase.getWithID(withID: id)
         .receive(on: RunLoop.main)
         .sink(receiveValue: { [weak self] value in

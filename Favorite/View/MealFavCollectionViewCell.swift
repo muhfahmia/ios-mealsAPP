@@ -9,7 +9,7 @@ import UIKit
 import SDWebImage
 import Domain
 
-class MealFavCollectionViewCell: UICollectionViewCell {
+public class MealFavCollectionViewCell: UICollectionViewCell {
 
     @IBOutlet weak var mealImage: UIImageView!
     @IBOutlet weak var mealTitle: UILabel!
@@ -17,7 +17,7 @@ class MealFavCollectionViewCell: UICollectionViewCell {
     private var meal: Meal?
     var delAction: ((Meal) -> Void)?
    
-    override func awakeFromNib() {
+    public override func awakeFromNib() {
         super.awakeFromNib()
         // Initialization code
     }

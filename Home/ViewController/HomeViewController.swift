@@ -9,11 +9,11 @@ import UIKit
 import Combine
 import Domain
 
-protocol HomeViewDelegate {
+public protocol HomeViewDelegate {
     func updateMeals(category: String)
 }
 
-class HomeViewController: UIViewController, UITextFieldDelegate, HomeViewDelegate {
+public class HomeViewController: UIViewController, UITextFieldDelegate, HomeViewDelegate {
     
     @IBOutlet weak var tblHome: UITableView!
     
@@ -51,14 +51,14 @@ class HomeViewController: UIViewController, UITextFieldDelegate, HomeViewDelegat
         fatalError("init(coder:) has not been implemented")
     }
     
-    override func viewDidLoad() {
+    public override func viewDidLoad() {
         super.viewDidLoad()
         setupUI()
         reloadHomePage()
         observedValue()
     }
     
-    override func viewWillAppear(_ animated: Bool) {
+    public override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
     }
 

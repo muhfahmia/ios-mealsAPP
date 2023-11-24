@@ -6,8 +6,9 @@
 //
 
 import UIKit
+import Core
 
-class HomeTabBarController: UITabBarController {
+public class HomeTabBarController: UITabBarController {
     
     private let router: HomeRouteCase
 
@@ -20,7 +21,7 @@ class HomeTabBarController: UITabBarController {
       fatalError("init(coder:) has not been implemented")
     }
 
-    override func viewDidLoad() {
+    public override func viewDidLoad() {
       super.viewDidLoad()
       configureTabBar()
     }

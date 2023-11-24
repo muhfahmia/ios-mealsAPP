@@ -8,9 +8,16 @@ def data_pod
   pod 'ObjectMapper'
 end
 
-target 'ios-theMealsApp' do
+target 'Home' do
   pod 'SDWebImage'
-  data_pod
+end
+
+target 'Favorite' do
+  pod 'SDWebImage'
+end
+
+target 'Detail' do
+  pod 'SDWebImage'
 end
 
 target 'Data' do

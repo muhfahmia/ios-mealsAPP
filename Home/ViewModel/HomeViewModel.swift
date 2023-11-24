@@ -9,20 +9,20 @@ import Foundation
 import Combine
 import Domain
 
-class HomeViewModel {
+public class HomeViewModel {
     
-    private let homeInteractor: HomeUseCase
+    let homeInteractor: HomeUseCase
     private var cancelable = Set<AnyCancellable>()
     
     var categories = PassthroughSubject<[MCategory], Never>()
     var meals = PassthroughSubject<[Meal], Never>()
     var mealsFav = PassthroughSubject<[Meal], Never>()
     
-    init(homeInteractor: HomeUseCase) {
+    public init(homeInteractor: HomeUseCase) {
         self.homeInteractor = homeInteractor
     }
     
-    func getCategories() {
+    public func getCategories() {
         homeInteractor.getCategories()
         .subscribe(on: DispatchQueue.global(qos: .background))
         .receive(on: RunLoop.main)
@@ -37,7 +37,7 @@ class HomeViewModel {
         }).store(in: &cancelable)
     }
     
-    func getMealsCategories(category: String) {
+    public func getMealsCategories(category: String) {
         homeInteractor.getMeals(category: category)
         .subscribe(on: DispatchQueue.global(qos: .background))
         .receive(on: RunLoop.main)
@@ -52,7 +52,7 @@ class HomeViewModel {
         }).store(in: &cancelable)
     }
     
-    func getMealsFav(category: String) {
+    public func getMealsFav(category: String) {
         homeInteractor.getMeals(category: category)
         .receive(on: RunLoop.main)
         .sink(receiveCompletion: { result in

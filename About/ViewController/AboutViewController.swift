@@ -7,9 +7,9 @@
 
 import UIKit
 
-class AboutViewController: UIViewController {
+public class AboutViewController: UIViewController {
     
-    init() {
+    public init() {
         super.init(nibName: String(describing: AboutViewController.self), bundle: nil)
     }
     
@@ -17,11 +17,11 @@ class AboutViewController: UIViewController {
         fatalError("init(coder:) has not been implemented")
     }
     
-    override func viewDidLoad() {
+    public override func viewDidLoad() {
         super.viewDidLoad()
     }
     
-    override func viewWillAppear(_ animated: Bool) {
+    public override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         navigationController?.navigationBar.isHidden = true
     }

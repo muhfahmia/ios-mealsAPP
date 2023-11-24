@@ -8,8 +8,9 @@
 import UIKit
 import Combine
 import Domain
+import Utils
 
-class FavoriteViewController: UIViewController, UICollectionViewDataSource, UICollectionViewDelegateFlowLayout {
+public class FavoriteViewController: UIViewController, UICollectionViewDataSource, UICollectionViewDelegateFlowLayout {
     
     @IBOutlet weak var favCL: UICollectionView!
     @IBOutlet weak var favMessage: UIStackView!
@@ -29,14 +30,14 @@ class FavoriteViewController: UIViewController, UICollectionViewDataSource, UICo
         fatalError("init(coder:) has not been implemented")
     }
     
-    override func viewDidLoad() {
+    public override func viewDidLoad() {
         super.viewDidLoad()
         setupUI()
         favViewModel.getMeals()
         observedValue()
     }
     
-    override func viewWillAppear(_ animated: Bool) {
+    public override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         favViewModel.getMeals()
         self.navigationItem.title = "Meals Favorite"
@@ -46,7 +47,7 @@ class FavoriteViewController: UIViewController, UICollectionViewDataSource, UICo
     private func setupUI() {
         favCL.dataSource = self
         favCL.delegate = self
-        favCL.register(nib: UINib(nibName: "MealFavCollectionViewCell", bundle: nil), forCellWithClass: MealFavCollectionViewCell.self)
+        favCL.register(nibWithCellClass: MealsCardCollectionViewCell.self)
     }
     
     private func observedValue() {
@@ -64,15 +65,15 @@ class FavoriteViewController: UIViewController, UICollectionViewDataSource, UICo
         }).store(in: &cancelable)
     }
     
-    func numberOfSections(in collectionView: UICollectionView) -> Int {
+    public func numberOfSections(in collectionView: UICollectionView) -> Int {
         1
     }
     
-    func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
+    public func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         meals?.count ?? 0
     }
     
-    func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell
+    public func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell
     {
         let cell: MealFavCollectionViewCell = collectionView.dequeueReusableCell(withClass: MealFavCollectionViewCell.self, for: indexPath)
         let meal = meals?[indexPath.item]
@@ -85,27 +86,27 @@ class FavoriteViewController: UIViewController, UICollectionViewDataSource, UICo
         return cell
     }
     
-    func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+    public func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         let meal = meals?[indexPath.item]
         favRouter.routeToDetail(from: self, withID: meal?.idMeal ?? "")
     }
     
-    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
+    public func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
         let availableWidth = collectionView.bounds.width - 10 - 10
         let itemWidth = (availableWidth - (2 - 1) * 10) / 2
         let itemHeight = itemWidth * 1.32
         return CGSize(width: itemWidth, height: itemHeight)
     }
     
-    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, insetForSectionAt section: Int) -> UIEdgeInsets {
+    public func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, insetForSectionAt section: Int) -> UIEdgeInsets {
         return UIEdgeInsets(top: 10, left: 10, bottom: 10, right: 10)
     }
     
-    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, minimumLineSpacingForSectionAt section: Int) -> CGFloat {
+    public func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, minimumLineSpacingForSectionAt section: Int) -> CGFloat {
         return 10
     }
     
-    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, minimumInteritemSpacingForSectionAt section: Int) -> CGFloat {
+    public func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, minimumInteritemSpacingForSectionAt section: Int) -> CGFloat {
         return 10
     }
     

@@ -9,17 +9,17 @@ import Combine
 import Foundation
 import Domain
 
-class OnBoardViewModel {
+public class OnBoardViewModel {
     
     private let onBoardInteractor: OnBoardUseCase
     private var cancelable = Set<AnyCancellable>()
     var boardingPage = PassthroughSubject<[BoardPage], Never>()
     
-    init(onBoardInteractor: OnBoardUseCase) {
+    public init(onBoardInteractor: OnBoardUseCase) {
         self.onBoardInteractor = onBoardInteractor
     }
     
-    func get() {
+    public func get() {
         onBoardInteractor.get()
         .receive(on: RunLoop.main)
         .sink(receiveValue: { [weak self] value in

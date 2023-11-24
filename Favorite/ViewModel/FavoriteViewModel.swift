@@ -9,7 +9,7 @@ import Foundation
 import Combine
 import Domain
 
-class FavoriteViewModel {
+public class FavoriteViewModel {
     
     private let favUseCase: FavoriteUseCase
     private var cancelable = Set<AnyCancellable>()
@@ -19,7 +19,7 @@ class FavoriteViewModel {
         self.favUseCase = favUseCase
     }
     
-    func getMeals() {
+    public func getMeals() {
         favUseCase.get()
         .subscribe(on: DispatchQueue.global(qos: .background))
         .receive(on: RunLoop.main)
@@ -30,7 +30,7 @@ class FavoriteViewModel {
         }).store(in: &cancelable)
     }
     
-    func deleteMeal(with meal: Meal) {
+    public func deleteMeal(with meal: Meal) {
         _ = favUseCase.delete(with: meal)
     }
     
