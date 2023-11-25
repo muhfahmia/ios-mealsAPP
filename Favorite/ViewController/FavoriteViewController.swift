@@ -8,22 +8,23 @@
 import UIKit
 import Combine
 import Domain
-import Utils
+import Core
 
 public class FavoriteViewController: UIViewController, UICollectionViewDataSource, UICollectionViewDelegateFlowLayout {
     
     @IBOutlet weak var favCL: UICollectionView!
     @IBOutlet weak var favMessage: UIStackView!
+    @IBOutlet weak var favLoadingImage: UIImageView!
     
     private let favViewModel: FavoriteViewModel
     private let favRouter: FavoriteRouteCase
     private var cancelable = Set<AnyCancellable>()
     private var meals: [Meal]?
     
-    init(viewModel: FavoriteViewModel, router: FavoriteRouteCase) {
-        favViewModel = viewModel
-        favRouter = router
-        super.init(nibName: String(describing: FavoriteViewController.self), bundle: nil)
+    public init(viewModel: FavoriteViewModel, router: FavoriteRouteCase) {
+        self.favViewModel = viewModel
+        self.favRouter = router
+        super.init(nibName: String(describing: FavoriteViewController.self), bundle: Bundle.current)
     }
     
     required init?(coder: NSCoder) {
@@ -47,22 +48,23 @@ public class FavoriteViewController: UIViewController, UICollectionViewDataSourc
     private func setupUI() {
         favCL.dataSource = self
         favCL.delegate = self
-        favCL.register(nibWithCellClass: MealsCardCollectionViewCell.self)
+        favCL.register(nibWithCellClass: MealFavCollectionViewCell.self, at: MealFavCollectionViewCell.self)
+        favLoadingImage.image = UIImage(nameOrSystemName: "loading")
     }
     
     private func observedValue() {
         favViewModel.meals
-        .sink(receiveValue: { [weak self] value in
-            self?.meals = value
-            if self?.meals?.isEmpty == true {
-                self?.favCL.isHidden = true
-                self?.favMessage.isHidden = false
-            } else {
-                self?.favCL.isHidden = false
-                self?.favMessage.isHidden = true
-            }
-            self?.favCL.reloadData()
-        }).store(in: &cancelable)
+            .sink(receiveValue: { [weak self] value in
+                self?.meals = value
+                if self?.meals?.isEmpty == true {
+                    self?.favCL.isHidden = true
+                    self?.favMessage.isHidden = false
+                } else {
+                    self?.favCL.isHidden = false
+                    self?.favMessage.isHidden = true
+                }
+                self?.favCL.reloadData()
+            }).store(in: &cancelable)
     }
     
     public func numberOfSections(in collectionView: UICollectionView) -> Int {

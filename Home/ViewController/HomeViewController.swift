@@ -8,6 +8,7 @@
 import UIKit
 import Combine
 import Domain
+import Core
 
 public protocol HomeViewDelegate {
     func updateMeals(category: String)
@@ -41,10 +42,10 @@ public class HomeViewController: UIViewController, UITextFieldDelegate, HomeView
     
     let refreshPage = UIRefreshControl()
     
-    init(homeViewModel: HomeViewModel, router: HomeRouteCase) {
+    public init(homeViewModel: HomeViewModel, router: HomeRouteCase) {
         self.homeViewModel = homeViewModel
         self.router = router
-        super.init(nibName: "HomeView", bundle: nil)
+        super.init(nibName: String(describing: HomeViewController.self), bundle: Bundle.current)
     }
     
     required init?(coder: NSCoder) {
@@ -61,42 +62,42 @@ public class HomeViewController: UIViewController, UITextFieldDelegate, HomeView
     public override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
     }
-
+    
     private func observedValue() {
         homeViewModel.categories
-        .sink(receiveValue: { [weak self] value in
-            self?.categories = value
-            if self?.categoryFav == nil {
-                self?.categoryFav = value.randomElement()?.name
-            }
-            self?.tblHome.reloadRows(at: [IndexPath(row: 0, section: 1)], with: .left)
-        }).store(in: &cancelable)
+            .sink(receiveValue: { [weak self] value in
+                self?.categories = value
+                if self?.categoryFav == nil {
+                    self?.categoryFav = value.randomElement()?.name
+                }
+                self?.tblHome.reloadRows(at: [IndexPath(row: 0, section: 1)], with: .left)
+            }).store(in: &cancelable)
         
         homeViewModel.meals
-        .sink(receiveValue: { [weak self] value in
-            self?.meals = value
-            self?.tblHome.reloadRows(at: [IndexPath(row: 0, section: 3)], with: .left)
-        }).store(in: &cancelable)
+            .sink(receiveValue: { [weak self] value in
+                self?.meals = value
+                self?.tblHome.reloadRows(at: [IndexPath(row: 0, section: 3)], with: .left)
+            }).store(in: &cancelable)
         
         homeViewModel.mealsFav
-        .sink(receiveValue: { [weak self] value in
-            self?.mealsFav = value
-            self?.tblHome.reloadRows(at: [IndexPath(row: 0, section: 5)], with: .left)
-        }).store(in: &cancelable)
+            .sink(receiveValue: { [weak self] value in
+                self?.mealsFav = value
+                self?.tblHome.reloadRows(at: [IndexPath(row: 0, section: 5)], with: .left)
+            }).store(in: &cancelable)
     }
- 
+    
     private func setupUI() {
         tblHome.keyboardDismissMode = .onDrag
         tblHome.addSubview(refreshPage)
         refreshPage.addTarget(self, action: #selector(onRefreshPage), for: .valueChanged)
         tblHome.dataSource = self
-        tblHome.register(nibWithCellClass: HeaderHomeTableViewCell.self)
-        tblHome.register(nibWithCellClass: TitleTableViewCell.self)
-        tblHome.register(nibWithCellClass: MealsCardTableViewCell.self)
+        tblHome.register(nibWithCellClass: HeaderHomeTableViewCell.self, at: HeaderHomeTableViewCell.self)
+        tblHome.register(nibWithCellClass: TitleTableViewCell.self, at: TitleTableViewCell.self)
+        tblHome.register(nibWithCellClass: MealsCardTableViewCell.self, at: MealsCardTableViewCell.self)
         tblHome.register(cellWithClass: FilterTableViewCell.self)
     }
     
-    func updateMeals(category: String) {
+    public func updateMeals(category: String) {
         homeViewModel.getMealsCategories(category: category)
     }
     
@@ -112,18 +113,18 @@ public class HomeViewController: UIViewController, UITextFieldDelegate, HomeView
         refreshPage.endRefreshing()
     }
     
-    func textFieldShouldReturn(_ textField: UITextField) -> Bool {
+    public func textFieldShouldReturn(_ textField: UITextField) -> Bool {
         // Hide the keyboard when Return key is tapped
         textField.resignFirstResponder()
         return true
     }
     
-    func textFieldDidBeginEditing(_ textField: UITextField) {
+    public func textFieldDidBeginEditing(_ textField: UITextField) {
         // Perform actions when the text field begins editing
         print("TextField did begin editing")
     }
     
-    func textFieldDidEndEditing(_ textField: UITextField) {
+    public func textFieldDidEndEditing(_ textField: UITextField) {
         // Perform actions when the text field ends editing
         print("TextField did end editing")
     }
@@ -132,11 +133,11 @@ public class HomeViewController: UIViewController, UITextFieldDelegate, HomeView
 
 extension HomeViewController: UITableViewDataSource {
     
-    func numberOfSections(in tableView: UITableView) -> Int {
+    public func numberOfSections(in tableView: UITableView) -> Int {
         return TableSection.allCases.count
     }
     
-    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+    public func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let section = TableSection(rawValue: indexPath.section)
         switch section {
         case .header:
@@ -179,7 +180,7 @@ extension HomeViewController: UITableViewDataSource {
         
     }
     
-    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+    public func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return 1
     }
     

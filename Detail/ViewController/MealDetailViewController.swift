@@ -9,6 +9,7 @@ import UIKit
 import Combine
 import SDWebImage
 import Domain
+import Core
 
 public class MealDetailViewController: UIViewController {
     
@@ -25,10 +26,10 @@ public class MealDetailViewController: UIViewController {
     
     private var meal: Meal?
     
-    init(viewModel: MealDetailViewModel, withID: String) {
+    public init(viewModel: MealDetailViewModel, withID: String) {
         detailViewModel = viewModel
         mealID = withID
-        super.init(nibName: "MealDetailView", bundle: nil)
+        super.init(nibName: String(describing: MealDetailViewController.self), bundle: Bundle.current)
     }
     
     required init?(coder: NSCoder) {

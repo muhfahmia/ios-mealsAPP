@@ -33,8 +33,8 @@ public extension UICollectionView {
     }
     
     func getResponsiveGrid(estimatedWidth: CGFloat, heightRatio: CGFloat, grid: CGFloat) -> CGSize {
-        let screenWidth = Constants.deviceWidth
-        let deviceModel = Constants.deviceModel
+        let screenWidth = UIScreen.main.bounds.width
+        let deviceModel = UIDevice.current.model
         var estimatedWidth = estimatedWidth
         if deviceModel == "iPad" {
             estimatedWidth = estimatedWidth - 0.35

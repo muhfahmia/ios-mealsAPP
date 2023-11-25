@@ -7,25 +7,20 @@
 
 import UIKit
 
-class SearchResult: UIViewController {
-    
-    override func viewDidLoad() {
-        super.viewDidLoad()
-        view.backgroundColor = .systemRed
-    }
-    
-}
+public class HeaderHomeTableViewCell: UITableViewCell {
 
-class HeaderHomeTableViewCell: UITableViewCell {
-    
     @IBOutlet weak var searchText: UITextField!
+    
+    public static var identifier: String {
+        String(describing: HeaderHomeTableViewCell.self)
+    }
 
-    override func awakeFromNib() {
+    public override func awakeFromNib() {
         super.awakeFromNib()
         // Initialization code
     }
 
-    override func setSelected(_ selected: Bool, animated: Bool) {
+    public override func setSelected(_ selected: Bool, animated: Bool) {
         super.setSelected(selected, animated: animated)
         // Configure the view for the selected state
     }

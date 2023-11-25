@@ -6,18 +6,22 @@
 //
 
 import UIKit
+import Core
 import Domain
 
 class OnBoardingCollectionViewCell: UICollectionViewCell {
 
     @IBOutlet weak var boardView: UIImageView!
     
+    static var identifier: String {
+        String(describing: OnBoardingCollectionViewCell.self)
+    }
+    
     override func awakeFromNib() {
         super.awakeFromNib()
-        // Initialization code
     }
     
     func configure(with board: BoardPage?) {
-        boardView.image = UIImage(named: (board?.viewAnimate)!)
+        boardView.image = UIImage(nameOrSystemName: board?.viewAnimate ?? "")
     }
 }

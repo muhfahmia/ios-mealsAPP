@@ -6,31 +6,30 @@
 //
 
 import UIKit
-import Core
 
 public class HomeTabBarController: UITabBarController {
     
     private let router: HomeRouteCase
-
-    init(router: HomeRouteCase) {
-      self.router = router
-      super.init(nibName: nil, bundle: nil)
+    
+    public init(router: HomeRouteCase) {
+        self.router = router
+        super.init(nibName: nil, bundle: Bundle.current)
     }
-
+    
     required init?(coder: NSCoder) {
-      fatalError("init(coder:) has not been implemented")
+        fatalError("init(coder:) has not been implemented")
     }
-
+    
     public override func viewDidLoad() {
-      super.viewDidLoad()
-      configureTabBar()
+        super.viewDidLoad()
+        configureTabBar()
     }
     
     private func configureTabBar() {
         
         tabBar.barTintColor = UIColor.backgroundColor
         tabBar.backgroundColor = UIColor.backgroundColor
-
+        
         let homeTab = createTabController(vc: router.homeVC, image: setImageTab(imageSystem: "fork.knife.circle.fill"))
         let favTab = createTabController(vc: router.favVC, image: setImageTab(imageSystem: "heart.fill"))
         let aboutTab = createTabController(vc: router.aboutVC, image: setImageTab(imageSystem: "person.fill"))
@@ -38,10 +37,10 @@ public class HomeTabBarController: UITabBarController {
     }
     
     private func createTabController(vc: UIViewController, image: UIImage) -> UINavigationController {
-      let tabController = UINavigationController(rootViewController: vc)
-      tabController.tabBarItem.image = image
-      tabController.tabBarItem.selectedImage = image
-      return tabController
+        let tabController = UINavigationController(rootViewController: vc)
+        tabController.tabBarItem.image = image
+        tabController.tabBarItem.selectedImage = image
+        return tabController
     }
     
     private func setImageTab(imageSystem: String) -> UIImage {

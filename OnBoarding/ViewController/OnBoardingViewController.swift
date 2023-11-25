@@ -7,6 +7,7 @@
 
 import UIKit
 import Combine
+import Core
 import Domain
 
 public class OnBoardingViewController: UIViewController {
@@ -22,10 +23,10 @@ public class OnBoardingViewController: UIViewController {
     
     var boarding: [BoardPage]?
     
-    init(router: OnBoardingRouteCase, viewModel: OnBoardViewModel) {
+    public init(router: OnBoardingRouteCase, viewModel: OnBoardViewModel) {
         self.router = router
         self.boardViewModel = viewModel
-        super.init(nibName: "OnBoardView", bundle: nil)
+        super.init(nibName: String(describing: OnBoardingViewController.self), bundle: Bundle.current)
         
     }
     
@@ -44,7 +45,7 @@ public class OnBoardingViewController: UIViewController {
                 self?.boardCollectionView.reloadData()
                 self?.boardPageControl.numberOfPages = self?.boarding?.count ?? 0
                 self?.setupBoard(with: 0)
-        }).store(in: &cancelable)
+            }).store(in: &cancelable)
     }
     
     func setupCollectionView() {
@@ -58,7 +59,7 @@ public class OnBoardingViewController: UIViewController {
     }
     
     func setupCellRegister() {
-        boardCollectionView.register(UINib(nibName: "OnBoardingCollectionViewCell", bundle: nil), forCellWithReuseIdentifier: "onBoardCell")
+        boardCollectionView.register(nibWithCellClass: OnBoardingCollectionViewCell.self, at: ModuleInjection.self)
     }
     
     func setupBoard(with page: Int) {
@@ -79,7 +80,7 @@ public class OnBoardingViewController: UIViewController {
         }
     }
     
-    func scrollViewDidEndDecelerating(_ scrollView: UIScrollView) {
+    public func scrollViewDidEndDecelerating(_ scrollView: UIScrollView) {
         let indexPage = Int(boardCollectionView.contentOffset.x / scrollView.frame.size.height)
         setupBoard(with: indexPage)
     }
@@ -87,18 +88,18 @@ public class OnBoardingViewController: UIViewController {
 
 extension OnBoardingViewController: UICollectionViewDataSource {
     
-    func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-        let cell = boardCollectionView.dequeueReusableCell(withReuseIdentifier: "onBoardCell", for: indexPath) as! OnBoardingCollectionViewCell
+    public func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
+        let cell: OnBoardingCollectionViewCell = collectionView.dequeueReusableCell(withClass: OnBoardingCollectionViewCell.self, for: indexPath)
         let board = boarding?[indexPath.item]
         cell.configure(with: board)
         return cell
     }
-
-    func numberOfSections(in collectionView: UICollectionView) -> Int {
+    
+    public func numberOfSections(in collectionView: UICollectionView) -> Int {
         1
     }
     
-    func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
+    public func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         return boarding?.count ?? 0
     }
     
@@ -106,11 +107,11 @@ extension OnBoardingViewController: UICollectionViewDataSource {
 
 extension OnBoardingViewController: UICollectionViewDelegateFlowLayout {
     
-    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
+    public func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
         return CGSize(width: boardCollectionView.bounds.width, height: boardCollectionView.bounds.height)
     }
     
-    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, minimumLineSpacingForSectionAt section: Int) -> CGFloat {
+    public func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, minimumLineSpacingForSectionAt section: Int) -> CGFloat {
         return 0
     }
     
