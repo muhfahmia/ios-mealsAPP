@@ -34,6 +34,7 @@
 		5D5229DC2B0C6707001D68FB /* APIManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5D5229D02B0C6707001D68FB /* APIManager.swift */; };
 		5D5229DD2B0C6707001D68FB /* APIEndpoint.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5D5229D12B0C6707001D68FB /* APIEndpoint.swift */; };
 		5D5229E12B0C842F001D68FB /* CoreDataMeal.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 5D5229DF2B0C842F001D68FB /* CoreDataMeal.xcdatamodeld */; };
+		5D7935432B12478F008F31D0 /* HomeTabBarController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5DEE7B602AE569D100B631D3 /* HomeTabBarController.swift */; };
 		5DEC77632B0F491A00643371 /* FavoriteViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5DEE7B652AE5831300B631D3 /* FavoriteViewController.swift */; };
 		5DEC77662B0F5E1B00643371 /* FavoriteUseCase.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5D5229A82B0C66F8001D68FB /* FavoriteUseCase.swift */; };
 		5DEC779E2B10A91900643371 /* HomeRouter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5DEC77942B10A56100643371 /* HomeRouter.swift */; };
@@ -78,7 +79,6 @@
 		5DEFC9202B0F331D00900DB3 /* About.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 5DEFC9192B0F331D00900DB3 /* About.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		5DEFC9252B0F362300900DB3 /* HomeViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5D5CEC2C2AEAA6CC00F36FD7 /* HomeViewModel.swift */; };
 		5DEFC9262B0F362900900DB3 /* HomeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5DEE7B182AE3D4AA00B631D3 /* HomeViewController.swift */; };
-		5DEFC9272B0F362E00900DB3 /* HomeTabBarController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5DEE7B602AE569D100B631D3 /* HomeTabBarController.swift */; };
 		5DEFC9282B0F364300900DB3 /* MealsCardTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5D5CEC3B2AEBB00500F36FD7 /* MealsCardTableViewCell.swift */; };
 		5DEFC9292B0F364800900DB3 /* MealsCardTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 5D5CEC3C2AEBB00500F36FD7 /* MealsCardTableViewCell.xib */; };
 		5DEFC92A2B0F364C00900DB3 /* MealsCardCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5D5CEC412AED41B500F36FD7 /* MealsCardCollectionViewCell.swift */; };
@@ -423,6 +423,8 @@
 		5D367A032B0C66680027D2F3 /* Domain */ = {
 			isa = PBXGroup;
 			children = (
+				5DEC776D2B104EA200643371 /* Constant */,
+				5DEE7B402AE3ED6300B631D3 /* Extensions */,
 				5D5229AE2B0C66F8001D68FB /* Model */,
 				5D5229AB2B0C66F8001D68FB /* Repository */,
 				5D5229A32B0C66F8001D68FB /* UseCase */,
@@ -656,6 +658,7 @@
 		5DEC77752B106F7900643371 /* Router */ = {
 			isa = PBXGroup;
 			children = (
+				5DEE7B602AE569D100B631D3 /* HomeTabBarController.swift */,
 				5DEC77982B10A57500643371 /* OnBoardingRouter.swift */,
 				5DEC77962B10A56B00643371 /* DetailRouter.swift */,
 				5DEC77942B10A56100643371 /* HomeRouter.swift */,
@@ -776,7 +779,6 @@
 			isa = PBXGroup;
 			children = (
 				5DEE7B182AE3D4AA00B631D3 /* HomeViewController.swift */,
-				5DEE7B602AE569D100B631D3 /* HomeTabBarController.swift */,
 			);
 			path = ViewController;
 			sourceTree = "<group>";
@@ -839,8 +841,6 @@
 			children = (
 				5DEC77832B10A4BD00643371 /* Injection */,
 				5DEC77752B106F7900643371 /* Router */,
-				5DEE7B402AE3ED6300B631D3 /* Extensions */,
-				5DEC776D2B104EA200643371 /* Constant */,
 				5DEFC8B52B0F1D9400900DB3 /* Utils.h */,
 			);
 			path = Core;
@@ -1475,6 +1475,7 @@
 			files = (
 				5DEFC94E2B0F434200900DB3 /* UIView.swift in Sources */,
 				5DEFC8BE2B0F1DB300900DB3 /* Constant.swift in Sources */,
+				5D7935432B12478F008F31D0 /* HomeTabBarController.swift in Sources */,
 				5DEFC9512B0F434200900DB3 /* UIStackView.swift in Sources */,
 				5DEC77A32B10A92000643371 /* HomeInjection.swift in Sources */,
 				5DEC77A12B10A91900643371 /* OnBoardingRouter.swift in Sources */,
@@ -1503,7 +1504,6 @@
 				5DEFC92C2B0F366000900DB3 /* TitleTableViewCell.swift in Sources */,
 				5DEFC9252B0F362300900DB3 /* HomeViewModel.swift in Sources */,
 				5DEC77AB2B10AC1700643371 /* HomeRouteCase.swift in Sources */,
-				5DEFC9272B0F362E00900DB3 /* HomeTabBarController.swift in Sources */,
 				5DEFC92A2B0F364C00900DB3 /* MealsCardCollectionViewCell.swift in Sources */,
 				5DEFC92E2B0F366900900DB3 /* FilterTableViewCell.swift in Sources */,
 				5DEFC9262B0F362900900DB3 /* HomeViewController.swift in Sources */,

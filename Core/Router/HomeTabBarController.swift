@@ -6,7 +6,7 @@
 //
 
 import UIKit
-import Core
+import Home
 
 public class HomeTabBarController: UITabBarController {
     
