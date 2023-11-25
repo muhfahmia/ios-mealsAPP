@@ -35,6 +35,15 @@
 		5D5229DD2B0C6707001D68FB /* APIEndpoint.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5D5229D12B0C6707001D68FB /* APIEndpoint.swift */; };
 		5D5229E12B0C842F001D68FB /* CoreDataMeal.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 5D5229DF2B0C842F001D68FB /* CoreDataMeal.xcdatamodeld */; };
 		5D7935432B12478F008F31D0 /* HomeTabBarController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5DEE7B602AE569D100B631D3 /* HomeTabBarController.swift */; };
+		5D7935442B124819008F31D0 /* Constant.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5D7375952AE79C87002CAF3F /* Constant.swift */; };
+		5D7935452B12481F008F31D0 /* UITableView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5DA3FC602AF3720D002C526C /* UITableView.swift */; };
+		5D7935462B12481F008F31D0 /* UIColor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5DEE7B412AE3EE0200B631D3 /* UIColor.swift */; };
+		5D7935472B12481F008F31D0 /* UIStackView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5DF7259D2AEFFC8C00FAD6F8 /* UIStackView.swift */; };
+		5D7935482B12481F008F31D0 /* UIButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5DA3FC5E2AF21043002C526C /* UIButton.swift */; };
+		5D7935492B12481F008F31D0 /* UICollectionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5DEFC9582B0F47BB00900DB3 /* UICollectionView.swift */; };
+		5D79354A2B12481F008F31D0 /* UIView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5DEE7B782AE6CE0500B631D3 /* UIView.swift */; };
+		5D79354B2B12481F008F31D0 /* UINavigationBar.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5D7CFDBA2AF3FC7F00C130F2 /* UINavigationBar.swift */; };
+		5D79354C2B12481F008F31D0 /* UIViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5D0DEB0A2AFBD140006B42B6 /* UIViewController.swift */; };
 		5DEC77632B0F491A00643371 /* FavoriteViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5DEE7B652AE5831300B631D3 /* FavoriteViewController.swift */; };
 		5DEC77662B0F5E1B00643371 /* FavoriteUseCase.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5D5229A82B0C66F8001D68FB /* FavoriteUseCase.swift */; };
 		5DEC779E2B10A91900643371 /* HomeRouter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5DEC77942B10A56100643371 /* HomeRouter.swift */; };
@@ -61,7 +70,6 @@
 		5DEFC8B62B0F1D9400900DB3 /* Utils.h in Headers */ = {isa = PBXBuildFile; fileRef = 5DEFC8B52B0F1D9400900DB3 /* Utils.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		5DEFC8B92B0F1D9400900DB3 /* Core.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5DEFC8B32B0F1D9400900DB3 /* Core.framework */; };
 		5DEFC8BA2B0F1D9400900DB3 /* Core.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 5DEFC8B32B0F1D9400900DB3 /* Core.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
-		5DEFC8BE2B0F1DB300900DB3 /* Constant.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5D7375952AE79C87002CAF3F /* Constant.swift */; };
 		5DEFC8C72B0F321500900DB3 /* Home.h in Headers */ = {isa = PBXBuildFile; fileRef = 5DEFC8C62B0F321500900DB3 /* Home.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		5DEFC8CA2B0F321500900DB3 /* Home.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5DEFC8C42B0F321500900DB3 /* Home.framework */; };
 		5DEFC8CB2B0F321500900DB3 /* Home.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 5DEFC8C42B0F321500900DB3 /* Home.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
@@ -101,14 +109,6 @@
 		5DEFC9402B0F413800900DB3 /* OnBoardViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5DEFC9092B0F32CE00900DB3 /* OnBoardViewModel.swift */; };
 		5DEFC9422B0F414700900DB3 /* AboutViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5D0DEB042AFAF053006B42B6 /* AboutViewController.swift */; };
 		5DEFC9432B0F414700900DB3 /* AboutViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 5D0DEB082AFAF1B4006B42B6 /* AboutViewController.xib */; };
-		5DEFC94E2B0F434200900DB3 /* UIView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5DEE7B782AE6CE0500B631D3 /* UIView.swift */; };
-		5DEFC94F2B0F434200900DB3 /* UIButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5DA3FC5E2AF21043002C526C /* UIButton.swift */; };
-		5DEFC9502B0F434200900DB3 /* UIViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5D0DEB0A2AFBD140006B42B6 /* UIViewController.swift */; };
-		5DEFC9512B0F434200900DB3 /* UIStackView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5DF7259D2AEFFC8C00FAD6F8 /* UIStackView.swift */; };
-		5DEFC9532B0F434200900DB3 /* UINavigationBar.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5D7CFDBA2AF3FC7F00C130F2 /* UINavigationBar.swift */; };
-		5DEFC9542B0F434200900DB3 /* UIColor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5DEE7B412AE3EE0200B631D3 /* UIColor.swift */; };
-		5DEFC9572B0F46FA00900DB3 /* UITableView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5DA3FC602AF3720D002C526C /* UITableView.swift */; };
-		5DEFC9592B0F47BB00900DB3 /* UICollectionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5DEFC9582B0F47BB00900DB3 /* UICollectionView.swift */; };
 		993C08BE1996E973D7AE61A0 /* Pods_Favorite.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C35ADDF9BD8865FB0D91DAD4 /* Pods_Favorite.framework */; };
 		A8EA4EE4B0CB6E3AF25D01EB /* Pods_Data.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 77928A8BD5DC4DEC1F42811F /* Pods_Data.framework */; };
 		F3B00420F899FA742EA2BEDA /* Pods_Detail.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C48B20C974CA3FEEA45B9155 /* Pods_Detail.framework */; };
@@ -1428,14 +1428,23 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				5D79354B2B12481F008F31D0 /* UINavigationBar.swift in Sources */,
+				5D79354A2B12481F008F31D0 /* UIView.swift in Sources */,
+				5D79354C2B12481F008F31D0 /* UIViewController.swift in Sources */,
+				5D7935492B12481F008F31D0 /* UICollectionView.swift in Sources */,
 				5D5229B82B0C66F8001D68FB /* MealsRepository.swift in Sources */,
+				5D7935462B12481F008F31D0 /* UIColor.swift in Sources */,
 				5D5229B42B0C66F8001D68FB /* HomeUseCase.swift in Sources */,
 				5D5229B72B0C66F8001D68FB /* MealDetailUseCase.swift in Sources */,
 				5D5229BB2B0C66F8001D68FB /* Meal.swift in Sources */,
 				5D5229BC2B0C66F8001D68FB /* Category.swift in Sources */,
 				5D5229B52B0C66F8001D68FB /* OnBoardUseCase.swift in Sources */,
 				5D5229B92B0C66F8001D68FB /* OnBoardRepository.swift in Sources */,
+				5D7935452B12481F008F31D0 /* UITableView.swift in Sources */,
+				5D7935442B124819008F31D0 /* Constant.swift in Sources */,
 				5DEC77662B0F5E1B00643371 /* FavoriteUseCase.swift in Sources */,
+				5D7935482B12481F008F31D0 /* UIButton.swift in Sources */,
+				5D7935472B12481F008F31D0 /* UIStackView.swift in Sources */,
 				5D5229BA2B0C66F8001D68FB /* OnBoard.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -1473,27 +1482,18 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				5DEFC94E2B0F434200900DB3 /* UIView.swift in Sources */,
-				5DEFC8BE2B0F1DB300900DB3 /* Constant.swift in Sources */,
 				5D7935432B12478F008F31D0 /* HomeTabBarController.swift in Sources */,
-				5DEFC9512B0F434200900DB3 /* UIStackView.swift in Sources */,
 				5DEC77A32B10A92000643371 /* HomeInjection.swift in Sources */,
 				5DEC77A12B10A91900643371 /* OnBoardingRouter.swift in Sources */,
-				5DEFC9592B0F47BB00900DB3 /* UICollectionView.swift in Sources */,
 				5DEC77A62B10A92000643371 /* DetailInjection.swift in Sources */,
 				5DEC779E2B10A91900643371 /* HomeRouter.swift in Sources */,
 				5DEC77A72B10A92000643371 /* OnBoardingInjection.swift in Sources */,
 				5DEC77A82B10A92000643371 /* FavoriteInjection.swift in Sources */,
 				5DEC779F2B10A91900643371 /* DetailRouter.swift in Sources */,
 				5DEC77A02B10A91900643371 /* FavoriteRouter.swift in Sources */,
-				5DEFC9502B0F434200900DB3 /* UIViewController.swift in Sources */,
-				5DEFC9532B0F434200900DB3 /* UINavigationBar.swift in Sources */,
 				5DEC77A22B10A92000643371 /* CoreInjection.swift in Sources */,
-				5DEFC9572B0F46FA00900DB3 /* UITableView.swift in Sources */,
 				5DEC77A42B10A92000643371 /* AboutInjection.swift in Sources */,
-				5DEFC9542B0F434200900DB3 /* UIColor.swift in Sources */,
 				5DEC77A52B10A92000643371 /* Injection.swift in Sources */,
-				5DEFC94F2B0F434200900DB3 /* UIButton.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
