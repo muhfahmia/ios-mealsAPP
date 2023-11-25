@@ -747,18 +747,10 @@
 		5DEE7B132AE3D4AA00B631D3 /* App */ = {
 			isa = PBXGroup;
 			children = (
-				5DEE7B292AE3D57000B631D3 /* Core */,
-			);
-			path = App;
-			sourceTree = "<group>";
-		};
-		5DEE7B292AE3D57000B631D3 /* Core */ = {
-			isa = PBXGroup;
-			children = (
 				5DEE7B2A2AE3D58100B631D3 /* Main */,
 				5DEE7B2B2AE3D59A00B631D3 /* Resource */,
 			);
-			path = Core;
+			path = App;
 			sourceTree = "<group>";
 		};
 		5DEE7B2A2AE3D58100B631D3 /* Main */ = {
@@ -1806,6 +1798,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
+				INFOPLIST_FILE = "";
 				IPHONEOS_DEPLOYMENT_TARGET = 17.0;
 				LOCALIZATION_PREFERS_STRING_CATALOGS = YES;
 				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
@@ -1863,6 +1856,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
+				INFOPLIST_FILE = "";
 				IPHONEOS_DEPLOYMENT_TARGET = 17.0;
 				LOCALIZATION_PREFERS_STRING_CATALOGS = YES;
 				MTL_ENABLE_DEBUG_INFO = NO;
@@ -1884,7 +1878,7 @@
 				DEVELOPMENT_TEAM = 3HH926728D;
 				ENABLE_USER_SCRIPT_SANDBOXING = NO;
 				GENERATE_INFOPLIST_FILE = YES;
-				INFOPLIST_FILE = App/Core/Resource/Info.plist;
+				INFOPLIST_FILE = App/Resource/Info.plist;
 				INFOPLIST_KEY_LSApplicationCategoryType = "public.app-category.food-and-drink";
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
@@ -1914,7 +1908,7 @@
 				DEVELOPMENT_TEAM = 3HH926728D;
 				ENABLE_USER_SCRIPT_SANDBOXING = NO;
 				GENERATE_INFOPLIST_FILE = YES;
-				INFOPLIST_FILE = App/Core/Resource/Info.plist;
+				INFOPLIST_FILE = App/Resource/Info.plist;
 				INFOPLIST_KEY_LSApplicationCategoryType = "public.app-category.food-and-drink";
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
