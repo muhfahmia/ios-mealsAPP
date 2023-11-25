@@ -8,10 +8,6 @@
 import UIKit
 import Detail
 
-public protocol MealDetailRouteCase {
-    func routeToDetail(from vc: UIViewController, withID id: String)
-}
-
 public class MealDetailRouter: MealDetailRouteCase {
     
     private let injection: Injection

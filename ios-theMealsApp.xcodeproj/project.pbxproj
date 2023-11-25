@@ -37,7 +37,7 @@
 		5DEC77632B0F491A00643371 /* FavoriteViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5DEE7B652AE5831300B631D3 /* FavoriteViewController.swift */; };
 		5DEC77662B0F5E1B00643371 /* FavoriteUseCase.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5D5229A82B0C66F8001D68FB /* FavoriteUseCase.swift */; };
 		5DEC779E2B10A91900643371 /* HomeRouter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5DEC77942B10A56100643371 /* HomeRouter.swift */; };
-		5DEC779F2B10A91900643371 /* MealDetailRouter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5DEC77962B10A56B00643371 /* MealDetailRouter.swift */; };
+		5DEC779F2B10A91900643371 /* DetailRouter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5DEC77962B10A56B00643371 /* DetailRouter.swift */; };
 		5DEC77A02B10A91900643371 /* FavoriteRouter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5DEC77922B10A55900643371 /* FavoriteRouter.swift */; };
 		5DEC77A12B10A91900643371 /* OnBoardingRouter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5DEC77982B10A57500643371 /* OnBoardingRouter.swift */; };
 		5DEC77A22B10A92000643371 /* CoreInjection.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5DEC779A2B10A5CE00643371 /* CoreInjection.swift */; };
@@ -48,6 +48,9 @@
 		5DEC77A72B10A92000643371 /* OnBoardingInjection.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5DEC77892B10A4BD00643371 /* OnBoardingInjection.swift */; };
 		5DEC77A82B10A92000643371 /* FavoriteInjection.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5DEC77882B10A4BD00643371 /* FavoriteInjection.swift */; };
 		5DEC77AB2B10AC1700643371 /* HomeRouteCase.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5DEC77AA2B10AC1700643371 /* HomeRouteCase.swift */; };
+		5DEDBC552B10AF0E00882123 /* OnBoardingRouteCase.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5DEDBC542B10AF0E00882123 /* OnBoardingRouteCase.swift */; };
+		5DEDBC582B10AF3F00882123 /* DetailRouteCase.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5DEDBC572B10AF3F00882123 /* DetailRouteCase.swift */; };
+		5DEDBC5B2B10AFEB00882123 /* FavoriteRouteCase.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5DEDBC5A2B10AFEB00882123 /* FavoriteRouteCase.swift */; };
 		5DEE7B152AE3D4AA00B631D3 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5DEE7B142AE3D4AA00B631D3 /* AppDelegate.swift */; };
 		5DEE7B1E2AE3D4AC00B631D3 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 5DEE7B1D2AE3D4AC00B631D3 /* Assets.xcassets */; };
 		5DEE7B212AE3D4AC00B631D3 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 5DEE7B1F2AE3D4AC00B631D3 /* LaunchScreen.storyboard */; };
@@ -247,11 +250,14 @@
 		5DEC77892B10A4BD00643371 /* OnBoardingInjection.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = OnBoardingInjection.swift; sourceTree = "<group>"; };
 		5DEC77922B10A55900643371 /* FavoriteRouter.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FavoriteRouter.swift; sourceTree = "<group>"; };
 		5DEC77942B10A56100643371 /* HomeRouter.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HomeRouter.swift; sourceTree = "<group>"; };
-		5DEC77962B10A56B00643371 /* MealDetailRouter.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MealDetailRouter.swift; sourceTree = "<group>"; };
+		5DEC77962B10A56B00643371 /* DetailRouter.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DetailRouter.swift; sourceTree = "<group>"; };
 		5DEC77982B10A57500643371 /* OnBoardingRouter.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = OnBoardingRouter.swift; sourceTree = "<group>"; };
 		5DEC779A2B10A5CE00643371 /* CoreInjection.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoreInjection.swift; sourceTree = "<group>"; };
 		5DEC779C2B10A5D500643371 /* Injection.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Injection.swift; sourceTree = "<group>"; };
 		5DEC77AA2B10AC1700643371 /* HomeRouteCase.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeRouteCase.swift; sourceTree = "<group>"; };
+		5DEDBC542B10AF0E00882123 /* OnBoardingRouteCase.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OnBoardingRouteCase.swift; sourceTree = "<group>"; };
+		5DEDBC572B10AF3F00882123 /* DetailRouteCase.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailRouteCase.swift; sourceTree = "<group>"; };
+		5DEDBC5A2B10AFEB00882123 /* FavoriteRouteCase.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FavoriteRouteCase.swift; sourceTree = "<group>"; };
 		5DEE7B112AE3D4AA00B631D3 /* ios-theMealsApp.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "ios-theMealsApp.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		5DEE7B142AE3D4AA00B631D3 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		5DEE7B182AE3D4AA00B631D3 /* HomeViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeViewController.swift; sourceTree = "<group>"; };
@@ -651,7 +657,7 @@
 			isa = PBXGroup;
 			children = (
 				5DEC77982B10A57500643371 /* OnBoardingRouter.swift */,
-				5DEC77962B10A56B00643371 /* MealDetailRouter.swift */,
+				5DEC77962B10A56B00643371 /* DetailRouter.swift */,
 				5DEC77942B10A56100643371 /* HomeRouter.swift */,
 				5DEC77922B10A55900643371 /* FavoriteRouter.swift */,
 			);
@@ -676,6 +682,30 @@
 			isa = PBXGroup;
 			children = (
 				5DEC77AA2B10AC1700643371 /* HomeRouteCase.swift */,
+			);
+			path = Router;
+			sourceTree = "<group>";
+		};
+		5DEDBC532B10AF0000882123 /* Router */ = {
+			isa = PBXGroup;
+			children = (
+				5DEDBC542B10AF0E00882123 /* OnBoardingRouteCase.swift */,
+			);
+			path = Router;
+			sourceTree = "<group>";
+		};
+		5DEDBC562B10AF3400882123 /* Router */ = {
+			isa = PBXGroup;
+			children = (
+				5DEDBC572B10AF3F00882123 /* DetailRouteCase.swift */,
+			);
+			path = Router;
+			sourceTree = "<group>";
+		};
+		5DEDBC592B10AFD900882123 /* Router */ = {
+			isa = PBXGroup;
+			children = (
+				5DEDBC5A2B10AFEB00882123 /* FavoriteRouteCase.swift */,
 			);
 			path = Router;
 			sourceTree = "<group>";
@@ -839,6 +869,7 @@
 		5DEFC8D52B0F324B00900DB3 /* Favorite */ = {
 			isa = PBXGroup;
 			children = (
+				5DEDBC592B10AFD900882123 /* Router */,
 				5D0DEAFD2AFA93B0006B42B6 /* ViewModel */,
 				5D0DEAF82AFA8A7B006B42B6 /* View */,
 				5DEE7B642AE5830600B631D3 /* ViewController */,
@@ -850,6 +881,7 @@
 		5DEFC8E52B0F327600900DB3 /* Detail */ = {
 			isa = PBXGroup;
 			children = (
+				5DEDBC562B10AF3400882123 /* Router */,
 				5DA3FC642AF383BD002C526C /* ViewModel */,
 				5DA3FC632AF383B7002C526C /* ViewController */,
 				5DA3FC622AF383A6002C526C /* View */,
@@ -861,6 +893,7 @@
 		5DEFC8F52B0F328F00900DB3 /* OnBoarding */ = {
 			isa = PBXGroup;
 			children = (
+				5DEDBC532B10AF0000882123 /* Router */,
 				5DEFC9132B0F32E000900DB3 /* ViewController */,
 				5DEFC9122B0F32DC00900DB3 /* View */,
 				5DEFC9112B0F32D800900DB3 /* ViewModel */,
@@ -1458,7 +1491,7 @@
 				5DEC779E2B10A91900643371 /* HomeRouter.swift in Sources */,
 				5DEC77A72B10A92000643371 /* OnBoardingInjection.swift in Sources */,
 				5DEC77A82B10A92000643371 /* FavoriteInjection.swift in Sources */,
-				5DEC779F2B10A91900643371 /* MealDetailRouter.swift in Sources */,
+				5DEC779F2B10A91900643371 /* DetailRouter.swift in Sources */,
 				5DEC77A02B10A91900643371 /* FavoriteRouter.swift in Sources */,
 				5DEFC9502B0F434200900DB3 /* UIViewController.swift in Sources */,
 				5DEFC9532B0F434200900DB3 /* UINavigationBar.swift in Sources */,
@@ -1491,6 +1524,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				5DEFC9322B0F382000900DB3 /* MealFavCollectionViewCell.swift in Sources */,
+				5DEDBC5B2B10AFEB00882123 /* FavoriteRouteCase.swift in Sources */,
 				5DEFC9312B0F381900900DB3 /* FavoriteViewModel.swift in Sources */,
 				5DEC77632B0F491A00643371 /* FavoriteViewController.swift in Sources */,
 			);
@@ -1501,6 +1535,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				5DEFC9392B0F411A00900DB3 /* MealDetailViewModel.swift in Sources */,
+				5DEDBC582B10AF3F00882123 /* DetailRouteCase.swift in Sources */,
 				5DEFC9382B0F411A00900DB3 /* MealDetailViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -1511,6 +1546,7 @@
 			files = (
 				5DEFC9402B0F413800900DB3 /* OnBoardViewModel.swift in Sources */,
 				5DEFC93D2B0F413800900DB3 /* OnBoardingViewController.swift in Sources */,
+				5DEDBC552B10AF0E00882123 /* OnBoardingRouteCase.swift in Sources */,
 				5DEFC93F2B0F413800900DB3 /* OnBoardingCollectionViewCell.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

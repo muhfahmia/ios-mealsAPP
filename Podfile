@@ -8,16 +8,24 @@ def data_pod
   pod 'ObjectMapper'
 end
 
+def ui_pod
+    pod 'SDWebImage'
+end
+
+target 'Core' do
+  pod 'Domain'
+end
+
 target 'Home' do
-  pod 'SDWebImage'
+  ui_pod
 end
 
 target 'Favorite' do
-  pod 'SDWebImage'
+  ui_pod
 end
 
 target 'Detail' do
-  pod 'SDWebImage'
+  ui_pod
 end
 
 target 'Data' do

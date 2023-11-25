@@ -7,10 +7,7 @@
 
 import UIKit
 import Favorite
-
-public protocol FavoriteRouteCase {
-    func routeToDetail(from vc: UIViewController, withID id: String)
-}
+import Detail
 
 public class FavoriteRouter: FavoriteRouteCase {
     

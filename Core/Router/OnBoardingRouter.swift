@@ -9,11 +9,6 @@ import Foundation
 import UIKit
 import OnBoarding
 
-public protocol OnBoardingRouteCase {
-    func routeToHome(from vc: UIViewController)
-    func appRoute(window: UIWindow?)
-}
-
 public class OnBoardingRouter: OnBoardingRouteCase {
     
     private let injection: Injection
