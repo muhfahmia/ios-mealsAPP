@@ -17,6 +17,10 @@ public class MealFavCollectionViewCell: UICollectionViewCell {
     private var meal: Meal?
     var delAction: ((Meal) -> Void)?
    
+    public static var reuseIdentifier: String {
+        String(describing: MealFavCollectionViewCell.self)
+    }
+    
     public override func awakeFromNib() {
         super.awakeFromNib()
         // Initialization code

@@ -6,11 +6,16 @@
 //
 
 import UIKit
+import Core
 import Domain
 
 class OnBoardingCollectionViewCell: UICollectionViewCell {
 
     @IBOutlet weak var boardView: UIImageView!
+    
+    static var identifier: String {
+        String(describing: OnBoardingCollectionViewCell.self)
+    }
     
     override func awakeFromNib() {
         super.awakeFromNib()

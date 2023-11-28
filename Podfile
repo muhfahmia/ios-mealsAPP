@@ -9,11 +9,19 @@ def data_pod
 end
 
 def ui_pod
-    pod 'SDWebImage'
+  pod 'SDWebImage'
+end
+
+target 'Domain' do
+  data_pod
+end
+
+target 'Data' do
+  data_pod
 end
 
 target 'Core' do
-  pod 'Domain'
+  ui_pod
 end
 
 target 'Home' do
@@ -28,6 +36,10 @@ target 'Detail' do
   ui_pod
 end
 
-target 'Data' do
-  data_pod
+target 'OnBoarding' do
+  ui_pod
+end
+
+target 'About' do
+  ui_pod
 end

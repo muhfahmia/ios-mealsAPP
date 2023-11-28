@@ -5,9 +5,14 @@
 //  Created by Muhammad Fahmi on 24/11/23.
 //
 
-public protocol Injection: CoreInjection,
-                    HomeInjection,
-                    OnBoardingInjection,
-                    FavoriteInjection,
-                    DetailInjection,
-                    AboutInjection {}
+import Foundation
+
+public class ModuleInjection: CoreInjection {
+    
+    public init() {}
+}
+extension Bundle {
+    static var current: Bundle {
+        Bundle.init(for: ModuleInjection.self)
+    }
+}

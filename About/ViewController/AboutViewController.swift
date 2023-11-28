@@ -10,7 +10,7 @@ import UIKit
 public class AboutViewController: UIViewController {
     
     public init() {
-        super.init(nibName: String(describing: AboutViewController.self), bundle: nil)
+        super.init(nibName: String(describing: AboutViewController.self), bundle: Bundle.current)
     }
     
     required init?(coder: NSCoder) {

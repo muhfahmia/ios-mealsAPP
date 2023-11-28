@@ -8,7 +8,12 @@
 import UIKit
 
 public protocol HomeRouteCase {
-    func appRouteHome(window: UIWindow?)
-    func routeToHome(from vc: UIViewController)
-    func routeToDetail(from vc: UIViewController, withID id: String)
+  func appRouteHome(window: UIWindow?)
+  func routeToHome(from vc: UIViewController)
+  func routeToDetail(from vc: UIViewController, withID id: String)
+  
+  var homeVC: HomeViewController { get }
+  var favVC: UIViewController { get }
+  var aboutVC: UIViewController { get }
+  
 }

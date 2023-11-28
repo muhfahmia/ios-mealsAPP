@@ -7,6 +7,7 @@
 
 import UIKit
 import Combine
+import Core
 import Domain
 
 public class OnBoardingViewController: UIViewController {
@@ -22,10 +23,10 @@ public class OnBoardingViewController: UIViewController {
     
     var boarding: [BoardPage]?
     
-    init(router: OnBoardingRouteCase, viewModel: OnBoardViewModel) {
+    public init(router: OnBoardingRouteCase, viewModel: OnBoardViewModel) {
         self.router = router
         self.boardViewModel = viewModel
-        super.init(nibName: "OnBoardView", bundle: nil)
+        super.init(nibName: String(describing: OnBoardingViewController.self), bundle: Bundle.current)
         
     }
     
@@ -44,7 +45,7 @@ public class OnBoardingViewController: UIViewController {
                 self?.boardCollectionView.reloadData()
                 self?.boardPageControl.numberOfPages = self?.boarding?.count ?? 0
                 self?.setupBoard(with: 0)
-        }).store(in: &cancelable)
+            }).store(in: &cancelable)
     }
     
     func setupCollectionView() {
@@ -58,7 +59,7 @@ public class OnBoardingViewController: UIViewController {
     }
     
     func setupCellRegister() {
-        boardCollectionView.register(UINib(nibName: "OnBoardingCollectionViewCell", bundle: nil), forCellWithReuseIdentifier: "onBoardCell")
+        boardCollectionView.register(UINib(nibName: OnBoardingCollectionViewCell.identifier, bundle: Bundle.current), forCellWithReuseIdentifier: OnBoardingCollectionViewCell.identifier)
     }
     
     func setupBoard(with page: Int) {
@@ -88,18 +89,18 @@ public class OnBoardingViewController: UIViewController {
 extension OnBoardingViewController: UICollectionViewDataSource {
     
     public func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-        let cell = boardCollectionView.dequeueReusableCell(withReuseIdentifier: "onBoardCell", for: indexPath) as! OnBoardingCollectionViewCell
+        let cell = boardCollectionView.dequeueReusableCell(withReuseIdentifier: OnBoardingCollectionViewCell.identifier, for: indexPath) as! OnBoardingCollectionViewCell
         let board = boarding?[indexPath.item]
         cell.configure(with: board)
         return cell
     }
-
+    
     public func numberOfSections(in collectionView: UICollectionView) -> Int {
         1
     }
     
     public func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return boarding?.count ?? 0
+        return 0
     }
     
 }

@@ -7,16 +7,20 @@
 
 import UIKit
 import Core
+import OnBoarding
 
 @main
 class AppDelegate: UIResponder, UIApplicationDelegate {
 
     var window: UIWindow?
-    let injection: AppInjection = AppInjection()
+    let injection: OnBoardingInjection = OnBoarding.ModuleInjection()
+    
+    var router: OnBoardingRouteCase {
+        injection.resolve()
+    }
 
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
         window = UIWindow(frame: UIScreen.main.bounds)
-        let router: OnBoardingRouteCase = injection.resolve()
         router.appRoute(window: window)
         return true
     }
