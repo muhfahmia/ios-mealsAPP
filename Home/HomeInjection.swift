@@ -8,7 +8,7 @@
 import Domain
 import CoreData
 
-protocol HomeInjection {
+public protocol HomeInjection {
     func resolve() -> HomeViewController
     func resolve() -> HomeViewModel
     func resolve() -> HomeRouteCase
@@ -16,7 +16,7 @@ protocol HomeInjection {
     func resolve() -> HomeUseCase
 }
 
-extension HomeInjection where Self: Injection {
+public extension HomeInjection where Self: Injection {
     
     func resolve() -> HomeTabBarController {
         return HomeTabBarController(router: resolve())

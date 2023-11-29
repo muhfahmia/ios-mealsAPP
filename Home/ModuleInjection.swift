@@ -8,9 +8,11 @@
 import Foundation
 import Core
 
-class ModuleInjection: Injection {}
+public class ModuleInjection: Injection {
+    public init() {}
+}
 
-protocol Injection: HomeInjection, CoreInjection {}
+public protocol Injection: HomeInjection, CoreInjection {}
 
 extension Bundle {
     static var current: Bundle {

@@ -7,7 +7,9 @@
 
 import Foundation
 
-let baseUrl = "https://themealdb.com/api/json/v1/1/"
+public struct Constants {
+    public static let baseUrl = "https://themealdb.com/api/json/v1/1/"
+}
 
 enum MealsAPI {
     case listCategories
@@ -17,12 +19,12 @@ enum MealsAPI {
     var endpoint: String {
         switch self {
         case .listCategories:
-          return "\(baseUrl)list.php?c=list"
+            return "\(Constants.baseUrl)list.php?c=list"
         case .listMeals(let category):
-          return "\(baseUrl)filter.php?c=\(category)"
+            return "\(Constants.baseUrl)filter.php?c=\(category)"
         case .mealDetail(let id):
-          return "\(baseUrl)lookup.php?i=\(id)"
+            return "\(Constants.baseUrl)lookup.php?i=\(id)"
         }
     }
-
+    
 }

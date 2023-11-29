@@ -91,9 +91,9 @@ public class HomeViewController: UIViewController, UITextFieldDelegate, HomeView
         tblHome.addSubview(refreshPage)
         refreshPage.addTarget(self, action: #selector(onRefreshPage), for: .valueChanged)
         tblHome.dataSource = self
-        tblHome.register(nibWithCellClass: HeaderHomeTableViewCell.self)
-        tblHome.register(nibWithCellClass: TitleTableViewCell.self)
-        tblHome.register(nibWithCellClass: MealsCardTableViewCell.self)
+        tblHome.register(nibWithCellClass: HeaderHomeTableViewCell.self, at: HeaderHomeTableViewCell.self)
+        tblHome.register(nibWithCellClass: TitleTableViewCell.self, at: TitleTableViewCell.self)
+        tblHome.register(nibWithCellClass: MealsCardTableViewCell.self, at: MealsCardTableViewCell.self)
         tblHome.register(cellWithClass: FilterTableViewCell.self)
     }
     

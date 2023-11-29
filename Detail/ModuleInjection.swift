@@ -8,7 +8,10 @@
 import Foundation
 import Core
 
-public class ModuleInjection: Injection {}
+public class ModuleInjection: Injection {
+    
+    public init() {}
+}
 
 public protocol Injection: DetailInjection, CoreInjection {}
 

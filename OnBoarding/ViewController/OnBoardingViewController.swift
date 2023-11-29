@@ -72,12 +72,12 @@ public class OnBoardingViewController: UIViewController {
         let indexPage = Int(boardCollectionView.contentOffset.x / boardCollectionView.frame.width) + 1
         let indexPath = IndexPath(row: indexPage, section: 0)
         
-        if indexPage == boarding?.endIndex {
+//        if indexPage == boarding?.endIndex {
             router.routeToHome(from: self)
-        } else {
-            setupBoard(with: indexPage)
-            boardCollectionView.scrollToItem(at: indexPath, at: .centeredHorizontally, animated: true)
-        }
+//        } else {
+//            setupBoard(with: indexPage)
+//            boardCollectionView.scrollToItem(at: indexPath, at: .centeredHorizontally, animated: true)
+//        }
     }
     
     public func scrollViewDidEndDecelerating(_ scrollView: UIScrollView) {

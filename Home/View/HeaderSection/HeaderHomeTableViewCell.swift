@@ -10,6 +10,10 @@ import UIKit
 public class HeaderHomeTableViewCell: UITableViewCell {
 
     @IBOutlet weak var searchText: UITextField!
+    
+    public static var identifier: String {
+        String(describing: HeaderHomeTableViewCell.self)
+    }
 
     public override func awakeFromNib() {
         super.awakeFromNib()

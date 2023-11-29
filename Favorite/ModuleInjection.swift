@@ -8,12 +8,15 @@
 import Foundation
 import Core
 
-public class ModuleInjection: Injection {}
+public class FavoriteModule: Injection {
+    
+    public init() {}
+}
 
 public protocol Injection: FavoriteInjection, CoreInjection {}
 
 extension Bundle {
     static var current: Bundle {
-        Bundle.init(for: ModuleInjection.self)
+        Bundle.init(for: FavoriteModule.self)
     }
 }

@@ -7,43 +7,46 @@
 
 import UIKit
 import Core
+import Favorite
+import About
+import Detail
 
 class HomeRouter: HomeRouteCase {
-
+    
     private let injection: Injection
     
-     init(injection: Injection) {
+    init(injection: Injection) {
         self.injection = injection
     }
     
-     var homeVC: HomeViewController {
+    var homeVC: HomeViewController {
         injection.resolve()
     }
     
-     var favVC: UIViewController {
-//        injection.resolveFavoriteVC()
-      UIViewController()
+    var favVC: UIViewController {
+        let favInjection = Favorite.ModuleInjection()
+        return favInjection.resolveFavoriteVC()
     }
     
-     var aboutVC: UIViewController {
-//        injection.resolveAboutVC()
-      UIViewController()
+    var aboutVC: UIViewController {
+        let aboutInjection = About.ModuleInjection()
+        return aboutInjection.resolveAboutVC()
     }
     
-     func appRouteHome(window: UIWindow?) {
+    func appRouteHome(window: UIWindow?) {
         let homeTabBar: HomeTabBarController = injection.resolve()
         window?.rootViewController = homeTabBar
         window?.makeKeyAndVisible()
     }
     
-     func routeToHome(from vc: UIViewController) {
+    func routeToHome(from vc: UIViewController) {
         let homeTabBar: HomeTabBarController = injection.resolve()
         UIApplication.shared.windows.first?.rootViewController = homeTabBar
     }
     
-     func routeToDetail(from vc: UIViewController, withID id: String) {
-      // need module launcher
-//        let detailRouter: MealDetailRouteCase = injection.resolve()
-//        detailRouter.routeToDetail(from: vc, withID: id)
+    func routeToDetail(from vc: UIViewController, withID id: String) {
+        let detailInjection = Detail.ModuleInjection()
+        let detailRouter = detailInjection.resolveRoute()
+        detailRouter.routeToDetail(from: vc, withID: id)
     }
 }

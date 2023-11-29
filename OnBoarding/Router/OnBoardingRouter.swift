@@ -7,7 +7,8 @@
 
 import Foundation
 import UIKit
-//import Core
+import Core
+import Home
 
 public class OnBoardingRouter: OnBoardingRouteCase {
     
@@ -24,8 +25,9 @@ public class OnBoardingRouter: OnBoardingRouteCase {
     }
     
     public func routeToHome(from vc: UIViewController) {
-//        let homeRouter: HomeRouteCase = injection.resolve()
-//        homeRouter.routeToHome(from: vc)
+        let homeInjection = Home.ModuleInjection()
+        let homeRouter: HomeRouteCase = homeInjection.resolve()
+        homeRouter.routeToHome(from: vc)
     }
     
 }

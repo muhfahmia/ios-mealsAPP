@@ -10,7 +10,7 @@ import Domain
 
 public protocol DetailInjection {
     func resolve(withID id: String) -> MealDetailViewController
-    func resolve() -> MealDetailRouteCase
+    func resolveRoute() -> MealDetailRouteCase
     func resolve() -> MealDetailViewModel
     
     func resolve() -> MealDetailUseCase
@@ -23,7 +23,7 @@ public extension DetailInjection where Self: Injection {
         return MealDetailViewController(viewModel: resolve(), withID: id)
     }
     
-    func resolve() -> MealDetailRouteCase {
+    func resolveRoute() -> MealDetailRouteCase {
         return MealDetailRouter(injection: self)
     }
     

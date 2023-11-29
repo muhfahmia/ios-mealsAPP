@@ -7,11 +7,11 @@
 
 import UIKit
 
-class HomeTabBarController: UITabBarController {
+public class HomeTabBarController: UITabBarController {
     
     private let router: HomeRouteCase
     
-    init(router: HomeRouteCase) {
+    public init(router: HomeRouteCase) {
         self.router = router
         super.init(nibName: nil, bundle: Bundle.current)
     }

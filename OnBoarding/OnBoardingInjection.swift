@@ -11,7 +11,7 @@ import Core
 import Domain
 
 public protocol OnBoardingInjection {
-    func resolve() -> OnBoardingRouteCase
+    func resolveRoute() -> OnBoardingRouteCase
     func resolve() -> OnBoardingViewController
     func resolve() -> OnBoardViewModel
     
@@ -22,12 +22,12 @@ public protocol OnBoardingInjection {
 
 public extension OnBoardingInjection where Self: Injection {
     
-    func resolve() -> OnBoardingRouteCase {
+    func resolveRoute() -> OnBoardingRouteCase {
         return OnBoardingRouter(injection: self)
     }
     
     func resolve() -> OnBoardingViewController {
-        return OnBoardingViewController(router: resolve(), viewModel: resolve())
+        return OnBoardingViewController(router: resolveRoute(), viewModel: resolve())
     }
     
     func resolve() -> OnBoardViewModel {

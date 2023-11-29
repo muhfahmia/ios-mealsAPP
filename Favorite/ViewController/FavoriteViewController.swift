@@ -47,7 +47,7 @@ public class FavoriteViewController: UIViewController, UICollectionViewDataSourc
     private func setupUI() {
         favCL.dataSource = self
         favCL.delegate = self
-        favCL.register(nibWithCellClass: MealsCardCollectionViewCell.self)
+        favCL.register(nibWithCellClass: MealFavCollectionViewCell.self, at: MealFavCollectionViewCell.self)
     }
     
     private func observedValue() {
