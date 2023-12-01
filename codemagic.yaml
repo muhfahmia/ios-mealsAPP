@@ -8,7 +8,7 @@ workflows:
           XCODE_PROJECT: "ios-theMealsApp.xcworkspace" # Isikan nama project Anda.
           XCODE_SCHEME: "ios-theMealsApp" # Isikan nama scheme project Anda.
     scripts:
-    - name: Build MealsApp
+    - name: Build ipa for distribution
         script: |
           xcode-project build-ipa \
             --workspace "$CM_BUILD_DIR/$XCODE_WORKSPACE" \
