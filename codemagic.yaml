@@ -1,12 +1,9 @@
 workflows:
-  ios-project-debug: # workflow ID
-    name: iOS debug # workflow name
+  meals-workflows: # workflow ID
+    name: Meals Pipeline
     environment:
-      xcode: latest
-      cocoapods: default
-      vars:
-          XCODE_PROJECT: "ios-theMealsApp.xcodeproj" # Isikan nama project Anda.
-          XCODE_SCHEME: "MealsApp" # Isikan nama scheme project Anda.
+      ios_signing:
+        bundle_identifier: mfa.app
     scripts:
       - name: Build debug app
         script: |
