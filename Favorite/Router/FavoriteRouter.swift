@@ -7,6 +7,11 @@
 
 import UIKit
 import Core
+import Detail
+
+public protocol FavoriteRouteCase {
+    func routeToDetail(from vc: UIViewController, withID id: String)
+}
 
 public class FavoriteRouter: FavoriteRouteCase {
     
@@ -17,8 +22,9 @@ public class FavoriteRouter: FavoriteRouteCase {
     }
     
     public func routeToDetail(from vc: UIViewController, withID id: String) {
-//        let detailRouter: MealDetailRouteCase = injection.resolve()
-//        detailRouter.routeToDetail(from: vc, withID: id)
+        let detailInjection = Detail.ModuleInjection()
+        let detailRouter = detailInjection.resolveRoute()
+        detailRouter.routeToDetail(from: vc, withID: id)
     }
     
 }

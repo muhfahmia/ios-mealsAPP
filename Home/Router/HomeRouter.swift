@@ -11,6 +11,17 @@ import Favorite
 import About
 import Detail
 
+public protocol HomeRouteCase {
+  func appRouteHome(window: UIWindow?)
+  func routeToHome(from vc: UIViewController)
+  func routeToDetail(from vc: UIViewController, withID id: String)
+  
+  var homeVC: HomeViewController { get }
+  var favVC: UIViewController { get }
+  var aboutVC: UIViewController { get }
+  
+}
+
 class HomeRouter: HomeRouteCase {
     
     private let injection: Injection
@@ -24,7 +35,7 @@ class HomeRouter: HomeRouteCase {
     }
     
     var favVC: UIViewController {
-        let favInjection = Favorite.ModuleInjection()
+        let favInjection = Favorite.FavoriteModule()
         return favInjection.resolveFavoriteVC()
     }
     

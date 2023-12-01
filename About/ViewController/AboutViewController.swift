@@ -6,8 +6,12 @@
 //
 
 import UIKit
+import Core
 
 public class AboutViewController: UIViewController {
+    
+    @IBOutlet weak var profileImage: UIImageView!
+    let image = UIImage(nameOrSystemName: "fahmiProfile")
     
     public init() {
         super.init(nibName: String(describing: AboutViewController.self), bundle: Bundle.current)
@@ -19,6 +23,7 @@ public class AboutViewController: UIViewController {
     
     public override func viewDidLoad() {
         super.viewDidLoad()
+        profileImage.image = image
     }
     
     public override func viewWillAppear(_ animated: Bool) {

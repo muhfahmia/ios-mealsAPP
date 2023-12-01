@@ -14,6 +14,7 @@ public class FavoriteViewController: UIViewController, UICollectionViewDataSourc
     
     @IBOutlet weak var favCL: UICollectionView!
     @IBOutlet weak var favMessage: UIStackView!
+    @IBOutlet weak var favLoadingImage: UIImageView!
     
     private let favViewModel: FavoriteViewModel
     private let favRouter: FavoriteRouteCase
@@ -48,6 +49,7 @@ public class FavoriteViewController: UIViewController, UICollectionViewDataSourc
         favCL.dataSource = self
         favCL.delegate = self
         favCL.register(nibWithCellClass: MealFavCollectionViewCell.self, at: MealFavCollectionViewCell.self)
+        favLoadingImage.image = UIImage(nameOrSystemName: "loading")
     }
     
     private func observedValue() {

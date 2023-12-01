@@ -19,10 +19,9 @@ class OnBoardingCollectionViewCell: UICollectionViewCell {
     
     override func awakeFromNib() {
         super.awakeFromNib()
-        // Initialization code
     }
     
     func configure(with board: BoardPage?) {
-        boardView.image = UIImage(named: (board?.viewAnimate)!)
+        boardView.image = UIImage(nameOrSystemName: board?.viewAnimate ?? "")
     }
 }

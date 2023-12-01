@@ -2,6 +2,7 @@
 <document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="22154" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
     <device id="retina6_12" orientation="portrait" appearance="light"/>
     <dependencies>
+        <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="22130"/>
         <capability name="Named colors" minToolsVersion="9.0"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
@@ -9,8 +10,9 @@
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <objects>
-        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="AboutViewController" customModule="ios_theMealsApp" customModuleProvider="target">
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="AboutViewController" customModule="About">
             <connections>
+                <outlet property="profileImage" destination="0O0-Gg-QRu" id="Xmh-m0-Opq"/>
                 <outlet property="view" destination="iN0-l3-epB" id="jJM-hz-A5i"/>
             </connections>
         </placeholder>
@@ -25,7 +27,7 @@
                         <view contentMode="scaleAspectFit" translatesAutoresizingMaskIntoConstraints="NO" id="H1G-RM-0Mt">
                             <rect key="frame" x="0.0" y="0.0" width="393" height="588"/>
                             <subviews>
-                                <imageView clipsSubviews="YES" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="fahmiProfile" translatesAutoresizingMaskIntoConstraints="NO" id="0O0-Gg-QRu">
+                                <imageView clipsSubviews="YES" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="0O0-Gg-QRu">
                                     <rect key="frame" x="71.666666666666686" y="25" width="250" height="250"/>
                                     <color key="backgroundColor" systemColor="systemGray6Color"/>
                                     <color key="tintColor" name="AccentColor"/>
@@ -162,7 +164,6 @@
         </view>
     </objects>
     <resources>
-        <image name="fahmiProfile" width="667" height="1024"/>
         <namedColor name="AccentColor">
             <color red="1" green="0.74117647058823533" blue="0.18431372549019609" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
         </namedColor>

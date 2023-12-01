@@ -10,7 +10,7 @@ import Domain
 public protocol FavoriteInjection {
     func resolveFavoriteVC() -> FavoriteViewController
     
-    func resolve() -> FavoriteRouteCase
+    func resolveRouter() -> FavoriteRouteCase
     
     func resolve() -> FavoriteViewModel
     func resolve() -> FavoriteUseCase
@@ -19,10 +19,10 @@ public protocol FavoriteInjection {
 public extension FavoriteInjection where Self: Injection {
     
     func resolveFavoriteVC() -> FavoriteViewController {
-        return FavoriteViewController(viewModel: resolve(), router: resolve())
+        return FavoriteViewController(viewModel: resolve(), router: resolveRouter())
     }
     
-    func resolve() -> FavoriteRouteCase {
+    func resolveRouter() -> FavoriteRouteCase {
         return FavoriteRouter(injection: self)
     }
     

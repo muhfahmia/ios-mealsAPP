@@ -10,6 +10,11 @@ import UIKit
 import Core
 import Home
 
+public protocol OnBoardingRouteCase {
+    func routeToHome(from vc: UIViewController)
+    func appRoute(window: UIWindow?)
+}
+
 public class OnBoardingRouter: OnBoardingRouteCase {
     
     private let injection: Injection

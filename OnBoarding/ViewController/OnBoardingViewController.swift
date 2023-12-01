@@ -59,7 +59,7 @@ public class OnBoardingViewController: UIViewController {
     }
     
     func setupCellRegister() {
-        boardCollectionView.register(UINib(nibName: OnBoardingCollectionViewCell.identifier, bundle: Bundle.current), forCellWithReuseIdentifier: OnBoardingCollectionViewCell.identifier)
+        boardCollectionView.register(nibWithCellClass: OnBoardingCollectionViewCell.self, at: ModuleInjection.self)
     }
     
     func setupBoard(with page: Int) {
@@ -72,12 +72,12 @@ public class OnBoardingViewController: UIViewController {
         let indexPage = Int(boardCollectionView.contentOffset.x / boardCollectionView.frame.width) + 1
         let indexPath = IndexPath(row: indexPage, section: 0)
         
-//        if indexPage == boarding?.endIndex {
+        if indexPage == boarding?.endIndex {
             router.routeToHome(from: self)
-//        } else {
-//            setupBoard(with: indexPage)
-//            boardCollectionView.scrollToItem(at: indexPath, at: .centeredHorizontally, animated: true)
-//        }
+        } else {
+            setupBoard(with: indexPage)
+            boardCollectionView.scrollToItem(at: indexPath, at: .centeredHorizontally, animated: true)
+        }
     }
     
     public func scrollViewDidEndDecelerating(_ scrollView: UIScrollView) {
@@ -89,7 +89,7 @@ public class OnBoardingViewController: UIViewController {
 extension OnBoardingViewController: UICollectionViewDataSource {
     
     public func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-        let cell = boardCollectionView.dequeueReusableCell(withReuseIdentifier: OnBoardingCollectionViewCell.identifier, for: indexPath) as! OnBoardingCollectionViewCell
+        let cell: OnBoardingCollectionViewCell = collectionView.dequeueReusableCell(withClass: OnBoardingCollectionViewCell.self, for: indexPath)
         let board = boarding?[indexPath.item]
         cell.configure(with: board)
         return cell
@@ -100,7 +100,7 @@ extension OnBoardingViewController: UICollectionViewDataSource {
     }
     
     public func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return 0
+        return boarding?.count ?? 0
     }
     
 }
