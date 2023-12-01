@@ -5,7 +5,7 @@ workflows:
       xcode: latest
       cocoapods: default
       vars:
-          XCODE_PROJECT: "ios-theMealsApp.xcworkspace" # Isikan nama project Anda.
+          XCODE_WORKSPACE: "ios-theMealsApp.xcworkspace" # Isikan nama project Anda.
           XCODE_SCHEME: "ios-theMealsApp" # Isikan nama scheme project Anda.
     scripts:
       - name: Run tests
