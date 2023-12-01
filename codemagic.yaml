@@ -1,32 +1,29 @@
 workflows:
-  meals-project-debug: # workflow ID
-    name: Meals Pipeline
+  ios-project-debug: # workflow ID
+    name: iOS debug # workflow name
     environment:
       xcode: latest
       cocoapods: default
       vars:
           XCODE_PROJECT: "ios-theMealsApp.xcworkspace" # Isikan nama project Anda.
           XCODE_SCHEME: "ios-theMealsApp" # Isikan nama scheme project Anda.
-          XCODE_CONFIGURATION: "Debug"
     scripts:
-        - name: Install CocoaPods dependencies
-            script: |
-              cd ios-mealsAPP
-              pod install
-        - name: Build the app
-            script: |
-              xcodebuild build \
-                -workspace "$XCODE_WORKSPACE" \
-                -scheme "$XCODE_SCHEME" \
-                -configuration "$XCODE_CONFIGURATION" \
-                -sdk iphonesimulator \
-                -destination 'platform=iOS Simulator,name=iPhone 14 Pro,OS=16.2'
+      - name: Run tests
+        script: |
+          xcodebuild \
+          -project "$XCODE_PROJECT" \
+          -scheme "$XCODE_SCHEME" \
+          -sdk iphonesimulator \
+          -destination 'platform=iOS Simulator,name=iPhone 12 Pro Max,OS=16.1' \
+          clean build test CODE_SIGN_IDENTITY="" CODE_SIGNING_REQUIRED=NO
+      - name: Build debug app
+        script: |
+          xcodebuild build -project "$XCODE_PROJECT" \
+          -scheme "$XCODE_SCHEME" \
+          CODE_SIGN_IDENTITY="" CODE_SIGNING_REQUIRED=NO CODE_SIGNING_ALLOWED=NO
     artifacts:
-    - build/ios/ipa/*.ipa
-    - /tmp/xcodebuild_logs/*.log
-    - $HOME/Library/Developer/Xcode/DerivedData/**/Build/**/*.app
-    - $HOME/Library/Developer/Xcode/DerivedData/**/Build/**/*.dSYM
+      - $HOME/Library/Developer/Xcode/DerivedData/**/Build/**/*.app
     publishing:
       email:
         recipients:
-          - mfahmiardiyannto@gmail.com # Isikan email untuk notifikasi status building.
+          - mfahmiardiyannto@gmail.com # Isikan email untuk notifikasi status build
