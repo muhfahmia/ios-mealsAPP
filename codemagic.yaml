@@ -9,11 +9,11 @@ workflows:
           XCODE_SCHEME: "ios-theMealsApp" # Isikan nama scheme project Anda.
           XCODE_CONFIGURATION: "Debug"
     scripts:
-     - name: Install CocoaPods dependencies
+        - name: Install CocoaPods dependencies
         script: |
           cd ios-mealsAPP
           pod install
-    - name: Build the app
+        - name: Build the app
         script: |
           xcodebuild build \
             -workspace "$XCODE_WORKSPACE" \
