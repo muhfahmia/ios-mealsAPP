@@ -8,13 +8,16 @@ workflows:
           XCODE_PROJECT: "ios-theMealsApp.xcworkspace" # Isikan nama project Anda.
           XCODE_SCHEME: "ios-theMealsApp" # Isikan nama scheme project Anda.
     scripts:
-      - name: Build debug app
+    - name: Build MealsApp
         script: |
-          xcodebuild build -project "$XCODE_PROJECT" \
-          -scheme "$XCODE_SCHEME" \
-          CODE_SIGN_IDENTITY="" CODE_SIGNING_REQUIRED=NO CODE_SIGNING_ALLOWED=NO
+          xcode-project build-ipa \
+            --workspace "$CM_BUILD_DIR/$XCODE_WORKSPACE" \
+            --scheme "$XCODE_SCHEME"
     artifacts:
-      - $HOME/Library/Developer/Xcode/DerivedData/**/Build/**/*.app
+    - build/ios/ipa/*.ipa
+    - /tmp/xcodebuild_logs/*.log
+    - $HOME/Library/Developer/Xcode/DerivedData/**/Build/**/*.app
+    - $HOME/Library/Developer/Xcode/DerivedData/**/Build/**/*.dSYM
     publishing:
       email:
         recipients:

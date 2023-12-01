@@ -13,7 +13,8 @@ import OnBoarding
 class AppDelegate: UIResponder, UIApplicationDelegate {
     
     var window: UIWindow?
-    private var injection: OnBoardingInjection { OnBoarding.ModuleInjection()
+    private var injection: OnBoardingInjection { 
+        OnBoarding.ModuleInjection()
     }
     
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
