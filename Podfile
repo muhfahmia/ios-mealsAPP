@@ -1,5 +1,5 @@
 # Uncomment the next line to define a global platform for your project
-platform :ios, '13.0'
+platform :ios, '16.4'
 
 def data_pod
   pod 'Alamofire'
