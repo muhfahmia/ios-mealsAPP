@@ -8,27 +8,37 @@
 import Foundation
 import Combine
 import Domain
+import Core
 
-public protocol MealsDataSourceProtocol {
-    func getCategoriesFromSource() -> AnyPublisher<CategoriesReponse, Error>
-    func getMealsFromSource(category: String) -> AnyPublisher<MealsResponse, Error>
-    func getMealDetailFromSource(withID id: String) -> AnyPublisher<MealsResponse, Error>
-}
-
-public struct MealsDataSource: MealsDataSourceProtocol {
+public struct MealCategoryDataSource: DataSource {
+    public typealias Request = Any
+    public typealias Response = CategoriesReponse
     
     public init() {}
     
-    public func getCategoriesFromSource() -> AnyPublisher<CategoriesReponse, Error> {
+    public func execute(request: Any?) -> AnyPublisher<CategoriesReponse, Never> {
         return APIManager.shared.requestData(url: MealsAPI.listCategories.endpoint, method: .get, responseType: CategoriesReponse.self)
     }
+}
+
+public struct MealsDataSource: DataSource {
+    public typealias Request = String
+    public typealias Response = MealsResponse
     
-    public func getMealsFromSource(category: String) -> AnyPublisher<MealsResponse, Error> {
-        return APIManager.shared.requestData(url: MealsAPI.listMeals(category: category).endpoint, method: .get, responseType: MealsResponse.self)
+    public init() {}
+    
+    public func execute(request: String?) -> AnyPublisher<MealsResponse, Never> {
+        return APIManager.shared.requestData(url: MealsAPI.listMeals(category: request ?? "").endpoint, method: .get, responseType: MealsResponse.self)
     }
+}
+
+public struct MealDetailDataSource: DataSource {
+    public typealias Request = String
+    public typealias Response = MealsResponse
     
-    public func getMealDetailFromSource(withID id: String) -> AnyPublisher<MealsResponse, Error> {
+    public init() {}
+    
+    public func execute(request: String?) -> AnyPublisher<MealsResponse, Never> {
         return APIManager.shared.requestData(url: MealsAPI.mealDetail(withID: id).endpoint, method: .get, responseType: MealsResponse.self)
     }
-    
 }
