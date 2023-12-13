@@ -7,7 +7,7 @@
 
 import UIKit
 import Combine
-import Core
+import Common
 import Domain
 
 public class OnBoardingViewController: UIViewController {

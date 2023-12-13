@@ -7,7 +7,7 @@
 
 import Foundation
 import UIKit
-import Core
+import Common
 import Home
 
 public protocol OnBoardingRouteCase {

@@ -9,7 +9,7 @@ import UIKit
 import Combine
 import SDWebImage
 import Domain
-import Core
+import Common
 
 public class MealDetailViewController: UIViewController {
     

@@ -6,7 +6,7 @@
 //
 
 import UIKit
-import Core
+import Common
 
 public class AboutViewController: UIViewController {
     

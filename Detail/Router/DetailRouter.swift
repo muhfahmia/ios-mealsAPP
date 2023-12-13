@@ -6,7 +6,7 @@
 //
 
 import UIKit
-import Core
+import Common
 
 public protocol MealDetailRouteCase {
     func routeToDetail(from vc: UIViewController, withID id: String)

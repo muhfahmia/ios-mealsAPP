@@ -6,7 +6,7 @@
 //
 
 import UIKit
-import Core
+import Common
 import Favorite
 import About
 import Detail

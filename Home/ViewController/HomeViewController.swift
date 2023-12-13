@@ -8,7 +8,7 @@
 import UIKit
 import Combine
 import Domain
-import Core
+import Common
 
 public protocol HomeViewDelegate {
     func updateMeals(category: String)

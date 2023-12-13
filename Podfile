@@ -33,6 +33,11 @@ target 'Core' do
   ui_pod
 end
 
+target 'Common' do
+  use_frameworks!
+  ui_pod
+end
+
 target 'Home' do
   use_frameworks!
   ui_pod

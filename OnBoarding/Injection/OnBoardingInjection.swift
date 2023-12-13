@@ -7,7 +7,7 @@
 
 import UIKit
 import Data
-import Core
+import Common
 import Domain
 
 public protocol OnBoardingInjection {
