@@ -10,7 +10,7 @@ import Core
 import Combine
 import Domain
 
-public struct MealsAddFavoriteRepository: Repository {
+public struct MealsAddFavoriteRepository<MealsFavoriteDataSource: LocalDataSource>: Repository where MealsFavoriteDataSource.Request == Meal, MealsFavoriteDataSource.Response == Meal {
     
     public typealias Request = Meal
     public typealias Response = Bool
@@ -21,7 +21,8 @@ public struct MealsAddFavoriteRepository: Repository {
         self.dataSource = dataSource
     }
     
-    public func execute(request: Request?) -> AnyPublisher<Response, Error> {
+    public func execute(request: Meal?) -> AnyPublisher<Bool, Error> {
         dataSource.add(entities: request!)
+            .eraseToAnyPublisher()
     }
 }

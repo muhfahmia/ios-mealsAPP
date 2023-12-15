@@ -7,22 +7,23 @@
 
 import Data
 import Domain
+import Core
 
 public protocol CoreInjection {
     func resolve() -> MealsByCategoriesDataSource
     func resolve() -> MealsCategoriesDataSource
     func resolve() -> MealsDetailDataSource
     
-    func resolve() -> MealsByCategoriesRepository
-    func resolve() -> MealsCategoriesRepository
-    func resolve() -> MealsDetailRepository
+    func resolve() -> MealsByCategoriesRepository<MealsByCategoriesDataSource>
+    func resolve() -> MealsCategoriesRepository<MealsCategoriesDataSource>
+    func resolve() -> MealsDetailRepository<MealsDetailDataSource>
     
     func resolve() -> MealsFavoriteDataSource
     
-    func resolve() -> MealsAddFavoriteRepository
-    func resolve() -> MealsDeleteFavoriteRepository
-    func resolve() -> MealsDetailFavoriteRepository
-    func resolve() -> MealsListFavoriteRepository
+    func resolve() -> MealsAddFavoriteRepository<MealsFavoriteDataSource>
+    func resolve() -> MealsDeleteFavoriteRepository<MealsFavoriteDataSource>
+    func resolve() -> MealsDetailFavoriteRepository<MealsFavoriteDataSource>
+    func resolve() -> MealsListFavoriteRepository<MealsFavoriteDataSource>
 }
 
 public extension CoreInjection {
@@ -39,15 +40,15 @@ public extension CoreInjection {
         MealsDetailDataSource()
     }
     
-    func resolve() -> MealsByCategoriesRepository {
+    func resolve() -> MealsByCategoriesRepository<MealsByCategoriesDataSource> {
         MealsByCategoriesRepository(dataSource: resolve())
     }
     
-    func resolve() -> MealsCategoriesRepository {
+    func resolve() -> MealsCategoriesRepository<MealsCategoriesDataSource> {
         MealsCategoriesRepository(dataSource: resolve())
     }
     
-    func resolve() -> MealsDetailRepository {
+    func resolve() -> MealsDetailRepository<MealsDetailDataSource> {
         MealsDetailRepository(dataSource: resolve())
     }
     
@@ -55,19 +56,19 @@ public extension CoreInjection {
         MealsFavoriteDataSource()
     }
     
-    func resolve() -> MealsAddFavoriteRepository {
+    func resolve() -> MealsAddFavoriteRepository<MealsFavoriteDataSource> {
         MealsAddFavoriteRepository(dataSource: resolve())
     }
     
-    func resolve() -> MealsDeleteFavoriteRepository {
+    func resolve() -> MealsDeleteFavoriteRepository<MealsFavoriteDataSource> {
         MealsDeleteFavoriteRepository(dataSource: resolve())
     }
     
-    func resolve() -> MealsDetailFavoriteRepository {
+    func resolve() -> MealsDetailFavoriteRepository<MealsFavoriteDataSource> {
         MealsDetailFavoriteRepository(dataSource: resolve())
     }
     
-    func resolve() -> MealsListFavoriteRepository {
+    func resolve() -> MealsListFavoriteRepository<MealsFavoriteDataSource> {
         MealsListFavoriteRepository(dataSource: resolve())
     }
     

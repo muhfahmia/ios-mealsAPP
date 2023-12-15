@@ -10,7 +10,7 @@ import Combine
 import Domain
 import Core
 
-public struct MealsDeleteFavoriteRepository: Repository {
+public struct MealsDeleteFavoriteRepository<MealsFavoriteDataSource: LocalDataSource>: Repository where MealsFavoriteDataSource.Request == Meal, MealsFavoriteDataSource.Response == Meal {
     public typealias Request = Meal
     
     public typealias Response = Bool

@@ -28,15 +28,7 @@ public extension DetailInjection where Self: Injection {
     }
     
     func resolve() -> MealDetailViewModel {
-        return MealDetailViewModel(detailUseCase: resolve(), favoUseCase: resolve())
+        return MealDetailViewModel(mealDetailUseCase: resolve(), addFavoriteUseCase: resolve(), deleteFavoriteUseCase: resolve(), listFavoriteUseCase: resolve())
     }
-    
-    func resolve() -> MealDetailUseCase {
-        return MealDetailInteractor(mealRepo: resolve())
-    }
-  
-  func resolve() -> FavoriteUseCase {
-    return FavoriteInteractor(mealsRepo: resolve())
-  }
     
 }

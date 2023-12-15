@@ -10,10 +10,10 @@ import Core
 import Combine
 import Domain
 
-public struct MealsDetailRepository: Repository {
+public struct MealsDetailRepository<MealsDetailDataSource: DataSource>: Repository where MealsDetailDataSource.Request == String, MealsDetailDataSource.Response == MealsResponse {
     
     public typealias Request = String
-    public typealias Response = MealsResponse
+    public typealias Response = Meals
     
     private let dataSource: MealsDetailDataSource
     
@@ -21,8 +21,9 @@ public struct MealsDetailRepository: Repository {
         self.dataSource = dataSource
     }
     
-    public func execute(request: String?) -> AnyPublisher<Response, Error> {
-        dataSource.execute(request: request)
+    public func execute(request: String?) -> AnyPublisher<Meals, Error> {
+        dataSource.execute(request: request).compactMap({ $0 })
+            .eraseToAnyPublisher()
     }
     
 }

@@ -11,12 +11,12 @@ import Domain
 import Core
 
 public struct MealsCategoriesDataSource: DataSource {
-    public typealias Request = Any
+    public typealias Request = String
     public typealias Response = CategoriesReponse
     
     public init() {}
     
-    public func execute(request: Any?) -> AnyPublisher<CategoriesReponse, Error> {
+    public func execute(request: String?) -> AnyPublisher<CategoriesReponse, Error> {
         return APIManager.shared.requestData(url: MealsAPI.listCategories.endpoint, method: .get, responseType: CategoriesReponse.self)
     }
 }

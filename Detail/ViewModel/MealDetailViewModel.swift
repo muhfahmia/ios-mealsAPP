@@ -9,22 +9,55 @@ import Foundation
 import Combine
 import UIKit
 import Domain
+import Core
+import Data
+
+public typealias MealDetailInteractor = Interactor<
+    String, Meals, MealsDetailRepository<
+        MealsDetailDataSource
+    >
+  >
+
+
+public typealias MealsAddFavoriteInteractor = Interactor<
+    Meal, Bool, MealsAddFavoriteRepository<
+        MealsFavoriteDataSource
+    >
+  >
+
+public typealias MealsDeleteFavoriteInteractor = Interactor<
+    Meal, Bool, MealsDeleteFavoriteRepository<
+        MealsFavoriteDataSource
+    >
+  >
+
+public typealias MealsFavoriteInteractor = Interactor<
+    Meal, [Meal], MealsListFavoriteRepository<
+        MealsFavoriteDataSource
+    >
+  >
 
 public class MealDetailViewModel {
     
-    private let mealDetailUseCase: MealDetailUseCase
-    private let favoriteUseCase: FavoriteUseCase
+    private let mealDetailUseCase: MealDetailInteractor
+    private let addFavoriteUseCase: MealsAddFavoriteInteractor
+    private let deleteFavoriteUseCase: MealsDeleteFavoriteInteractor
+    private let listFavoriteUseCase: MealsFavoriteInteractor
+    
     private var cancelable = Set<AnyCancellable>()
+    
     var meal = PassthroughSubject<Meal?, Never>()
     var mealState = PassthroughSubject<Bool, Never>()
     
-    public init(detailUseCase: MealDetailUseCase, favoUseCase: FavoriteUseCase) {
-        mealDetailUseCase = detailUseCase
-        favoriteUseCase = favoUseCase
+    init(mealDetailUseCase: MealDetailInteractor, addFavoriteUseCase: MealsAddFavoriteInteractor, deleteFavoriteUseCase: MealsDeleteFavoriteInteractor, listFavoriteUseCase: MealsFavoriteInteractor) {
+        self.mealDetailUseCase = mealDetailUseCase
+        self.addFavoriteUseCase = addFavoriteUseCase
+        self.deleteFavoriteUseCase = deleteFavoriteUseCase
+        self.listFavoriteUseCase = listFavoriteUseCase
     }
     
     public func getMealDetail(withID id: String) {
-        mealDetailUseCase.getMealDetail(withID: id)
+        mealDetailUseCase.execute(request: id)
             .subscribe(on: DispatchQueue.global(qos: .background))
             .receive(on: RunLoop.main)
             .sink(receiveCompletion: { result in
@@ -39,7 +72,7 @@ public class MealDetailViewModel {
     }
     
     public func addMealFavorite(with meal: Meal) {
-        favoriteUseCase.add(with: meal)
+        addFavoriteUseCase.execute(request: meal)
         .receive(on: RunLoop.main)
         .sink(receiveValue: { [weak self] value in
             self?.mealState.send(value)
@@ -47,7 +80,7 @@ public class MealDetailViewModel {
     }
     
     public func deleteMealFavorite(with meal: Meal) {
-        favoriteUseCase.delete(with: meal)
+        deleteMealFavorite(with: meal)
         .receive(on: RunLoop.main)
         .sink(receiveValue: { [weak self] value in
             if value == true {
@@ -57,6 +90,7 @@ public class MealDetailViewModel {
     }
     
     public func getMealFavorite(withID id: String) {
+        listFavoriteUseCase.execute(request: <#T##Meal?#>)
         favoriteUseCase.getWithID(withID: id)
         .receive(on: RunLoop.main)
         .sink(receiveValue: { [weak self] value in

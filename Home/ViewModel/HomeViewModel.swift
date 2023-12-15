@@ -8,22 +8,32 @@
 import Foundation
 import Combine
 import Domain
+import Data
+import Core
+
+public typealias MealCategoriesInteractor = Interactor<
+    String, Categories, MealsCategoriesRepository<
+        MealsCategoriesDataSource
+    >
+  >
 
 public class HomeViewModel {
     
     let homeInteractor: HomeUseCase
+    let mealCategoriesInteractor: MealCategoriesInteractor
     private var cancelable = Set<AnyCancellable>()
     
     var categories = PassthroughSubject<[MCategory], Never>()
     var meals = PassthroughSubject<[Meal], Never>()
     var mealsFav = PassthroughSubject<[Meal], Never>()
     
-    public init(homeInteractor: HomeUseCase) {
+    public init(homeInteractor: HomeUseCase, mealCategoriesInteractor: MealCategoriesInteractor) {
         self.homeInteractor = homeInteractor
+        self.mealCategoriesInteractor = mealCategoriesInteractor
     }
     
     public func getCategories() {
-        homeInteractor.getCategories()
+        mealCategoriesInteractor.execute(request: nil)
         .subscribe(on: DispatchQueue.global(qos: .background))
         .receive(on: RunLoop.main)
         .sink(receiveCompletion: { result in

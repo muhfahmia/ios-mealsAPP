@@ -82,6 +82,7 @@
 		AA2BBC5706B5A9C1C50FABB2 /* Pods_About.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = EEED635F2F66947E5337A3DB /* Pods_About.framework */; };
 		B0F0E87E7350A8FABE884B33 /* Pods_OnBoarding.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4AA890C5504427B8CE095A61 /* Pods_OnBoarding.framework */; };
 		BE860551F5A6E317FB5F7239 /* Pods_Home.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E028CE2E2BBF159A6D653B9E /* Pods_Home.framework */; };
+		CE40AE0A2B2C9E4A00F76E3C /* Interactor.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE40AE092B2C9E4A00F76E3C /* Interactor.swift */; };
 		CE4CEF2E2B16242B00543AE8 /* HeaderHomeTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5DEE7B6C2AE638DE00B631D3 /* HeaderHomeTableViewCell.swift */; };
 		CE4CEF2F2B16243000543AE8 /* HeaderHomeTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 5DEE7B6D2AE638DE00B631D3 /* HeaderHomeTableViewCell.xib */; };
 		CE5725412B28A470000E4EC2 /* Core.h in Headers */ = {isa = PBXBuildFile; fileRef = CE5725402B28A470000E4EC2 /* Core.h */; settings = {ATTRIBUTES = (Public, ); }; };
@@ -544,6 +545,7 @@
 		C39B23AE52957448907DAB94 /* Pods-Data.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Data.release.xcconfig"; path = "Target Support Files/Pods-Data/Pods-Data.release.xcconfig"; sourceTree = "<group>"; };
 		CB25C9F78D77A59E7DDB9C85 /* Pods-Common.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Common.release.xcconfig"; path = "Target Support Files/Pods-Common/Pods-Common.release.xcconfig"; sourceTree = "<group>"; };
 		CD454A401919ACC3EEE7C3B5 /* Pods_Data.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Data.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		CE40AE092B2C9E4A00F76E3C /* Interactor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Interactor.swift; sourceTree = "<group>"; };
 		CE5725402B28A470000E4EC2 /* Core.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Core.h; sourceTree = "<group>"; };
 		CE5725472B28A4FA000E4EC2 /* Common.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Common.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		CE5725492B28A4FB000E4EC2 /* Common.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Common.h; sourceTree = "<group>"; };
@@ -954,6 +956,7 @@
 			isa = PBXGroup;
 			children = (
 				5D7ADBEA2B2C00B7008836A6 /* UseCase.swift */,
+				CE40AE092B2C9E4A00F76E3C /* Interactor.swift */,
 			);
 			path = Domain;
 			sourceTree = "<group>";
@@ -2171,6 +2174,7 @@
 			files = (
 				CE5725862B28A6F0000E4EC2 /* LocalDataSource.swift in Sources */,
 				5D7ADBEB2B2C00B7008836A6 /* UseCase.swift in Sources */,
+				CE40AE0A2B2C9E4A00F76E3C /* Interactor.swift in Sources */,
 				CE5725842B28A6E7000E4EC2 /* DataSource.swift in Sources */,
 				5D7ADBD62B2B378D008836A6 /* Repository.swift in Sources */,
 			);
