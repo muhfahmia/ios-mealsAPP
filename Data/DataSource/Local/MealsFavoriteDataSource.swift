@@ -8,16 +8,13 @@
 import Combine
 import Domain
 import CoreData
+import Core
 
-public protocol MealsFavoriteDataSourceProtocol {
-    func deleteMeal(with meal: Meal) -> Just<Bool>
-    func addMeal(with meal: Meal) -> Just<Bool>
-    func getMeals() -> AnyPublisher<[Meal], Never>
-    func getMealWithID(withID id: String) -> AnyPublisher<Bool, Never>
-}
-
-public class MealsFavoriteDataSource: MealsFavoriteDataSourceProtocol {
+public class MealsFavoriteDataSource: LocalDataSource {
     
+    public typealias Request = Meal
+    public typealias Response = Meal
+
     lazy var container: NSPersistentContainer = {
         let messageKitBundle = Bundle(identifier: "mfa.Data")
         let modelURL = messageKitBundle!.url(forResource: "CoreDataMeal", withExtension: "momd")!
@@ -30,64 +27,35 @@ public class MealsFavoriteDataSource: MealsFavoriteDataSourceProtocol {
         })
         return container
     }()
+    
     var context: NSManagedObjectContext {
         return self.container.viewContext
     }
 
     public init() {}
     
-    public func addMeal(with meal: Meal) -> Just<Bool> {
-        let mealObj = CoreDataMeal(context: context)
-        mealObj.setValue(UUID().uuidString, forKey: "id")
-        mealObj.setValue(meal.idMeal, forKeyPath: "idMeal")
-        mealObj.setValue(meal.name, forKeyPath: "meal")
-        mealObj.setValue(meal.imageThumb, forKeyPath: "imageMeal")
-        do {
-            try self.context.save()
-            return Just(true)
-        } catch {
-            return Just(false)
-        }
-    }
-    
-    public func deleteMeal(with meal: Meal) -> Just<Bool> {
-        let fetchRequest: NSFetchRequest<CoreDataMeal> = CoreDataMeal.fetchRequest()
-        fetchRequest.predicate = NSPredicate(format: "idMeal = \(meal.idMeal!)")
-        do {
-            let meals = try context.fetch(fetchRequest)
-            for meal in meals {
-                context.delete(meal)
-            }
-            try context.save()
-            return Just(true)
-        } catch {
-            return Just(false)
-        }
-    }
-    
-    public func getMealWithID(withID id: String) -> AnyPublisher<Bool, Never> {
-        return Future<Bool, Never> { promise in
-            let fetchRequest: NSFetchRequest<CoreDataMeal> = CoreDataMeal.fetchRequest()
-            fetchRequest.predicate = NSPredicate(format: "idMeal = \(id)")
+    public func add(entities: Request) -> AnyPublisher<Bool, Error> {
+        return Future<Bool, Error> { promise in
+            let mealObj = CoreDataMeal(context: self.context)
+            mealObj.setValue(UUID().uuidString, forKey: "id")
+            mealObj.setValue(entities.idMeal, forKeyPath: "idMeal")
+            mealObj.setValue(entities.name, forKeyPath: "meal")
+            mealObj.setValue(entities.imageThumb, forKeyPath: "imageMeal")
             do {
-                let meal = try self.context.fetch(fetchRequest).count
-                if meal > 0 {
-                    promise(.success(true))
-                } else {
-                    promise(.success(false))
-                }
+                try self.context.save()
+                promise(.success(true))
             } catch {
-                print("Error fetch check movie: \(error)")
+                promise(.success(false))
             }
         }.eraseToAnyPublisher()
     }
     
-    public func getMeals() -> AnyPublisher<[Meal], Never> {
-        return Future<[Meal], Never> { promise in
+    public func list(request: Request?) -> AnyPublisher<[Response], Error> {
+        return Future<[Response], Error> { promise in
             let fetchRequest: NSFetchRequest<CoreDataMeal> = CoreDataMeal.fetchRequest()
             do {
                 let mealsObject = try self.context.fetch(fetchRequest)
-                var meals: [Meal] = []
+                var meals: [Response] = []
                 
                 for meal in mealsObject {
                     let mealID = meal.value(forKey: "idMeal") as? String ?? ""
@@ -103,10 +71,45 @@ public class MealsFavoriteDataSource: MealsFavoriteDataSourceProtocol {
                 }
                 promise(.success(meals))
             } catch {
+                promise(.failure(ApiError.failedMapping))
                 print("Error fetch check movie: \(error)")
             }
-        }
-        .eraseToAnyPublisher()
+        }.eraseToAnyPublisher()
     }
     
+    public func detail(id: String) -> AnyPublisher<Bool, Error> {
+        return Future<Bool, Error> { promise in
+            let fetchRequest: NSFetchRequest<CoreDataMeal> = CoreDataMeal.fetchRequest()
+            fetchRequest.predicate = NSPredicate(format: "idMeal = \(id)")
+            do {
+                let meal = try self.context.fetch(fetchRequest).count
+                if meal > 0 {
+                    promise(.success(true))
+                } else {
+                    promise(.success(false))
+                }
+            } catch {
+                promise(.failure(ApiError.failedMapping))
+                print("Error fetch check movie: \(error)")
+            }
+        }.eraseToAnyPublisher()
+    }
+    
+    public func delete(entity: Response) -> AnyPublisher<Bool, Error> {
+        return Future<Bool, Error> { [weak self] promise in
+            guard let self = self else { return }
+            let fetchRequest: NSFetchRequest<CoreDataMeal> = CoreDataMeal.fetchRequest()
+            fetchRequest.predicate = NSPredicate(format: "idMeal = \(entity.idMeal!)")
+            do {
+                let meals = try context.fetch(fetchRequest)
+                for meal in meals {
+                    context.delete(meal)
+                }
+                try context.save()
+                promise(.success(true))
+            } catch {
+                promise(.failure(ApiError.failedMapping))
+            }
+        }.eraseToAnyPublisher()
+    }
 }

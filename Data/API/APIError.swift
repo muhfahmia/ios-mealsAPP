@@ -6,15 +6,7 @@
 //
 
 import Foundation
-
-enum ApiError: Error {
-    case unknown
-    case connectionError
-    case invalidJSONError
-    case middlewareError(code: Int, message: String?)
-    case failedMapping
-    case invalidURL
-}
+import Domain
 
 extension ApiError {
   var localizedDescription: String {

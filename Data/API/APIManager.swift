@@ -8,6 +8,7 @@
 import Foundation
 import Alamofire
 import ObjectMapper
+import Domain
 import Combine
 
 class APIManager {
