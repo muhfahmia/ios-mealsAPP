@@ -15,9 +15,7 @@ public protocol OnBoardingInjection {
     func resolve() -> OnBoardingViewController
     func resolve() -> OnBoardViewModel
     
-    func resolve() -> OnBoardUseCase
-    func resolve() -> OnBoardRepository
-    func resolve() -> OnBoardDataSource
+    func resolve() -> OnBoardListInteractor
 }
 
 public extension OnBoardingInjection where Self: Injection {
@@ -34,15 +32,7 @@ public extension OnBoardingInjection where Self: Injection {
         return OnBoardViewModel(onBoardInteractor: resolve())
     }
     
-    func resolve() -> OnBoardDataSource {
-        return DefaultOnBoardDataSource()
-    }
-    
-    func resolve() -> OnBoardRepository {
-        return DefaultBoardRepository(onBoardDataSource: resolve())
-    }
-    
-    func resolve() -> OnBoardUseCase {
-        return OnBoardInteractor(onBoardRepo: resolve())
+    func resolve() -> OnBoardListInteractor {
+        return OnBoardListInteractor(repository: resolve())
     }
 }

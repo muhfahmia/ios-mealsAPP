@@ -13,7 +13,8 @@ public protocol FavoriteInjection {
     func resolveRouter() -> FavoriteRouteCase
     
     func resolve() -> FavoriteViewModel
-    func resolve() -> FavoriteUseCase
+    func resolve() -> MealsFavoriteInteractor
+    func resolve() -> MealsDeleteFavoriteInteractor
 }
 
 public extension FavoriteInjection where Self: Injection {
@@ -27,11 +28,15 @@ public extension FavoriteInjection where Self: Injection {
     }
     
     func resolve() -> FavoriteViewModel {
-        return FavoriteViewModel(favUseCase: resolve())
+        return FavoriteViewModel(favListUseCase: resolve(), favDeleteUseCase: resolve())
     }
     
-    func resolve() -> FavoriteUseCase {
-        return FavoriteInteractor(mealsRepo: resolve())
+    func resolve() -> MealsFavoriteInteractor {
+        return MealsFavoriteInteractor(repository: resolve())
+    }
+    
+    func resolve() -> MealsDeleteFavoriteInteractor {
+        return MealsDeleteFavoriteInteractor(repository: resolve())
     }
     
 }

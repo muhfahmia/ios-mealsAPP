@@ -40,7 +40,7 @@ public class MealDetailViewController: UIViewController {
         super.viewDidLoad()
         setupBtn()
         detailViewModel.getMealDetail(withID: mealID)
-        detailViewModel.getMealFavorite(withID: mealID)
+        detailViewModel.getMealFavorite(id: mealID)
         observedMeal()
         observedMealFavorite()
     }

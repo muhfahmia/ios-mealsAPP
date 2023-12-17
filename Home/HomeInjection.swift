@@ -13,7 +13,8 @@ public protocol HomeInjection {
     func resolve() -> HomeViewModel
     func resolve() -> HomeRouteCase
     func resolve() -> HomeTabBarController
-    func resolve() -> HomeUseCase
+    func resolve() -> MealsCategoriesInteractor
+    func resolve() -> MealsByCategoriesInteractor
 }
 
 public extension HomeInjection where Self: Injection {
@@ -31,10 +32,14 @@ public extension HomeInjection where Self: Injection {
     }
     
     func resolve() -> HomeViewModel {
-      return HomeViewModel(homeInteractor: resolve())
+      return HomeViewModel(mealsByCategoriesInteractor: resolve(), mealCategoriesInteractor: resolve())
     }
     
-    func resolve() -> HomeUseCase {
-        return HomeInteractor(mealsRepo: resolve())
+    func resolve() -> MealsByCategoriesInteractor {
+        return MealsByCategoriesInteractor(repository: resolve())
+    }
+    
+    func resolve() -> MealsCategoriesInteractor {
+        return MealsCategoriesInteractor(repository: resolve())
     }
 }

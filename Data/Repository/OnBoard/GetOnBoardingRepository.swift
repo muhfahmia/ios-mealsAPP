@@ -10,18 +10,18 @@ import Combine
 import Core
 import Domain
 
-struct GetOnBoardingRepository: Repository {
-    typealias Request = Any
+public struct GetOnBoardingRepository<R: DataSource>: Repository where R.Request == Any, R.Response == [BoardPage] {
+    public typealias Request = Any
     
-    typealias Response = [BoardPage]
+    public typealias Response = [BoardPage]
     
-    private let dataSource: OnBoardDataSource
+    private let dataSource: R
     
-    public init(dataSource: OnBoardDataSource) {
+    public init(dataSource: R) {
         self.dataSource = dataSource
     }
     
-    func execute(request: Request?) -> AnyPublisher<[BoardPage], Error> {
+    public func execute(request: Request?) -> AnyPublisher<[BoardPage], Error> {
         return dataSource.execute(request: request)
     }
 }

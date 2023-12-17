@@ -11,24 +11,33 @@ import Domain
 import Data
 import Core
 
-public typealias MealCategoriesInteractor = Interactor<
+public typealias MealsCategoriesInteractor = Interactor<
     String, Categories, MealsCategoriesRepository<
         MealsCategoriesDataSource
     >
-  >
+>
+
+public typealias MealsByCategoriesInteractor = Interactor<
+    String, Meals, MealsByCategoriesRepository<
+        MealsByCategoriesDataSource
+    >
+>
 
 public class HomeViewModel {
     
-    let homeInteractor: HomeUseCase
-    let mealCategoriesInteractor: MealCategoriesInteractor
+    private let mealsByCategoriesInteractor: MealsByCategoriesInteractor
+    private let mealCategoriesInteractor: MealsCategoriesInteractor
     private var cancelable = Set<AnyCancellable>()
     
     var categories = PassthroughSubject<[MCategory], Never>()
     var meals = PassthroughSubject<[Meal], Never>()
     var mealsFav = PassthroughSubject<[Meal], Never>()
     
-    public init(homeInteractor: HomeUseCase, mealCategoriesInteractor: MealCategoriesInteractor) {
-        self.homeInteractor = homeInteractor
+    public init(
+        mealsByCategoriesInteractor: MealsByCategoriesInteractor,
+        mealCategoriesInteractor: MealsCategoriesInteractor
+    ) {
+        self.mealsByCategoriesInteractor = mealsByCategoriesInteractor
         self.mealCategoriesInteractor = mealCategoriesInteractor
     }
     
@@ -48,7 +57,7 @@ public class HomeViewModel {
     }
     
     public func getMealsCategories(category: String) {
-        homeInteractor.getMeals(category: category)
+        mealsByCategoriesInteractor.execute(request: category)
         .subscribe(on: DispatchQueue.global(qos: .background))
         .receive(on: RunLoop.main)
         .sink(receiveCompletion: { result in
@@ -63,7 +72,7 @@ public class HomeViewModel {
     }
     
     public func getMealsFav(category: String) {
-        homeInteractor.getMeals(category: category)
+        mealsByCategoriesInteractor.execute(request: category)
         .receive(on: RunLoop.main)
         .sink(receiveCompletion: { result in
             switch result {

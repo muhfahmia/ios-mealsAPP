@@ -24,6 +24,9 @@ public protocol CoreInjection {
     func resolve() -> MealsDeleteFavoriteRepository<MealsFavoriteDataSource>
     func resolve() -> MealsDetailFavoriteRepository<MealsFavoriteDataSource>
     func resolve() -> MealsListFavoriteRepository<MealsFavoriteDataSource>
+    
+    func resolve() -> OnBoardDataSource
+    func resolve() -> GetOnBoardingRepository<OnBoardDataSource>
 }
 
 public extension CoreInjection {
@@ -72,4 +75,11 @@ public extension CoreInjection {
         MealsListFavoriteRepository(dataSource: resolve())
     }
     
+    func resolve() -> GetOnBoardingRepository<OnBoardDataSource> {
+        GetOnBoardingRepository(dataSource: resolve())
+    }
+    
+    func resolve() -> OnBoardDataSource {
+        OnBoardDataSource()
+    }
 }

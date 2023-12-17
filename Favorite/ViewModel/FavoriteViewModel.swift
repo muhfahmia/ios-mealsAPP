@@ -8,19 +8,38 @@
 import Foundation
 import Combine
 import Domain
+import Data
+import Core
+
+public typealias MealsFavoriteInteractor = Interactor<
+    Meal, [Meal], MealsListFavoriteRepository<
+        MealsFavoriteDataSource
+    >
+>
+
+public typealias MealsDeleteFavoriteInteractor = Interactor<
+    Meal, Bool, MealsDeleteFavoriteRepository<
+        MealsFavoriteDataSource
+    >
+>
 
 public class FavoriteViewModel {
     
-    private let favUseCase: FavoriteUseCase
+    private let favListUseCase: MealsFavoriteInteractor
+    private let favDeleteUseCase: MealsDeleteFavoriteInteractor
     private var cancelable = Set<AnyCancellable>()
     var meals = PassthroughSubject<[Meal], Never>()
     
-    init(favUseCase: FavoriteUseCase) {
-        self.favUseCase = favUseCase
+    init(
+        favListUseCase: MealsFavoriteInteractor,
+        favDeleteUseCase: MealsDeleteFavoriteInteractor
+    ) {
+        self.favListUseCase = favListUseCase
+        self.favDeleteUseCase = favDeleteUseCase
     }
     
     public func getMeals() {
-        favUseCase.get()
+        favListUseCase.execute(request: nil)
         .subscribe(on: DispatchQueue.global(qos: .background))
         .receive(on: RunLoop.main)
         .sink(receiveCompletion: { _ in
@@ -31,7 +50,7 @@ public class FavoriteViewModel {
     }
     
     public func deleteMeal(with meal: Meal) {
-        _ = favUseCase.delete(with: meal)
+        _ = favDeleteUseCase.execute(request: meal)
     }
     
 }
